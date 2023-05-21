@@ -1,13 +1,14 @@
 import './App.css';
-import Navbar from './components/Navbars/NavbarHomepage';
-import NavbarUser from './components/Navbars/NavbarUser';
-import NavbarAdmin from './components/Navbars/NavbarAdmin';
+import Home from './pages/user/Home';
+import ViewEvent from './pages/user/ViewEvent';
+import TicketInformation from './pages/user/TicketInformation';
+
 
 function App() {
 
   return (
     <>
-      <NavbarAdmin/>
+    <Home/>
     </>
   )
 }
