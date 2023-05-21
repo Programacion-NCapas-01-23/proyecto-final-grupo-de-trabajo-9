@@ -1,13 +1,13 @@
 import './App.css';
 import Navbar from './components/Navbars/NavbarHomepage';
-import Footer from './components/Footer/Footer';
-import CardHome from './components/Card/CardHome';
+import NavbarUser from './components/Navbars/NavbarUser';
+import NavbarAdmin from './components/Navbars/NavbarAdmin';
 
 function App() {
 
   return (
     <>
-      <CardHome/>
+      <NavbarAdmin/>
     </>
   )
 }
