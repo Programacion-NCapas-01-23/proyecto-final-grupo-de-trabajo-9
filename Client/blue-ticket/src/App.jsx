@@ -7,13 +7,14 @@ import TicketPurchase from './pages/user/TicketPurchase';
 import ChangePassword from './pages/user/ChangePassword';
 import TransferTicket from './pages/user/TransferTicket';
 import Record from './pages/user/Record';
+import CreateEvent from './pages/admin/CreateEvent';
 
 
 function App() {
 
   return (
     <>
-      <Record/>
+      <CreateEvent/>
     </>
   )
 }
