@@ -6,13 +6,14 @@ import Transaction from './pages/user/Transaction';
 import TicketPurchase from './pages/user/TicketPurchase';
 import ChangePassword from './pages/user/ChangePassword';
 import TransferTicket from './pages/user/TransferTicket';
+import Record from './pages/user/Record';
 
 
 function App() {
 
   return (
     <>
-      <TransferTicket/>
+      <Record/>
     </>
   )
 }
