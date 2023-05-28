@@ -8,13 +8,14 @@ import ChangePassword from './pages/user/ChangePassword';
 import TransferTicket from './pages/user/TransferTicket';
 import Record from './pages/user/Record';
 import CreateEvent from './pages/admin/CreateEvent';
+import Pay from './pages/user/Pay';
 
 
 function App() {
 
   return (
     <>
-      <CreateEvent/>
+      <Pay/>
     </>
   )
 }
