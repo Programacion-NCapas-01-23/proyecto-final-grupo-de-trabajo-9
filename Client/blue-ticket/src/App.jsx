@@ -5,13 +5,14 @@ import NewLocation from './pages/admin/NewLocation';
 import Transaction from './pages/user/Transaction';
 import TicketPurchase from './pages/user/TicketPurchase';
 import ChangePassword from './pages/user/ChangePassword';
+import TransferTicket from './pages/user/TransferTicket';
 
 
 function App() {
 
   return (
     <>
-      <ChangePassword/>
+      <TransferTicket/>
     </>
   )
 }
