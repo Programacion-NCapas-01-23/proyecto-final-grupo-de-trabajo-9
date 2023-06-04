@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { GoogleLogin } from '@leecheuk/react-google-login';
+import { useMatch, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ history }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('/Myticket');
+  }
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-[#232528] to-blue-200">
       <div className="grid place-items-center mx-2 my-20 sm:my-auto">
@@ -72,10 +78,8 @@ const Login = () => {
               <em>¿Olvidaste tu contraseña?</em>
             </a>
           </div>
-          <button type="submit" className="w-full py-3 mt-10 bg-blue rounded-md font-medium text-white capitalize focus:outline-none hover:shadow-none">
-            <Link to="/myticket" className="text-white">
-              Iniciar Sesión
-            </Link>
+          <button onClick={handleLogin} type="submit" class="w-full py-3 mt-10 bg-blue rounded-md font-medium text-white capitalize focus:outline-none hover:shadow-none">
+            Iniciar Sesion
           </button>
 
           <div className="mt-8 text-center">
