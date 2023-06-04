@@ -12,7 +12,8 @@ export default {
         "card-gray": "#DFE6E8",
         "locations-gray": "#D9D9D9",
         "white": "#FFFFFF",
-        "orange": "#E98A15"
+        "orange": "#E98A15",
+        "pay-gray": "#F9F7F4"
       },
     },
   },
