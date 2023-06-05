@@ -1,12 +1,10 @@
 import './App.css';
-import GraphEvent from './pages/admin/GraphEvent';
-import Home from './pages/user/Home';
-
+import { AppRouter } from './routers/AppRouter';
 function App() {
 
   return (
     <>
-      <GraphEvent/>
+      <AppRouter/>
     </>
   )
 }

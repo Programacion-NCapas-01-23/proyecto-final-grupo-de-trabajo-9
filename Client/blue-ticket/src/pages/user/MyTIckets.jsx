@@ -3,8 +3,13 @@ import Footer from "../../components/Footer/Footer";
 import SearchBoxTicket from "../../components/SearchBoxTicket";
 import CardMyTicket from "../../components/Card/CardMyTicket";
 import NavbarUser from "../../components/Navbars/NavbarUser";
+import { useNavigate } from 'react-router-dom';
 
 export const MyTickets = () => {
+
+  const navigate = useNavigate();
+
+
   return (
     <><NavbarUser /><div>
       <h1 className="text-center text-4xl font-bold mt-8 mb-4">Mis Tickets</h1>
