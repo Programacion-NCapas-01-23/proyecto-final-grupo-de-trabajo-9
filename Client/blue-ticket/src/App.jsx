@@ -1,12 +1,12 @@
 import './App.css';
-import UserManagement from './pages/admin/UserManagement';
+import Home from './pages/user/Home';
 import { AppRouter } from './routers/AppRouter';
 
 function App() {
 
   return (
     <>
-      <UserManagement/>
+      <AppRouter/>
     </>
   )
 }
