@@ -6,6 +6,7 @@ import DashboardClient from "./DashboardClient";
 import DashboardAdmin from "./DashboardAdmin";
 import Home from "../pages/user/Home.jsx";
 import Navbar from "../components/Navbars/NavbarHomepage";
+import ChangePassword from "../pages/user/ChangePassword.jsx";
 
 const MainContainer = ({ children }) => {
   return (
@@ -30,6 +31,7 @@ export const AppRouter = () => {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/user/*" element={<DashboardClient />} />
           <Route path="/admin/*" element={<DashboardAdmin />} />
         </Routes>

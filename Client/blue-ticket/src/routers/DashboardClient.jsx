@@ -25,6 +25,7 @@ export const DashboardClient = () => {
           <Route path="/succesful-transaction" element={<Transaction />} />
           <Route path="/mytickets" element={<MyTickets />} />
           <Route path="/history" element={<Record/>} />
+
         </Routes>
       </div>
     </>
