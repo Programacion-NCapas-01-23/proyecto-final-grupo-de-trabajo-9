@@ -2,13 +2,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { faHourglass } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../../components/Footer/Footer";
-import NavbarUser from "../../components/Navbars/NavbarUser";
+import { useNavigate } from 'react-router-dom';
 
 
 export const TransferTicket = () => {
+    const navigate = useNavigate();
+
+    const handleCancelTransfer = () => {
+        navigate('/user/info-pay-ticket');    
+    };
+
+
     return (
         <>
-        <NavbarUser />
             <section className='py-26 bg-white'>
                 <div className='container px-4 mx-auto'>
                     <div className='max-w-lg mx-auto py-8'>
@@ -40,7 +46,7 @@ export const TransferTicket = () => {
 
                                 <button type="submit" className='px-10 py-3 m-5 bg-blue rounded-2xl
                         font-extrabold text-white capitalize
-                        focus:outline-none hover:shadow-none'>
+                        focus:outline-none hover:shadow-none' onClick={handleCancelTransfer}>
                                     Cancelar
                                 </button>
                             </div>

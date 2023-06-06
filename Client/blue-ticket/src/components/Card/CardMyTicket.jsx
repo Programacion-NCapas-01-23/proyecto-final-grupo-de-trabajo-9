@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const CardMyTicket = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+  };
+
+  const handleCardTicket = () => {
+    navigate('/user/info-pay-ticket');
   };
 
   const handleMouseLeave = () => {
@@ -13,7 +19,7 @@ export const CardMyTicket = () => {
 
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full md:w-2/3 lg:w-1/2">
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full md:w-2/3 lg:w-1/2"onClick={handleCardTicket}>
         <div
           className="relative"
           onMouseEnter={handleMouseEnter}
