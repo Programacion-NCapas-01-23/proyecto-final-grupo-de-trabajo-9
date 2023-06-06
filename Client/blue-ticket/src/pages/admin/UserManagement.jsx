@@ -1,11 +1,9 @@
 import React from 'react';
-import NavbarAdmin from '../../components/Navbars/NavbarAdmin';
 import Footer from '../../components/Footer/Footer';
 
 export const UserManagement = () => {
     return (
         <>
-            <NavbarAdmin />
             {/* <SearchBox />    aqui ocupo un componente que debe subir omar xD*/}
             <div className='flex flex-col items-center'>
                 <h1 className='m-5 font-bold text-xl md:text-3xl'>Gestión de Usuarios</h1>

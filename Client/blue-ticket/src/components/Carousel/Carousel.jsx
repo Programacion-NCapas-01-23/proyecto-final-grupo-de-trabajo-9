@@ -8,10 +8,10 @@ const Carousel = () => {
       url: 'https://www.somagnews.com/wp-content/uploads/2020/03/17-4-e1584881824698-2048x1152.jpg',
     },
     {
-      url: 'https://i.ytimg.com/vi/5P2SSo7xWuE/maxresdefault.jpg',
+      url: 'https://th.bing.com/th/id/R.36e651f34104b409af76e7b36e05d09a?rik=%2f%2b4pbEEWrNUJOw&pid=ImgRaw&r=0',
     },
     {
-      url: 'https://th.bing.com/th/id/R.57ce3f535498298804b3dd96b501b354?rik=%2baAkSOiZCx49mA&riu=http%3a%2f%2feskucharadio.com.mx%2f2016%2fwp-content%2fuploads%2f2017%2f07%2fAD.jpg&ehk=wlNWHFCYQhxoGwAhQvScddBNFAV199IALtBGVykOg%2fI%3d&risl=&pid=ImgRaw&r=0',
+      url: 'https://images4.alphacoders.com/627/627823.jpg',
     }
   ];
 

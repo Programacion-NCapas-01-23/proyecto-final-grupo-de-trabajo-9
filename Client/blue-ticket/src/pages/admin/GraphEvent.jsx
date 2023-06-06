@@ -1,6 +1,5 @@
 import React from "react";
 import Bars from "../../components/BarChart";
-import NavbarAdmin from "../../components/Navbars/NavbarAdmin";
 import Footer from "../../components/Footer/Footer";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
@@ -10,8 +9,6 @@ export const GraphEvent = () => {
   return (
     <>
       <div>
-        <NavbarAdmin />
-
         <div className="bg-orange p-2 rounded-lg w-2/3 mx-auto m-4">
           <h1 className="text-center text-4xl font-Popins font-extrabold text-white">
             Grafico Evento

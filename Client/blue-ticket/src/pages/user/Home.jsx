@@ -9,7 +9,6 @@ export const Home = () => {
 
     return (
         <>
-            <NavbarHomepage />
             <Carousel />
             <div>
                 <h1 className='text-center text-4xl font-bold'>Cartelera</h1>
