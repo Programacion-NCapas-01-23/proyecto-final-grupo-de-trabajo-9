@@ -1,12 +1,19 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer';
+import SearchBox from '../../components/SearchBoxTicket';
 
 export const UserManagement = () => {
     return (
         <>
+
             {/* <SearchBox />    aqui ocupo un componente que debe subir omar xD*/}
             <div className='flex flex-col items-center'>
                 <h1 className='m-5 font-bold text-xl md:text-3xl'>Gestión de Usuarios</h1>
+
+                <div className='m-5'>
+                    <SearchBox />
+                </div>
+
                 <div className='border-locations-gray border-2 rounded-2xl w-11/12 p-2 h-auto'>
                     <table className='table-fixed w-full'>
                         <thead className='border-b-2 border-b-locations-gray'>
