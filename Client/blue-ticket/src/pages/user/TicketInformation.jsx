@@ -1,12 +1,21 @@
-import NavbarUser from "../../components/Navbars/NavbarUser";
 import Footer from "../../components/Footer/Footer";
 import Card from "../../components/Card/CardHome";
+import { useNavigate } from 'react-router-dom';
 
 export const TicketInformation = () => {
+    const navigate = useNavigate();
+
+    const handleTransferTicket = () => {
+        navigate('/user/transfer-ticket');
+    };
+
+    const handleGenerationQR = () => {
+        navigate('/user/info-QR');
+    };
 
     return (
         <>
-            <NavbarUser />
+            
             <div className='m-auto mt-10 mb-10 w-11/12 lg:w-3/6 sm:w-9/12 h-auto bg-card-gray rounded-3xl'>
                 <div className='flex flex-col items-center gap-5'>
                     <h1 className='font-bold sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
@@ -26,8 +35,8 @@ export const TicketInformation = () => {
                             <p className='text-center md:text-lg'>396.50</p>
                         </div>
                         <div className="flex justify-center py-5">
-                            <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold">Generar QR</button>
-                            <button className="px-4 py-2 bg-blue rounded-md text-white font-bold">Transferir</button>
+                            <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold" onClick={handleGenerationQR}>Generar QR</button>
+                            <button className="px-4 py-2 bg-blue rounded-md text-white font-bold" onClick={handleTransferTicket}>Transferir</button>
                         </div>
                     </div>
                 </div>
