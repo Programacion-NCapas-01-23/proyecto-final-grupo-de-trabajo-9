@@ -1,13 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../../components/Navbars/NavbarUser';
 import Footer from '../../components/Footer/Footer';
 import LocationButton from '../../components/Button/LocationButton';
 import CardTicket from '../../components/Card/CardTicket';
 
 export const TicketPurchase = () => {
+    const navigate = useNavigate();
+
+    const handlePay = () => {
+        navigate('/user/info-ticket');
+    }
+    const handleBack = () => {
+        navigate('/user/info-event');
+    }
     return (
         <div>
-            <NavbarUser/>
             <div className='m-auto mt-10 mb-10 w-11/12 lg:w-3/6 sm:w-9/12 h-auto bg-card-gray rounded-3xl'>
                 <div className='flex flex-col items-center sm:gap-5'>
                     <h1 className='font-bold sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
@@ -31,7 +39,10 @@ export const TicketPurchase = () => {
                         </div>
                         </div>
                     </div>
-                    <button className='bg-orange md:text-lg rounded-full text-white p-1 font-semibold mb-5 w-24 sm:w-28'>Siguiente</button>
+                    <div className='flex flex-row items-center gap-5'>
+                    <button className='bg-blue md:text-lg rounded-full text-white p-1 font-semibold mb-5 w-24 sm:w-28' onClick={handleBack}>Cancelar</button>
+                        <button className='bg-orange md:text-lg rounded-full text-white p-1 font-semibold mb-5 w-24 sm:w-28' onClick={handlePay}>Siguiente</button>
+                    </div>
                 </div>
             </div>
             <Footer/>

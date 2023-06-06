@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import NavbarUser from "../../components/Navbars/NavbarUser";
 import Footer from "../../components/Footer/Footer";
 import Carousel from "../../components/Carousel/Carousel";
@@ -6,10 +8,15 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { faLocationDot, faClock } from '@fortawesome/free-solid-svg-icons';
 
 export const ViewEvent = () => {
-
+    const navigate = useNavigate();
+    const handleBack = () => {
+        navigate('/user/home');
+    }
+    const handlePurchase = () => {
+        navigate('/user/purchase-ticket');
+    }
     return (
         <>
-            <NavbarUser />
             <Carousel />
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="flex flex-col items-center">
@@ -51,8 +58,8 @@ export const ViewEvent = () => {
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row justify-center py-10 md:justify-between md:px-4">
-                        <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold mb-2 md:mb-0">Comprar Ticket</button>
-                        <button className="px-4 py-2 bg-blue rounded-md text-white font-bold">Regresar</button>
+                        <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold mb-2 md:mb-0" onClick={handlePurchase}>Comprar Ticket</button>
+                        <button className="px-4 py-2 bg-blue rounded-md text-white font-bold" onClick={handleBack}>Regresar</button>
                     </div>
                 </div>
 

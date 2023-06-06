@@ -1,13 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import NavbarUser from '../../components/Navbars/NavbarUser';
 import { BsPatchCheck } from "react-icons/bs"; 
 
 
 export const Transaction = () => {
+    const navigate = useNavigate();
+
+    const handleFinish = () => {
+        navigate('/user/mytickets');
+    }
+
     return (
         <div className='bg-white'>
-            <NavbarUser/> 
             <div className='flex flex-col items-center p-5 gap-3 lg:gap-8 md:gap-10'>
                 <h1 className='font-bold text-lg lg:text-3xl'>TRANSACCIÓN EXITOSA </h1>
                 <BsPatchCheck color='#33AC72' size={100}/>
@@ -32,7 +38,7 @@ export const Transaction = () => {
                     <p className='text-center text-[#49454F]'>$110</p>
                 </div>
                 <div className='flex flex-col md:gap-5 items-center w-full gap-2'>
-                <button className='bg-[#0057E2] hover:bg-[#005BED] text-white font-bold w-3/4 lg:w-2/6 md:w-2/4 rounded-lg h-10'>Finalizar</button>
+                <button className='bg-[#0057E2] hover:bg-[#005BED] text-white font-bold w-3/4 lg:w-2/6 md:w-2/4 rounded-lg h-10' onClick={handleFinish}>Finalizar</button>
                 <button className='text-[#0057E2] font-bold bg-[#F9F7F4] w-3/4 lg:w-2/6 md:w-2/4  h-10 rounded-lg hover:bg-card-gray'>Descargar PDF</button>
                 </div>
             </div>
