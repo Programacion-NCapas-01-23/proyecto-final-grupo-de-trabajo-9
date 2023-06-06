@@ -1,23 +1,39 @@
+
 import React from "react";
-import {Navbar}from "../components/Navbars/NavbarHomepage";
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Login from "../pages/user/Login.jsx";
+import Login from "../pages/user/Login";
+import DashboardClient from "./DashboardClient";
+import DashboardAdmin from "./DashboardAdmin";
 import Home from "../pages/user/Home.jsx";
-import MyTickets from "../pages/user/MyTIckets";
+import Navbar from "../components/Navbars/NavbarHomepage";
+
+const MainContainer = ({ children }) => {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
+};
 
 export const AppRouter = () => {
-    return (
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/myticket" element={<MyTickets />} />
-          </Routes>
-        </div>
-      </Router>
-    );
-  };
-  
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainContainer>
+                <Home />
+              </MainContainer>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/user/*" element={<DashboardClient />} />
+          <Route path="/admin/*" element={<DashboardAdmin />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};

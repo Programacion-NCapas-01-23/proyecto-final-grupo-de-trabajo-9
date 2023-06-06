@@ -1,5 +1,4 @@
 import React from 'react';
-import NavbarAdmin from '../../components/Navbars/NavbarAdmin';
 import SearchBoxTicket from '../../components/SearchBox/SearchBoxTicket';
 import Footer from '../../components/Footer/Footer';
 import CardModify from '../../components/Card/CardModify';
@@ -7,7 +6,6 @@ import CardModify from '../../components/Card/CardModify';
 export const UpcomingEvents = () => {
     return (
         <>
-            <NavbarAdmin/>
             <div className='flex flex-col items-center p-5 gap-5'>
                 <h1 className=' font-bold text-xl  md:text-4xl'>Eventos proximos</h1>
             <div className='flex flex-col items-center gap-5'>
