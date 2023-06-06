@@ -20,7 +20,7 @@ export const CardMyTicket = () => {
           onMouseLeave={handleMouseLeave}
         >
           {isHovered && (
-            <div className="absolute inset-0 bg-blue-800 bg-opacity-70 flex items-center justify-center backdrop-filter backdrop-blur-lg">
+            <div className="absolute inset-0 bg-blue-800 bg-opacity-70 flex items-center justify-center backdrop-filter backdrop-blur-lg hover:cursor-pointer">
               <h2 className="text-white font-bold text-2xl">Esteman</h2>
             </div>
           )}

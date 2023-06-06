@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons';
@@ -7,9 +8,15 @@ import Footer from "../../components/Footer/Footer";
 
 
 export const Pay = () => {
+    const navigate = useNavigate();
+    const handleTransaction = () => {
+        navigate('/user/succesful-transaction');
+    }
+    const handleBack = () => {
+        navigate('/user/purchase-ticket');
+    }
     return (
         <>
-            <NavbarUser />
             <div className='container p-2 mt-2 text-center'>
                 <div className='lg:items-center lg:justify-center lg:h-screen lg:space-x-5 lg:flex lg:flex-row md:flex md:space-y-5 md:flex-col md:justify-center  md:items-center '>
                     <div className='text-center  lg:ml-5 bg-pay-gray drop-shadow-xl py-3 lg:w-1/2 xl:w-1/3 md:w-2/3 rounded-xl'>
@@ -125,8 +132,11 @@ export const Pay = () => {
                             <label htmlFor="" className='text-sm'>Acepto haber leido los terminos y condiciones y politicas de privacidad para hacer este pago</label>
                         </div>
 
-                        <button type='submit' className='mt-4  bg-blue-2 text-white font-bold p-3 rounded-lg'>
-                            <p> Ir a plataforma de pago</p>
+                        <button type='submit' className='mt-4 bg-pay-gray  hover:bg-locations-gray text-black font-bold p-3 rounded-lg' onClick={handleTransaction}>
+                            <p>Efectuar pago</p>
+                        </button>
+                        <button type='submit' className='mt-4 bg-pay-gray  hover:bg-locations-gray text-black font-bold p-3 rounded-lg' onClick={handleBack}>
+                            <p>Cancelar</p>
                         </button>
                     </div>
                 </div>

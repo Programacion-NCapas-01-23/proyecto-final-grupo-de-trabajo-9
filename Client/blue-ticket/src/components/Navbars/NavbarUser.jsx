@@ -10,8 +10,11 @@ export const NavbarUser = () => {
 
     const navigate = useNavigate();
 
+    const handleEvents = () => {
+        navigate('/user/home');
+    }
     const handleLogout = () => {
-        navigate('/');
+        navigate('/user/events');
     }
 
     const handleHistory = () => {
@@ -40,6 +43,7 @@ export const NavbarUser = () => {
             </div>
             <div className={`w-full h-screen z-50 lg:ml-0 lg:h-0 bg-blue lg:bg-blue  lg:flex lg:items-center lg:w-auto ${isOpen ? "block" : "hidden"}`} >
                 <div className="text-sm md:text-base lg:text-lg lg:flex lg:flex-row">
+                    <button onClick={handleEvents} className="block text-left w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Eventos</button>
                     <button onClick={handleMyTickets} className="block text-left w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Mis tickets</button>
                     <button onClick={handleHistory} className="block text-left w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Historial</button>
                     <button onClick={handleLogout} className="block text-left w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Cerrar Sesión</button>

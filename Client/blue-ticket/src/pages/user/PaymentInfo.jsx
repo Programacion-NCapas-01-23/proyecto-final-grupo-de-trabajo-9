@@ -1,12 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../../components/Navbars/NavbarUser';
 import Footer from '../../components/Footer/Footer';
 import CardTicket from '../../components/Card/CardTicket';
 
 export const PaymentInfo = () => {
+    const navigate = useNavigate();
+
+    const handlePay = () => {
+        navigate('/user/pay');
+    }
     return (
         <div>
-            <NavbarUser/>
             <div className='m-auto mt-10 mb-10 w-11/12 lg:w-3/6 sm:w-9/12 h-auto bg-card-gray rounded-3xl'>
                 <div className='flex flex-col items-center sm:gap-5'>
                     <h1 className='font-bold sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
@@ -31,7 +36,7 @@ export const PaymentInfo = () => {
                             <p className="ml-2">$200</p>
                         </div>
                     </div>
-                    <button className='bg-orange md:text-lg rounded-full text-white p-2 font-semibold mb-5 w-32 sm:w-36'>Pagar</button>
+                    <button className='bg-orange md:text-lg rounded-full text-white p-2 font-semibold mb-5 w-32 sm:w-36' onClick={handlePay}>Pagar</button>
                 </div>
             </div>
 

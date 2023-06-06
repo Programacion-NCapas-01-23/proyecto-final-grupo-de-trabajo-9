@@ -3,10 +3,10 @@ import NavbarHomepage from '../../components/Navbars/NavbarHomepage';
 import Carousel from '../../components/Carousel/Carousel';
 import CardHome from '../../components/Card/CardHome';
 import Footer from '../../components/Footer/Footer';
-
+import ViewEvent from './ViewEvent';
 
 export const Home = () => {
-
+    
     return (
         <>
             <Carousel />
