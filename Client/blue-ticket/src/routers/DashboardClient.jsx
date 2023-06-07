@@ -10,6 +10,8 @@ import TicketInformation from "../pages/user/TicketInformation";
 import Pay from "../pages/user/Pay";
 import PaymentInfo from "../pages/user/PaymentInfo";
 import Transaction from "../pages/user/Transaction";
+import TransferTicket from "../pages/user/TransferTicket";
+import ViewQR from "../pages/user/ViewQR";
 
 export const DashboardClient = () => {
   return (
@@ -25,7 +27,9 @@ export const DashboardClient = () => {
           <Route path="/succesful-transaction" element={<Transaction />} />
           <Route path="/mytickets" element={<MyTickets />} />
           <Route path="/history" element={<Record/>} />
-
+          <Route path="/info-pay-ticket" element={<TicketInformation/> } />
+          <Route path="/transfer-ticket" element={<TransferTicket/> } />
+          <Route path="/info-QR" element={<ViewQR/> } />
         </Routes>
       </div>
     </>
