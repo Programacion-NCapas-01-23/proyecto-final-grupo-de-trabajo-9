@@ -17,7 +17,7 @@ export const NewLocation = () => {
 
     return (
         <>
-            <NavbarAdmin />
+            
             <div className="flex justify-center items-center py-5 ">
                 <h1 className="text-3xl text-white font-black bg-orange py-2 rounded-lg w-5/6 text-center"> Evento: Bad Bunny</h1>
             </div>

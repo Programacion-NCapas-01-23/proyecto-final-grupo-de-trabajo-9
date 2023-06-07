@@ -17,15 +17,15 @@ export const CreateEvent = () => {
 
     const navigate = useNavigate();
 
-    const handlediteLocation = () => {
+    const handlLocation = () => {
         navigate('/admin/newlocation');
     }
 
-    const handleditCreateEvent = () => {
+    const handlCreateEvent = () => {
         navigate('/admin/upcoming');
     }
 
-    const handleditCancel = () => {
+    const handlCancel = () => {
         navigate('/admin/upcoming');
     }
 
@@ -33,7 +33,6 @@ export const CreateEvent = () => {
 
     return (
         <>
-            
             <section className='bg-white dark:bg-gray-900'>
                 <div className='container px-6 py-10 mx-auto'>
                     <h1 className='text-base md:text-2xl font-bold text-black capitalize lg:text-4xl dark:text-white text-center'>
@@ -138,27 +137,35 @@ export const CreateEvent = () => {
                                 <input className='inline-block w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
                             </div>
                             <div className='flex flex-row items-start  lg:mx-0 gap-5 lg:flex-col '>
-                                <button onClick={handlediteLocation} type="submit" class=" lg:ml-0  py-4 px-4  lg:px-5 lg:py-3 bg-blue rounded-2xl
+                                <button onClick={handlLocation} type="submit" class=" lg:ml-0  py-4 px-4  lg:px-5 lg:py-3 bg-blue rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none">
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Localidad</p>
                                 </button>
 
-                                <button onClick={handleditCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
+                                <button onClick={handlCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Evento</p>
                                 </button>
 
-                                <button onClick={handleditCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
+                                <button onClick={handlCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
                                     <p className='text-xs lg:text-base  lg:w-24' >Cancelar</p>
                                 </button>
                             </div>
                             <div className='lg:flex hidden lg:flex-row gap-2 lg:gap-5 lg:pt-3 lg:ml-80 '>
-                                
-                                
+                                <button onClick={handlCreateEvent} type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
+                    font-extrabold text-black capitalize
+                    focus:outline-none hover:shadow-none'>
+                                    <p className='lg:w-auto text-xs lg:text-base'>Crear Evento</p>
+                                </button>
+                                <button onClick={handlCancel} type="submit" className='py-3 px-5 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-blue rounded-2xl
+                    font-extrabold text-white capitalize
+                    focus:outline-none hover:shadow-none'>
+                                    <p className='text-xs lg:text-base'>Cancelar</p>
+                                </button>
                             </div>
 
                         </div>
