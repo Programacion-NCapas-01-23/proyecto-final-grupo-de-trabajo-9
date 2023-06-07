@@ -26,4 +26,13 @@ public class Locality {
 	private Float price;
 	@Column(name = "capacity")
 	private int capacity;
+	
+	public Locality(String name, Float price, int capacity) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.capacity = capacity;
+	}
+	
+	
 }
