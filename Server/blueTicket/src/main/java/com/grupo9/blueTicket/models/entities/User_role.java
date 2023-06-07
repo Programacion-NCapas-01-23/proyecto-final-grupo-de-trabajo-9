@@ -27,13 +27,13 @@ public class User_role {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_user")
-	private Permission id_user; 
+	private User id_user; 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_role")
 	private Role id_role;
 
-	public User_role(Permission id_user, Role id_role) {
+	public User_role(User id_user, Role id_role) {
 		super();
 		this.id_user = id_user;
 		this.id_role = id_role;
