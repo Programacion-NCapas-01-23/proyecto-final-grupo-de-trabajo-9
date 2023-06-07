@@ -35,6 +35,9 @@ public class User {
 	 @Column(name = "password")
 	 private String password;
 	 
+	 @Column(name = "active")
+	 private Boolean active;
+	 
 	 /* @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 @JoinColumn(name = "id_user_role")
 	 private UserRole userRole;
