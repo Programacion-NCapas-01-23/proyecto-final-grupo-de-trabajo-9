@@ -19,17 +19,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "role_permission")
-public class role_permission {
+public class Role_permission {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	/*
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "d_permission")
 	private Permission id_permission; 
-	*/
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_role")
 	private Role id_role;
+
+	public Role_permission(Permission id_permission, Role id_role) {
+		super();
+		this.id_permission = id_permission;
+		this.id_role = id_role;
+	}
+	
+	
 }

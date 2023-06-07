@@ -13,8 +13,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString(exclude = "rolePermissions")
 @NoArgsConstructor
 @Entity
 @Table(name = "role")
@@ -26,8 +28,8 @@ public class Role {
     private UUID id;
     private String role;
     
-    /* @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private List<RolePermission> rolePermissions; */
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private List<Role_permission> rolePermissions;
     
     public Role(String role) {
     	super();

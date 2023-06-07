@@ -27,4 +27,13 @@ public class Access {
 	private String password;
 	@Column(name = "session_start_date")
 	private Date session_start_date;
+	
+	public Access(String email, String password, Date session_start_date) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.session_start_date = session_start_date;
+	}
+	
+	
 }
