@@ -18,8 +18,8 @@ export const TicketInformation = () => {
             
             <div className='m-auto mt-10 mb-10 w-11/12 lg:w-3/6 sm:w-9/12 h-auto bg-card-gray rounded-3xl'>
                 <div className='flex flex-col items-center gap-5'>
-                    <h1 className='font-bold sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
-                    <div className='w-full sm:w-1/2 md:w-1/2 md:mr-24 lg:mr-28 lg:w-1/2 mx-auto'>
+                    <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
+                    <div className='w-full sm:w-1/2 md:w-1/2 md:mr-24 lg:mr-28 lg:w-1/2 sm:m-auto'>
                         <Card />
                     </div>
                     <div className='bg-white h-auto w-11/12 sm:w-9/12 m-5 rounded-2xl font-bold'>

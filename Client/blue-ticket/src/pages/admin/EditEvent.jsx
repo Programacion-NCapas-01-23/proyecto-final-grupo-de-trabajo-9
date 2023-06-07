@@ -179,4 +179,4 @@ export const EditEvent = () => {
     )
 }
 
-export default CreateEvent;
+export default EditEvent;
