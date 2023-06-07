@@ -15,7 +15,7 @@ export const TransferTicket = () => {
 
     const handleTransfer = () => {
         MessageSuccess('Se ha transferido el ticket correctamente');
-
+        //
     }
 
 
