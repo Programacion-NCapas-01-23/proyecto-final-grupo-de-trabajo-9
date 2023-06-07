@@ -6,6 +6,8 @@ import DashboardClient from "./DashboardClient";
 import DashboardAdmin from "./DashboardAdmin";
 import Home from "../pages/user/Home.jsx";
 import Navbar from "../components/Navbars/NavbarHomepage";
+import CreateEvent from "../pages/admin/CreateEvent";
+import NewLocation from "../pages/admin/NewLocation";
 
 const MainContainer = ({ children }) => {
   return (
@@ -32,6 +34,7 @@ export const AppRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/user/*" element={<DashboardClient />} />
           <Route path="/admin/*" element={<DashboardAdmin />} />
+
         </Routes>
       </div>
     </Router>

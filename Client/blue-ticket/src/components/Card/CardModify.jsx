@@ -1,6 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const CardModify = () => {
+
+  const navigate = useNavigate();
+
+    const handleEditEvent = () => {
+        navigate('/admin/edit');
+
+    }
+
+
   return (
     <div className='bg-locations-gray shadow-lg rounded-xl overflow-hidden p-5 h-auto'>
         <div className="rounded-t-3xl overflow-hidden h-auto w-full">
@@ -10,7 +20,7 @@ export const CardModify = () => {
             </div>
         </div>
         <div className='flex flex-row items-center gap-5 pt-3'>
-            <button className=' bg-orange rounded-xl text-black font-bold text-lg w-28'>Modificar</button>
+            <button onClick={handleEditEvent} className=' bg-orange rounded-xl text-black font-bold text-lg w-28'>Modificar</button>
             <button className='bg-blue rounded-xl text-white font-bold text-lg w-28'>Desactivar</button>
         </div>
     </div>

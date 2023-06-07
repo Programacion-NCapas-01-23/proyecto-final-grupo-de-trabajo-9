@@ -6,7 +6,10 @@ import UpcomingEvents from "../pages/admin/UpcomingEvents";
 import FinishedEvents from "../pages/admin/FinishedEvents";
 import UserManagement from "../pages/admin/UserManagement";
 import GraphEvent from "../pages/admin/GraphEvent";
-
+import CreateEvent from "../pages/admin/CreateEvent";
+import NewLocation from "../pages/admin/NewLocation";
+import EditEvent from "../pages/admin/EditEvent";
+import ListOfLocations from "../pages/admin/ListOfLocations";
 
 export const DashboardAdmin = () => {
   return (
@@ -19,6 +22,11 @@ export const DashboardAdmin = () => {
           <Route path="/finished" element={<FinishedEvents/>} />
           <Route path="/management" element={<UserManagement/>} />
           <Route path="/graph" element={<GraphEvent/>} />
+          <Route path="/create" element={<CreateEvent />} />
+          <Route path="/newlocation" element={<NewLocation />} />
+          <Route path="/edit" element={<EditEvent />} />
+          <Route path="/listlocations" element={<ListOfLocations />} />
+
         </Routes>
       </div>
     </>

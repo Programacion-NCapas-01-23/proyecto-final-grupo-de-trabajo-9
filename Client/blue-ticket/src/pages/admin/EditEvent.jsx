@@ -3,7 +3,7 @@ import Footer from '../../components/Footer/Footer';
 import NavbarAdmin from "../../components/Navbars/NavbarAdmin"
 import { useNavigate } from 'react-router-dom';
 
-export const CreateEvent = () => {
+export const EditEvent = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const handleUrlChange = (e) => {
@@ -17,15 +17,15 @@ export const CreateEvent = () => {
 
     const navigate = useNavigate();
 
-    const handlediteLocation = () => {
+    const handleLocation = () => {
         navigate('/admin/newlocation');
     }
 
-    const handleditCreateEvent = () => {
+    const handlCreateEvent = () => {
         navigate('/admin/upcoming');
     }
 
-    const handleditCancel = () => {
+    const handlCancel = () => {
         navigate('/admin/upcoming');
     }
 
@@ -138,19 +138,19 @@ export const CreateEvent = () => {
                                 <input className='inline-block w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
                             </div>
                             <div className='flex flex-row items-start  lg:mx-0 gap-5 lg:flex-col '>
-                                <button onClick={handlediteLocation} type="submit" class=" lg:ml-0  py-4 px-4  lg:px-5 lg:py-3 bg-blue rounded-2xl
+                                <button onClick={handleLocation} type="submit" class=" lg:ml-0  py-4 px-4  lg:px-5 lg:py-3 bg-blue rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none">
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Localidad</p>
                                 </button>
 
-                                <button onClick={handleditCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
+                                <button onClick={handlCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
-                                    <p className='text-xs lg:text-base  lg:w-24' >Crear Evento</p>
+                                    <p className='text-xs lg:text-base  lg:w-24' >Editar Evento</p>
                                 </button>
 
-                                <button onClick={handleditCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
+                                <button onClick={handlCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
                                     <p className='text-xs lg:text-base  lg:w-24' >Cancelar</p>
@@ -172,7 +172,7 @@ export const CreateEvent = () => {
     )
 }
 
-export default CreateEvent;
+export default EditEvent;
 
 
 
