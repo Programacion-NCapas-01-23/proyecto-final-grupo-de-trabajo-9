@@ -17,6 +17,8 @@ export const UpcomingEvents = () => {
                 <CardModify/>
                 <CardModify/>
                 <CardModify/>
+                <CardModify/>
+                <CardModify/>
             </div>
             <div className='flex flex-row items-center gap-5 pt-3'>
                 <button className=' bg-orange rounded-xl text-black font-bold text-lg w-28 h-8 lg:h-10'>Anterior</button>

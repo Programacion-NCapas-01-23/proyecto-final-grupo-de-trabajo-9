@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { GoogleLogin } from '@leecheuk/react-google-login';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 
 const Login = ({ history }) => {
@@ -20,6 +20,11 @@ const Login = ({ history }) => {
       // Redireccionar a una página de error de inicio de sesión
     }
   };
+
+  const handleChangePassword = () => {
+    navigate('/changePassword');
+  }
+
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-[#232528] to-blue-200">
       <div className="grid place-items-center mx-2 my-20 sm:my-auto">
@@ -87,9 +92,9 @@ const Login = ({ history }) => {
                 Recuérdame
               </label>
             </div>
-            <a href="#" className="text-[#062343] font-poppins hover:underline">
+            <button onClick={handleChangePassword} className="text-[#062343] font-poppins hover:underline">
               <em>¿Olvidaste tu contraseña?</em>
-            </a>
+            </button>
           </div>
           <button onClick={handleLogin} type="submit" className="w-full py-3 mt-10 bg-blue rounded-md font-medium text-white capitalize focus:outline-none hover:shadow-none">
             Iniciar Sesion
