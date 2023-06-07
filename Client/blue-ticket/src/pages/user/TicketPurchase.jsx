@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../../components/Navbars/NavbarUser';
 import Footer from '../../components/Footer/Footer';
@@ -7,12 +7,23 @@ import CardTicket from '../../components/Card/CardTicket';
 
 export const TicketPurchase = () => {
     const navigate = useNavigate();
+    const [count, setCount] = useState(0);
+    
 
     const handlePay = () => {
         navigate('/user/info-ticket');
     }
     const handleBack = () => {
         navigate('/user/info-event');
+    }
+
+    const handleSum = (e) =>{ 
+        setCount(count + 1);
+    }
+    const handleSub = (e) =>{
+        if (count > 0) {
+            setCount(count - 1);
+        }
     }
     return (
         <div>
@@ -33,9 +44,9 @@ export const TicketPurchase = () => {
                             </div>
                         <p className='text-center md:text-lg'>N° de tickets a comprar</p>
                         <div className='flex flex-row items-center gap-5'>
-                            <button className=' bg-red-600 hover:bg-red-700 text-white w-8 md:w-9 md:h-9 h-8 border rounded-full md:text-2xl font-bold'>-</button>
-                            <p className=' text-lg md:text-xl'>1</p>
-                            <button className='bg-green-500 hover:bg-green-600 w-8 h-8 md:w-9 md:h-9 rounded-full md:text-2xl text-white font-bold'>+</button>
+                            <button onClick={handleSub} className=' bg-red-600 hover:bg-red-700 text-white w-8 md:w-9 md:h-9 h-8 border rounded-full md:text-2xl font-bold'>-</button>
+                            <p className=' text-lg md:text-xl'>{count}</p>
+                            <button onClick={handleSum} className='bg-green-500 hover:bg-green-600 w-8 h-8 md:w-9 md:h-9 rounded-full md:text-2xl text-white font-bold'>+</button>
                         </div>
                         </div>
                     </div>
