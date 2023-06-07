@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
+import { MessageSuccess } from '../../utils/Alert';
 
 export const CreateEvent = () => {
     const [imageUrl, setImageUrl] = useState('');
@@ -10,8 +11,12 @@ export const CreateEvent = () => {
 
     const handleUrlSubmit = (e) => {
         e.preventDefault();
-        
+
     };
+
+    const handleCreateEvent = () => {
+        MessageSuccess('Evento creado correctamente');
+    }
 
     return (
         <>
@@ -125,7 +130,7 @@ export const CreateEvent = () => {
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Localidad</p>
                                 </button>
 
-                                <button type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
+                                <button onClick={handleCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Evento</p>
@@ -138,7 +143,7 @@ export const CreateEvent = () => {
                                 </button>
                             </div>
                             <div className='lg:flex hidden lg:flex-row gap-2 lg:gap-5 lg:pt-3 lg:ml-80 '>
-                                <button type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
+                                <button onClick={handleCreateEvent} type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
                     font-extrabold text-black capitalize
                     focus:outline-none hover:shadow-none'>
                                     <p className='lg:w-auto text-xs lg:text-base'>Crear Evento</p>

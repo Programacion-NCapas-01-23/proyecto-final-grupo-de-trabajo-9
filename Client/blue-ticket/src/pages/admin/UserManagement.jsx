@@ -1,8 +1,25 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import SearchBox from '../../components/SearchBoxTicket';
+import { Alert, MessageSuccess} from '../../utils/Alert';
 
 export const UserManagement = () => {
+
+    const handleCloseServer = () => {
+        //Mostar alerta de confirmación
+        Alert({
+            message: 'Todos los procesos se cerrarán',
+            messageConfirmed: 'El servidor se ha cerrado correctamente'
+        });
+    }
+
+    const handleActive = () => {
+        MessageSuccess('El usuario se ha activado correctamente');
+    }
+
+    const handleInactive = () => {
+        MessageSuccess('El usuario se ha desactivado correctamente');
+    }
     return (
         <>
 
@@ -38,8 +55,8 @@ export const UserManagement = () => {
                                     </button>
                                 </td>
                                 <td className="p-4 flex flex-col md:flex-row lg:justify-center">
-                                    <button className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
-                                    <button className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
+                                    <button onClick={handleActive} className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
+                                    <button onClick={handleInactive} className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
                                 </td>
                             </tr>
                             <tr className='border-b-2 border-b-locations-gray'>
@@ -56,8 +73,8 @@ export const UserManagement = () => {
                                     </button>
                                 </td>
                                 <td className="p-4 flex flex-col md:flex-row lg:justify-center">
-                                    <button className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
-                                    <button className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
+                                    <button onClick={handleActive} className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
+                                    <button onClick={handleInactive} className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
                                 </td>
                             </tr>
                             <tr className='border-b-2 border-b-locations-gray'>
@@ -74,8 +91,8 @@ export const UserManagement = () => {
                                     </button>
                                 </td>
                                 <td className="p-4 flex flex-col md:flex-row lg:justify-center">
-                                    <button className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
-                                    <button className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
+                                    <button onClick={handleActive} className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
+                                    <button onClick={handleInactive} className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
                                 </td>
                             </tr>
                             <tr className='border-b-2 border-b-locations-gray'>
@@ -92,8 +109,8 @@ export const UserManagement = () => {
                                     </button>
                                 </td>
                                 <td className="p-4 flex flex-col md:flex-row lg:justify-center">
-                                    <button className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
-                                    <button className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
+                                    <button onClick={handleActive} className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
+                                    <button onClick={handleInactive} className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
                                 </td>
                             </tr>
                             <tr className='border-b-2 border-b-locations-gray'>
@@ -110,12 +127,12 @@ export const UserManagement = () => {
                                     </button>
                                 </td>
                                 <td className="p-4 flex flex-col md:flex-row lg:justify-center">
-                                    <button className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
-                                    <button className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
+                                    <button onClick={handleActive} className="bg-orange text-black font-bold w-20 py-1 px-4 md:w-24 border md:mr-2 mb-1 md:mb-0 border-orange rounded-full">Activar</button>
+                                    <button onClick={handleInactive} className="bg-blue text-white text-center  w-20 font-bold py-1 md:w-28  border border-blue rounded-full">Desactivar</button>
                                 </td>
                             </tr>
                         </tbody>
-                        <button className="bg-red-600 border-none text-white text-center mt-3 w-28 text-xs md:text-lg font-bold py-2 md:w-40  ml-[55vw] md:ml-[68vw] lg:ml-[70vw] xl:ml-[72vw] border border-blue rounded-full">Cerrar Servicios</button>
+                        <button onClick={handleCloseServer} className="bg-red-600 border-none text-white text-center mt-3 w-28 text-xs md:text-lg font-bold py-2 md:w-40  ml-[55vw] md:ml-[68vw] lg:ml-[70vw] xl:ml-[72vw] border border-blue rounded-full">Cerrar Servicios</button>
                     </table>
                 </div>
                 <div className="flex justify-center py-10">

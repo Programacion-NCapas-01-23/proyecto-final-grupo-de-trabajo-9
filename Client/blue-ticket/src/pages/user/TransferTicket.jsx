@@ -3,6 +3,7 @@ import React from 'react'
 import { faHourglass } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../../components/Footer/Footer";
 import { useNavigate } from 'react-router-dom';
+import { MessageSuccess } from '../../utils/Alert';
 
 
 export const TransferTicket = () => {
@@ -11,6 +12,11 @@ export const TransferTicket = () => {
     const handleCancelTransfer = () => {
         navigate('/user/info-pay-ticket');    
     };
+
+    const handleTransfer = () => {
+        MessageSuccess('Se ha transferido el ticket correctamente');
+
+    }
 
 
     return (
@@ -38,7 +44,7 @@ export const TransferTicket = () => {
                             </div>
 
                             <div className='text-center'>
-                                <button type="submit" className='px-10 py-3  bg-orange rounded-2xl
+                                <button onClick={handleTransfer} type="submit" className='px-10 py-3  bg-orange rounded-2xl
                         font-extrabold text-black capitalize
                         focus:outline-none hover:shadow-none'>
                                     Transferir
