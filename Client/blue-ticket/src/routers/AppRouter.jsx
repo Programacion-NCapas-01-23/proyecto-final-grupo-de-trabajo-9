@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "../pages/user/Login";
@@ -8,6 +7,7 @@ import Home from "../pages/user/Home.jsx";
 import Navbar from "../components/Navbars/NavbarHomepage";
 import CreateEvent from "../pages/admin/CreateEvent";
 import NewLocation from "../pages/admin/NewLocation";
+import ChangePassword from "../pages/user/ChangePassword.jsx";
 
 const MainContainer = ({ children }) => {
   return (
@@ -32,6 +32,7 @@ export const AppRouter = () => {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/changePassword" element={<ChangePassword />} />
           <Route path="/user/*" element={<DashboardClient />} />
           <Route path="/admin/*" element={<DashboardAdmin />} />
 

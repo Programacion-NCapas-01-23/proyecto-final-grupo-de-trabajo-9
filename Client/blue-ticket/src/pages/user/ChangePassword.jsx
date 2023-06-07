@@ -1,8 +1,13 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate,Link } from 'react-router-dom';
 
 export const ChangePassword = () => {
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate('/login');
+  }
   return (
     <div className='flex flex-col h-screen bg-gradient-to-b from-[#232528] to-blue-200'>
       <div className='grid place-items-center mx-2 my-20 sm:my-auto' x-data="{ showPass: true }">
@@ -79,7 +84,7 @@ export const ChangePassword = () => {
               </div>
             </div>
 
-            <button type="submit" className='w-full py-3 mt-10 bg-blue rounded-md
+            <button onClick={handleHome} type="submit" className='w-full py-3 mt-10 bg-blue rounded-md
                         font-medium text-white capitalize
                         focus:outline-none hover:shadow-none'>
               Cambiar contraseña

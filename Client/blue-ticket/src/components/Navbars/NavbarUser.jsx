@@ -14,7 +14,7 @@ export const NavbarUser = () => {
         navigate('/user/home');
     }
     const handleLogout = () => {
-        navigate('/user/events');
+        navigate('/');
     }
 
     const handleHistory = () => {
