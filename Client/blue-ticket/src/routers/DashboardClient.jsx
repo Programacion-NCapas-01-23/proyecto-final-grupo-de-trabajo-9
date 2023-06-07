@@ -14,6 +14,7 @@ import TransferTicket from "../pages/user/TransferTicket";
 import ViewQR from "../pages/user/ViewQR";
 
 export const DashboardClient = () => {
+  
   return (
     <>
       <Navbar />
