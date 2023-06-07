@@ -1,6 +1,5 @@
 package com.grupo9.blueTicket.models.entities;
 
-import java.sql.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -11,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,26 +18,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "role_permission")
-public class Role_permission {
-	@Id
+@Table(name = "category")
+public class Category {
+    @Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private Id id;
+	@Column(name = "description")
+	private String description;
+	@Column(name = "status")
+	private String status;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_permission")
-	private Permission id_permission; 
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_role")
-	private Role id_role;
-
-	public Role_permission(Permission id_permission, Role id_role) {
+	public Category(String description, String status) {
 		super();
-		this.id_permission = id_permission;
-		this.id_role = id_role;
+		this.description = description;
+		this.status = status;
 	}
-	
-	
 }
