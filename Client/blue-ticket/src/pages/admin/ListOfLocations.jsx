@@ -1,10 +1,22 @@
 import React from 'react';
 import NavbarAdmin from '../../components/Navbars/NavbarAdmin';
+import { useNavigate } from 'react-router-dom';
 
 export const ListOfLocations = () => {
+
+    const navigate = useNavigate();
+
+    const handlSave = () => {
+        navigate('/admin/create');
+    }
+
+    const handlCancel = () => {
+        navigate('/admin/newlocation');
+    }
+
     return (
         <>
-            <NavbarAdmin/>
+            
             <div className='flex flex-col items-center p-5'>
                 <h1 className=' m-5 font-bold text-xl md:text-2xl lg:text-3xl'>Lista de localidades</h1>
                 <div className='border-locations-gray lg:w-[50vw] border-2 rounded-2xl w-11/12 p-2 h-auto'>
@@ -51,8 +63,8 @@ export const ListOfLocations = () => {
                     </table>
                 </div>
                 <div className="flex justify-center py-10">
-                <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold">Guardar cambios</button>
-                <button className="px-4 py-2 bg-blue rounded-md text-white font-bold">Cancelar</button>
+                <button onClick={handlSave} className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold">Guardar cambios</button>
+                <button onClick={handlCancel} className="px-4 py-2 bg-blue rounded-md text-white font-bold">Cancelar</button>
             </div>
             </div>
         </>

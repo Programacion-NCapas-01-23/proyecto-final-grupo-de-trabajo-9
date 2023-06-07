@@ -3,7 +3,7 @@ import Footer from '../../components/Footer/Footer';
 import NavbarAdmin from "../../components/Navbars/NavbarAdmin"
 import { useNavigate } from 'react-router-dom';
 
-export const CreateEvent = () => {
+export const EditEvent = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const handleUrlChange = (e) => {
@@ -146,7 +146,7 @@ export const CreateEvent = () => {
                                 <button onClick={handlCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
-                                    <p className='text-xs lg:text-base  lg:w-24' >Crear Evento</p>
+                                    <p className='text-xs lg:text-base  lg:w-24' >Editar Evento</p>
                                 </button>
 
                                 <button onClick={handlCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
@@ -159,7 +159,7 @@ export const CreateEvent = () => {
                                 <button onClick={handlCreateEvent} type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
                     font-extrabold text-black capitalize
                     focus:outline-none hover:shadow-none'>
-                                    <p className='lg:w-auto text-xs lg:text-base'>Crear Evento</p>
+                                    <p className='lg:w-auto text-xs lg:text-base'>Editar Evento</p>
                                 </button>
                                 <button onClick={handlCancel} type="submit" className='py-3 px-5 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-blue rounded-2xl
                     font-extrabold text-white capitalize
@@ -180,6 +180,3 @@ export const CreateEvent = () => {
 }
 
 export default CreateEvent;
-
-
-

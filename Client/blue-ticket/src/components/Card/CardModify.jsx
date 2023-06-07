@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const CardModify = () => {
-
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const handleEditEvent = () => {
-    navigation('/admin/edit-event');
-  }
+    navigate('/admin/edit-event');
+  };
 
   return (
     <div className='bg-locations-gray shadow-lg rounded-xl overflow-hidden p-5 h-auto'>
@@ -18,10 +17,11 @@ export const CardModify = () => {
         </div>
       </div>
       <div className='flex flex-row items-center gap-5 pt-3'>
-        <button onClick={handleEditEvent}  className=' bg-orange rounded-xl text-black font-bold text-lg w-28'>Modificar</button>
+        <button onClick={handleEditEvent} className='bg-orange rounded-xl text-black font-bold text-lg w-28'>Modificar</button>
         <button className='bg-blue rounded-xl text-white font-bold text-lg w-28'>Desactivar</button>
       </div>
     </div>
-  )
-}
+  );
+};
+
 export default CardModify;
