@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { faChartColumn } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const CardMyTicket = () => {
+export const CardGraph = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -9,17 +11,18 @@ export const CardMyTicket = () => {
     setIsHovered(true);
   };
 
-  const handleCardTicket = () => {
-    navigate('/user/info-pay-ticket');
-  };
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
 
+    const handleGraphEvent = () => {
+    navigate("/admin/graph-event");
+
+    }
+
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 md:w-2/3 lg:w-1/2"onClick={handleCardTicket}>
+      <div onClick={handleGraphEvent} className="bg-white shadow-lg rounded-lg overflow-hidden w-full md:w-2/3 lg:w-1/2">
         <div
           className="relative"
           onMouseEnter={handleMouseEnter}
@@ -27,7 +30,7 @@ export const CardMyTicket = () => {
         >
           {isHovered && (
             <div className="absolute inset-0 bg-blue-800 bg-opacity-70 flex items-center justify-center backdrop-filter backdrop-blur-lg hover:cursor-pointer">
-              <h2 className="text-white font-bold text-2xl">Esteman</h2>
+                <FontAwesomeIcon icon={faChartColumn} className="w-20 h-20" />
             </div>
           )}
           <img
@@ -44,4 +47,4 @@ export const CardMyTicket = () => {
   );
 };
 
-export default CardMyTicket;
+export default CardGraph;

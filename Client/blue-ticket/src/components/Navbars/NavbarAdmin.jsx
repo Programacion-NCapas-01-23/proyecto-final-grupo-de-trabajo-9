@@ -3,14 +3,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/blue_ticket.png";
+import { useNavigate } from 'react-router-dom';
 
 export const NavbarAdmin = () => {
+
+    const navigate = useNavigate();
+
+    const handleUpcoming = () => {
+        navigate('/admin/upcoming');
+    }
+
+    const handleLogout = () => {
+        navigate('/');
+    }
+
+    const handleFinished = () => {
+        navigate('/admin/finished');
+    }
+
+    const handleGraph = () => {
+        navigate('/admin/graph');
+    }
+
+    const handleManagement = () => {
+        navigate('/admin/management');
+    }
 
     const [isOpen, setIsOpen] = useState(false);
     
         return (
             <nav className="flex flex-wrap h-20 md:h-32 lg:flex-row items-center justify-between sm:h-28 bg-blue w-full lg:h-24 sm:justify-items-stretch">
-                <div class="w-2/5 lg:w-1/6 px-5">
+                <div className="w-2/5 lg:w-1/6 px-5">
                     <img src= {logo} alt='Logo de blueticket' className="md:w-9/12"></img>
                 </div>
                 <div className='lg:hidden px-5'>
@@ -21,11 +44,11 @@ export const NavbarAdmin = () => {
                 </div>
                 <div className={`w-full h-screen lg:h-0 z-50 bg-blue lg:bg-blue  lg:flex lg:items-center lg:w-auto ${isOpen ? "block" : "hidden"}`} >
                     <div className="text-sm md:text-xl lg:text-lg lg:flex lg:flex-row">
-                        <button className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Eventos próximos</button>
-                        <button className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Eventos finalizados</button>
-                        <button className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Moderador</button>
-                        <button className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Gráficos</button>
-                        <button className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Cerrar Sesión</button>
+                        <button onClick={handleUpcoming} className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Eventos próximos</button>
+                        <button onClick={handleFinished} className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Eventos finalizados</button>
+                        <button onClick={handleManagement} className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Moderador</button>
+                        <button onClick={handleGraph} className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Gráficos</button>
+                        <button onClick={handleLogout} className="block text-left lg:text-center w-full my-2 items-center border-0 py-2 px-4 text-white bg-blue">Cerrar Sesión</button>
                     </div>
                 </div>
             </nav>

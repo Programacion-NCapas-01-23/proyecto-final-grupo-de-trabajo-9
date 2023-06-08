@@ -1,10 +1,10 @@
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import SearchBoxTicket from "../../components/SearchBoxTicket";
-import CardMyTicket from "../../components/Card/CardMyTicket";
+import CardGraph from "../../components/Card/CardGraph";
 import { useNavigate } from 'react-router-dom';
 
-export const MyTickets = () => {
+export const GraphEvent = () => {
 
   const navigate = useNavigate();
 
@@ -12,24 +12,21 @@ export const MyTickets = () => {
   return (
     <>
       <div>
-        <h1 className="text-center text-4xl font-bold mt-8 mb-4">Mis Tickets</h1>
+        <h1 className="text-center text-4xl font-bold mt-8 mb-4">Gráficas de cada evento</h1>
         <div className="flex justify-center">
           <div className="w-full max-w-lg">
             <SearchBoxTicket />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10" style={{ justifyItems: 'center', alignItems: 'center' }}>
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+          <CardGraph />
+          <CardGraph />
+          <CardGraph />
 
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+          <CardGraph />
+          <CardGraph />
+          <CardGraph />
 
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
         </div>
 
         <div style={{ textAlign: "center", marginTop: "8px" }}>
@@ -46,4 +43,4 @@ export const MyTickets = () => {
   );
 };
 
-export default MyTickets;
+export default GraphEvent;

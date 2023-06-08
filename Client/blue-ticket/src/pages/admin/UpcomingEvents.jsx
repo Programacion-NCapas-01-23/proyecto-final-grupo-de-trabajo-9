@@ -1,20 +1,28 @@
 import React from 'react';
-import NavbarAdmin from '../../components/Navbars/NavbarAdmin';
 import SearchBoxTicket from '../../components/SearchBox/SearchBoxTicket';
 import Footer from '../../components/Footer/Footer';
 import CardModify from '../../components/Card/CardModify';
+import { useNavigate } from 'react-router-dom';
 
 export const UpcomingEvents = () => {
+
+    const navigate = useNavigate();
+
+    const handleCreateEvent = () => {
+        navigate('/admin/create');
+    }
+
     return (
         <>
-            <NavbarAdmin/>
             <div className='flex flex-col items-center p-5 gap-5'>
                 <h1 className=' font-bold text-xl  md:text-4xl'>Eventos proximos</h1>
             <div className='flex flex-col items-center gap-5'>
                 <SearchBoxTicket/>
-                <button className=' bg-orange font-bold text-black w-20 lg:w-24 lg:h-10 rounded-2xl md:text-lg h-8' >Crear</button>
+                <button onClick={handleCreateEvent} className=' bg-orange font-bold text-black w-20 lg:w-24 lg:h-10 rounded-2xl md:text-lg h-8' >Crear</button>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 gap-8 lg:p-5'>
+                <CardModify/>
+                <CardModify/>
                 <CardModify/>
                 <CardModify/>
                 <CardModify/>

@@ -1,10 +1,23 @@
 import NavbarAdmin from '../../components/Navbars/NavbarAdmin'
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 export const NewLocation = () => {
 
+    const navigate = useNavigate();
+
+    const handlePrevious = () => {
+        navigate('/admin/create');
+    }
+
+    const handleFollowing = () => {
+        navigate('/admin/listlocations');
+    }
+
+
     return (
         <>
-            <NavbarAdmin />
+            
             <div className="flex justify-center items-center py-5 ">
                 <h1 className="text-3xl text-white font-black bg-orange py-2 rounded-lg w-5/6 text-center"> Evento: Bad Bunny</h1>
             </div>
@@ -47,8 +60,8 @@ export const NewLocation = () => {
             </div>
 
             <div className="flex justify-center py-10">
-                <button className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold">Anterior</button>
-                <button className="px-4 py-2 bg-blue rounded-md text-white font-bold">Siguiente</button>
+                <button onClick={handlePrevious} className="px-4 py-2 bg-orange rounded-md mr-4 text-black font-bold">Anterior</button>
+                <button onClick={handleFollowing} className="px-4 py-2 bg-blue rounded-md text-white font-bold">Siguiente</button>
             </div>
 
 

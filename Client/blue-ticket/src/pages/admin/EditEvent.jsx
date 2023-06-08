@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
-import { MessageSuccess } from '../../utils/Alert';
+import NavbarAdmin from "../../components/Navbars/NavbarAdmin"
 import { useNavigate } from 'react-router-dom';
 
-export const CreateEvent = () => {
+export const EditEvent = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const handleUrlChange = (e) => {
@@ -12,22 +12,25 @@ export const CreateEvent = () => {
 
     const handleUrlSubmit = (e) => {
         e.preventDefault();
-
+        
     };
 
-    const handleCreateEvent = () => {
-        MessageSuccess('Evento creado correctamente');
-        navigate('/admin/upcoming');
-    }
     const navigate = useNavigate();
 
     const handlLocation = () => {
         navigate('/admin/newlocation');
     }
 
+    const handlCreateEvent = () => {
+        navigate('/admin/upcoming');
+    }
+
     const handlCancel = () => {
         navigate('/admin/upcoming');
     }
+
+    
+
     return (
         <>
             <section className='bg-white dark:bg-gray-900'>
@@ -139,10 +142,11 @@ export const CreateEvent = () => {
                             focus:outline-none hover:shadow-none">
                                     <p className='text-xs lg:text-base  lg:w-24' >Crear Localidad</p>
                                 </button>
-                                <button onClick={handleCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
+
+                                <button onClick={handlCreateEvent} type="submit" className='lg:ml-0 lg:hidden py-4 px-4  lg:px-5 lg:py-3 bg-orange rounded-2xl
                             font-extrabold text-white capitalize
                             focus:outline-none hover:shadow-none'>
-                                    <p className='text-xs lg:text-base  lg:w-24' >Crear Evento</p>
+                                    <p className='text-xs lg:text-base  lg:w-24' >Editar Evento</p>
                                 </button>
 
                                 <button onClick={handlCancel} type="submit" className='lg:ml-0 py-4 px-4 lg:hidden lg:px-5 lg:py-3 bg-blue rounded-2xl
@@ -152,10 +156,10 @@ export const CreateEvent = () => {
                                 </button>
                             </div>
                             <div className='lg:flex hidden lg:flex-row gap-2 lg:gap-5 lg:pt-3 lg:ml-80 '>
-                                <button onClick={handleCreateEvent} type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
+                                <button onClick={handlCreateEvent} type="submit" className='ml-14 px-3 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-orange rounded-2xl
                     font-extrabold text-black capitalize
                     focus:outline-none hover:shadow-none'>
-                                    <p className='lg:w-auto text-xs lg:text-base'>Crear Evento</p>
+                                    <p className='lg:w-auto text-xs lg:text-base'>Editar Evento</p>
                                 </button>
                                 <button onClick={handlCancel} type="submit" className='py-3 px-5 lg:px-5 mt-5 lg:py-3 lg:w-32 bg-blue rounded-2xl
                     font-extrabold text-white capitalize
@@ -175,7 +179,4 @@ export const CreateEvent = () => {
     )
 }
 
-export default CreateEvent;
-
-
-
+export default EditEvent;
