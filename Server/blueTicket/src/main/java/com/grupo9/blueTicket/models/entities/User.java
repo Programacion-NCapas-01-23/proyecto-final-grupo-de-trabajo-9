@@ -1,6 +1,14 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.grupo9.blueTicket.models.entities.Token;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "user")
 
-public class User {
+public class User implements UserDetails {
 	 @Id
 	 @Column(name = "id")
 	 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,11 +55,50 @@ public class User {
 	 private Access access;*/
 
 
-	public User(String name, String email, String password) {
-		super();
+	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+		@JsonIgnore
+		private List<Token> tokens;
 		
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
+		private static final long serialVersionUID = 1460435087476558985L;
+
+
+		public User(String name, String email, String password, Boolean active) {
+			super();
+			this.name = name;
+			this.email = email;
+			this.password = password;
+			this.active = active;
+			
+		}
+
+		@Override
+		public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+		}
+		//getUsername is already overridden
+		@Override
+		public boolean isAccountNonExpired() {
+		return false;
+		}
+		@Override
+		public boolean isAccountNonLocked() {
+		return false;
+		}
+		@Override
+		public boolean isCredentialsNonExpired() {
+		return false;
+		}
+		@Override
+		public boolean isEnabled() {
+		return this.active;
+		}
+
+		@Override
+		public String getUsername() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+
 }
