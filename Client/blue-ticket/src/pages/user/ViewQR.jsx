@@ -4,6 +4,7 @@ import { faHourglass } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../../components/Footer/Footer';
 import QR from "../../assets/qr.png";
 import { useNavigate } from 'react-router-dom';
+import QRCode from "react-qr-code";
 
 export const ViewQR = () => {
     const navigate = useNavigate();
@@ -25,7 +26,8 @@ export const ViewQR = () => {
                     </div>
                     <form action="">
                         <div className="flex justify-center">
-                            <img src={QR} alt="Logo de blueticket" className="w-9/12 md:w-2/3 mx-auto"></img>
+                        <QRCode className="w-9/12 md:w-2/3 mx-auto" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+                            
                         </div>
                         <div className="flex items-center justify-center mt-5">
                             <FontAwesomeIcon icon={faHourglass} className="h-10 m-4" />

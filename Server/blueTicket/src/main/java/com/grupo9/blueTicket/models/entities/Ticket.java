@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +33,9 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_event")
     private Event event;
-    
+
+    @JoinColumn(name = "user_id")
+    private User user;
     
     public Ticket(String description, String status) {
     	super();
@@ -43,4 +44,7 @@ public class Ticket {
     	this.status = status;
     }
 
+    public Event getEvent() {
+        return user.getEvent();
+    }
 }

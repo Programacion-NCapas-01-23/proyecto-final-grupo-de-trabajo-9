@@ -16,4 +16,7 @@ public interface EventService {
     EventDTO updateEvent(UUID eventId, EventDTO eventDTO);
 
     void deleteEvent(UUID eventId);
+
+    List<EventDTO> getAttendedEventsByUserId(UUID userId);
+
 }
