@@ -12,6 +12,9 @@ public interface TicketService {
 	List<Ticket> findAll();
 	
 	void generateQR(String hash);
+
+	void generateToken(UUID ticketId);
 	
 	void transferTicket(TransferDTO info) throws Exception;
+    String generateTokenContent(Ticket ticket);
 }
