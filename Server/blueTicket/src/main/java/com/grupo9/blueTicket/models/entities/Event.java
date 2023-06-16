@@ -40,10 +40,10 @@ public class Event {
     @Column(name = "title")
 	private String title;
 
-	@Column(name = "image1")
+	@Column(name = "main_image")
 	private String image1;
 
-    @Column(name = "image2")
+    @Column(name = "secondary_image")
     private String image2;
 
     @Column(name = "date")
