@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,4 +27,11 @@ public class EventController {
         EventDTO eventDTO = eventService.getEventById(eventId);
         return ResponseEntity.status(HttpStatus.OK).body(eventDTO);
     }
+
+    @GetMapping("/attended-events/{userId}")
+public ResponseEntity<List<EventDTO>> getAttendedEventsByUserId(@PathVariable UUID userId) {
+    List<EventDTO> attendedEvents = eventService.getAttendedEventsByUserId(userId);
+    return ResponseEntity.ok(attendedEvents);
+}
+
 }

@@ -1,8 +1,9 @@
 package com.grupo9.blueTicket.services.implementations;
-
 import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.models.entities.Event;
+import com.grupo9.blueTicket.models.entities.Ticket;
 import com.grupo9.blueTicket.repositories.EventRepository;
+import com.grupo9.blueTicket.repositories.TicketRepository;
 import com.grupo9.blueTicket.services.EventService;
 
 import org.springframework.beans.BeanUtils;
@@ -19,9 +20,11 @@ import java.util.stream.Collectors;
 @Service
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
+    private final TicketRepository ticketRepository;
 
-    public EventServiceImpl(EventRepository eventRepository) {
+    public EventServiceImpl(EventRepository eventRepository, TicketRepository ticketRepository) {
         this.eventRepository = eventRepository;
+        this.ticketRepository = ticketRepository;
     }
 
     @Override
@@ -92,4 +95,16 @@ public class EventServiceImpl implements EventService {
         }
         return nullProperties.toArray(new String[0]);
     }
+
+    @Override
+    public List<EventDTO> getAttendedEventsByUserId(UUID userId) {
+        List<Ticket> tickets = ticketRepository.findByUser_Id(userId);
+        List<Event> attendedEvents = tickets.stream()
+                .map(Ticket::getEvent)
+                .collect(Collectors.toList());
+        return attendedEvents.stream()
+                .map(this::convertToEventDTO)
+                .collect(Collectors.toList());
+    }
 }
+

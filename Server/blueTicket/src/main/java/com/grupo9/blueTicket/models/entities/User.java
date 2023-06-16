@@ -99,6 +99,10 @@ public class User implements UserDetails {
 			return null;
 		}
 
+        public Event getEvent() {
+            return null;
+        }
+
 
 
 }
