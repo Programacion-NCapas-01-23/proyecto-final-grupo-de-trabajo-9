@@ -22,9 +22,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "userRole")
 @Entity
 @Table(name = "user")
 
@@ -46,13 +48,12 @@ public class User implements UserDetails {
 	 @Column(name = "active")
 	 private Boolean active;
 	 
-	 /* @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	 @JoinColumn(name = "id_user_role")
-	 private UserRole userRole;
+	 @OneToMany(mappedBy = "id_user", fetch = FetchType.LAZY)
+	 private List<User_role> userRole;
 	    
 	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "id_access")
-	 private Access access;*/
+	 private Access access;
 
 
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

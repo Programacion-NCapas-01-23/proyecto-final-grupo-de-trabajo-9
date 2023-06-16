@@ -31,6 +31,9 @@ public class Ticket {
     private String status;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_event")
+    private Event event;
+
     @JoinColumn(name = "user_id")
     private User user;
     

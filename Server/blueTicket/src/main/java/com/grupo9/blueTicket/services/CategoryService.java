@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CategoryService {
-   /* CategoryDTO createCategory(CategoryDTO categoryDTO);
+
+	/*
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
     CategoryDTO getCategoryById(UUID categoryId);
 
