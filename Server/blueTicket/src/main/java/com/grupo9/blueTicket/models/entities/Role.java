@@ -28,7 +28,7 @@ public class Role {
     private UUID id;
     private String role;
     
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
     private List<Role_permission> rolePermissions;
     
     public Role(String role) {

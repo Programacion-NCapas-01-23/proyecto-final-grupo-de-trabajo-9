@@ -32,11 +32,17 @@ public class User_role {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_role")
 	private Role id_role;
+	
+	@Column(name = "status")
+	private Boolean status;
 
-	public User_role(User id_user, Role id_role) {
+	public User_role(User id_user, Role id_role, Boolean status) {
 		super();
 		this.id_user = id_user;
 		this.id_role = id_role;
+		this.status = status;
 	}
+
+	
     
 }

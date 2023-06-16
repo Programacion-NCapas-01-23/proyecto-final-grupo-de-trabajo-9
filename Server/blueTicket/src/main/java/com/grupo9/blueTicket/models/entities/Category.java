@@ -23,7 +23,7 @@ public class Category {
     @Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Id id;
+	private UUID id;
 	@Column(name = "description")
 	private String description;
 	@Column(name = "status")

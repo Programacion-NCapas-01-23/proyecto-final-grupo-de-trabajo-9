@@ -31,13 +31,10 @@ public class Ticket {
     @Column(name = "status")
     private String status;
     
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_event")
     private Event event;
     
-    @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "user_id")
-    private User user;*/
     
     public Ticket(String description, String status) {
     	super();

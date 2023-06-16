@@ -27,15 +27,15 @@ public class Transfer{
     private UUID id;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user_issuer", nullable = true)
+    @JoinColumn(name = "id_user_issuer")
     private User user_issuer;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user_receptor", nullable = true)
+    @JoinColumn(name = "id_user_receptor")
     private User user_receptor;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_ticket", nullable = true)
+    @JoinColumn(name = "id_ticket")
     private Ticket ticket;
     
     @Column(name = "transfer_date")
