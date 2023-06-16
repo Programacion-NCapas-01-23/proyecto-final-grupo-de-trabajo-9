@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
+import com.grupo9.blueTicket.models.dtos.RegisterDTO;
 import com.grupo9.blueTicket.models.entities.Token;
 import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.services.UserService;
@@ -99,6 +100,33 @@ public class UserServiceImpl implements UserService {
 	public User findUserAuthenticated() {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		return userRepository.findOneByUsernameOrEmail(username, username);
+	}
+
+	@Override
+	public User findByUsernameOrEmail(String username, String email) {
+		return userRepository.findOneByUsernameOrEmail(username, email);
+	}
+
+	@Override
+	@Transactional(rollbackOn = Exception.class)
+	/* Implementation Register with Google*/
+	public void register(RegisterDTO info) throws Exception {
+		User newUser = new User();
+
+		newUser.setName(info.getUsername());
+		newUser.setEmail(info.getEmail());
+		newUser.setPassword(passwordEncoder.encode(info.getPassword()));
+
+		userRepository.save(newUser);
+	}
+	
+	@Override
+	public User findOneById(UUID id) {
+		try {
+			return userRepository.findById(id).orElse(null);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
