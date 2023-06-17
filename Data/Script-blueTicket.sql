@@ -9,8 +9,17 @@ CREATE TABLE public."access" (
 	email varchar NOT NULL,
 	"password" varchar NOT NULL,
 	session_start_date date NOT NULL,
+	"content" varchar NOT NULL,
+	active bool NOT NULL,
+	user_id uuid NOT NULL,
+	"timestamp" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT access_pk PRIMARY KEY (id)
 );
+
+
+-- public."access" foreign keys
+
+ALTER TABLE public."access" ADD CONSTRAINT access_fk FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE ON UPDATE CASCADE;
 -- public.category definition
 
 -- Drop table
@@ -18,9 +27,9 @@ CREATE TABLE public."access" (
 -- DROP TABLE public.category;
 
 CREATE TABLE public.category (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
 	description varchar NOT NULL,
 	status varchar NOT NULL,
+	id int4 NOT NULL,
 	CONSTRAINT category_pk PRIMARY KEY (id)
 );
 -- public."event" definition
@@ -37,20 +46,20 @@ CREATE TABLE public."event" (
 	duration varchar NOT NULL,
 	sponsors varchar NOT NULL,
 	involved varchar NOT NULL,
-	id_category uuid NOT NULL,
-	id_locality uuid NOT NULL,
 	id_user uuid NOT NULL,
 	main_image varchar NOT NULL,
 	secondary_image varchar NOT NULL,
+	id_locality uuid NOT NULL,
+	id_category int4 NOT NULL,
 	CONSTRAINT event_pk PRIMARY KEY (id)
 );
 
 
 -- public."event" foreign keys
 
-ALTER TABLE public."event" ADD CONSTRAINT event_fk FOREIGN KEY (id_user) REFERENCES public."user"(id);
+ALTER TABLE public."event" ADD CONSTRAINT event_fk FOREIGN KEY (id_category) REFERENCES public.category(id);
 ALTER TABLE public."event" ADD CONSTRAINT event_fk_1 FOREIGN KEY (id_locality) REFERENCES public.locality(id);
-ALTER TABLE public."event" ADD CONSTRAINT event_fk_2 FOREIGN KEY (id_category) REFERENCES public.category(id);
+ALTER TABLE public."event" ADD CONSTRAINT event_fk_2 FOREIGN KEY (id_user) REFERENCES public."user"(id);
 
 -- public.locality definition
 
@@ -65,6 +74,7 @@ CREATE TABLE public.locality (
 	capacity int4 NOT NULL,
 	CONSTRAINT locality_pk PRIMARY KEY (id)
 );
+
 -- public."permission" definition
 
 -- Drop table
@@ -72,12 +82,11 @@ CREATE TABLE public.locality (
 -- DROP TABLE public."permission";
 
 CREATE TABLE public."permission" (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
 	"permission" varchar NOT NULL,
 	status bool NOT NULL,
+	id int4 NOT NULL,
 	CONSTRAINT permission_pk PRIMARY KEY (id)
 );
-
 -- public."role" definition
 
 -- Drop table
@@ -85,9 +94,9 @@ CREATE TABLE public."permission" (
 -- DROP TABLE public."role";
 
 CREATE TABLE public."role" (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
 	"role" varchar NOT NULL,
 	id_role_permission uuid NOT NULL,
+	id int4 NOT NULL,
 	CONSTRAINT role_pk PRIMARY KEY (id)
 );
 
@@ -104,8 +113,8 @@ ALTER TABLE public."role" ADD CONSTRAINT role_fk FOREIGN KEY (id_role_permission
 
 CREATE TABLE public.role_permission (
 	id uuid NOT NULL DEFAULT gen_random_uuid(),
-	id_permission uuid NOT NULL,
-	id_role uuid NOT NULL,
+	id_permission int4 NOT NULL,
+	id_role int4 NOT NULL,
 	CONSTRAINT role_permission_pk PRIMARY KEY (id)
 );
 
@@ -190,6 +199,7 @@ CREATE TABLE public."user" (
 	"password" varchar NOT NULL,
 	id_user_role uuid NOT NULL,
 	id_access uuid NOT NULL,
+	active bool NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (id),
 	CONSTRAINT user_un UNIQUE (email)
 );
@@ -209,13 +219,12 @@ ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_user_role) RE
 CREATE TABLE public.user_role (
 	id uuid NOT NULL DEFAULT gen_random_uuid(),
 	id_user uuid NOT NULL,
-	id_role uuid NOT NULL,
 	status bool NOT NULL,
+	id_role int4 NOT NULL,
 	CONSTRAINT user_role_pk PRIMARY KEY (id)
 );
 
 
 -- public.user_role foreign keys
 
-ALTER TABLE public.user_role ADD CONSTRAINT user_role_fk FOREIGN KEY (id_user) REFERENCES public."user"(id);
-ALTER TABLE public.user_role ADD CONSTRAINT user_role_fk_1 FOREIGN KEY (id_role) REFERENCES public."role"(id);
+ALTER TABLE public.user_role ADD CONSTRAINT user_role_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
