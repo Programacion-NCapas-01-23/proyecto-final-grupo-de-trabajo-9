@@ -1,9 +1,14 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-
 import jakarta.persistence.CascadeType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.grupo9.blueTicket.models.entities.Token;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,7 +30,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "user")
 
-public class User {
+public class User implements UserDetails {
 	 @Id
 	 @Column(name = "id")
 	 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,6 +67,52 @@ public class User {
 	}
 
 	 //Creo que falta establecer la conexión con la tabla transfer
+	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+		@JsonIgnore
+		private List<Token> tokens;
+		
+		private static final long serialVersionUID = 1460435087476558985L;
 
-	
+
+		public User(String name, String email, String password, Boolean active) {
+			super();
+			this.name = name;
+			this.email = email;
+			this.password = password;
+			this.active = active;
+			
+		}
+
+		@Override
+		public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+		}
+		//getUsername is already overridden
+		@Override
+		public boolean isAccountNonExpired() {
+		return false;
+		}
+		@Override
+		public boolean isAccountNonLocked() {
+		return false;
+		}
+		@Override
+		public boolean isCredentialsNonExpired() {
+		return false;
+		}
+		@Override
+		public boolean isEnabled() {
+		return this.active;
+		}
+
+		@Override
+		public String getUsername() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+        public Event getEvent() {
+            return null;
+        }
+
 }
