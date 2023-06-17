@@ -22,7 +22,7 @@ public class JWTTools {
 
 	public String generateToken(User user) {
 		Map<String, Object> claims = new HashMap<>();
-		return Jwts.builder().addClaims(claims).setSubject(user.getName())
+		return Jwts.builder().addClaims(claims).setSubject(user.getUsername())
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + exp))
 				.signWith(Keys.hmacShaKeyFor(secret.getBytes())).compact();

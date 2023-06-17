@@ -27,7 +27,7 @@ public class Role {
     
     @Id
     @Column(name = "id")
-    private int id;
+    private int id = 1;
     @Column(name = "role")
     private String role;
     

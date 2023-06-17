@@ -3,7 +3,7 @@ import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.models.entities.Event;
 import com.grupo9.blueTicket.models.entities.Ticket;
 import com.grupo9.blueTicket.repositories.EventRepository;
-import com.grupo9.blueTicket.repositories.TicketRepository;
+//import com.grupo9.blueTicket.repositories.TicketRepository;
 import com.grupo9.blueTicket.services.EventService;
 
 import org.springframework.beans.BeanUtils;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+/*
 @Service
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
@@ -108,3 +108,4 @@ public class EventServiceImpl implements EventService {
     }
 }
 
+*/

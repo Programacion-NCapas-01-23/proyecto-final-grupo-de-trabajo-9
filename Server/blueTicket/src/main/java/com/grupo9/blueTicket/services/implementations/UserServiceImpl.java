@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
@@ -20,6 +21,7 @@ import jakarta.transaction.Transactional;
 
 import com.grupo9.blueTicket.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -113,7 +115,7 @@ public class UserServiceImpl implements UserService {
 	public void register(RegisterDTO info) throws Exception {
 		User newUser = new User();
 
-		newUser.setName(info.getUsername());
+		newUser.setUsername(info.getUsername());
 		newUser.setEmail(info.getEmail());
 		newUser.setPassword(passwordEncoder.encode(info.getPassword()));
 

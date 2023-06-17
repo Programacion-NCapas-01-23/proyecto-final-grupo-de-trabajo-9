@@ -37,7 +37,7 @@ public class User implements UserDetails {
 	 private UUID id;
 	 
 	 @Column(name = "name")
-	 private String name;
+	 private String username;
 
 	 @Column(name = "email")
 	 private String email;
@@ -58,14 +58,6 @@ public class User implements UserDetails {
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 private List<Access> access;
 
-	public User(String name, String email, String password, Boolean active) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.active = active;
-	}
-
 	 //Creo que falta establecer la conexión con la tabla transfer
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 		@JsonIgnore
@@ -74,9 +66,9 @@ public class User implements UserDetails {
 		private static final long serialVersionUID = 1460435087476558985L;
 
 
-		public User(String name, String email, String password, Boolean active) {
+		public User(String username, String email, String password, Boolean active) {
 			super();
-			this.name = name;
+			this.username = username;
 			this.email = email;
 			this.password = password;
 			this.active = active;
@@ -103,12 +95,6 @@ public class User implements UserDetails {
 		@Override
 		public boolean isEnabled() {
 		return this.active;
-		}
-
-		@Override
-		public String getUsername() {
-			// TODO Auto-generated method stub
-			return null;
 		}
 
         public Event getEvent() {
