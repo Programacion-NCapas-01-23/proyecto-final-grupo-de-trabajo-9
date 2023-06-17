@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString(exclude = "rolePermission")
+@ToString(exclude = {"rolePermission", "userRole"})
 @NoArgsConstructor
 @Entity
 @Table(name = "role")
@@ -34,5 +34,6 @@ public class Role {
     @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
     private List<Role_permission> rolePermission;
     
-    
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private List<User> userRole;
 }

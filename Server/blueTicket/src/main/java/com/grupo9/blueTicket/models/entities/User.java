@@ -51,7 +51,10 @@ public class User implements UserDetails {
 	 //Creando la conexión con el event
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 private List<Event> event;
-	 
+	 //FK de role
+	 @ManyToOne(fetch = FetchType.EAGER)
+	 @JoinColumn(name = "id_role")
+	 private Role role;
 	 //Creo que falta establecer la conexión con la tabla transfer y sale
 	 
 	 //Conexión con transfer
