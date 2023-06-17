@@ -19,7 +19,7 @@ export const CardMyTicket = () => {
 
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 md:w-2/3 lg:w-1/2"onClick={handleCardTicket}>
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-9/12 md:w-2/3 lg:w-full"onClick={handleCardTicket}>
         <div
           className="relative"
           onMouseEnter={handleMouseEnter}
@@ -31,7 +31,7 @@ export const CardMyTicket = () => {
             </div>
           )}
           <img
-            className="w-full h-48 object-cover object-center rounded-t-lg"
+            className="w-full h-72 object-cover object-center rounded-t-lg"
             src="https://i.pinimg.com/originals/1f/81/88/1f818876783092801d6db8ecc3d46688.jpg"
             alt="Artista"
           />

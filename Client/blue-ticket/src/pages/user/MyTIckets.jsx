@@ -18,18 +18,38 @@ export const MyTickets = () => {
             <SearchBoxTicket />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10" style={{ justifyItems: 'center', alignItems: 'center' }}>
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 lg:ml-32 ">
 
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
 
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+          <div className="flex justify-center lg:w-3/4">
+            <CardMyTicket />
+          </div>
+
         </div>
 
         <div style={{ textAlign: "center", marginTop: "8px" }}>
