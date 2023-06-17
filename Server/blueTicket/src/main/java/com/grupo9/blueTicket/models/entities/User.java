@@ -54,7 +54,13 @@ public class User implements UserDetails {
 	 
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 private List<Access> access;
+	 
+	 //FK de role
+	 @ManyToOne(fetch = FetchType.EAGER)
+	 @JoinColumn(name = "id_role")
+	 private Role role;
 
+	 
 	 //Creo que falta establecer la conexión con la tabla transfer y sale
 	 
 	 //Conexión con transfer
