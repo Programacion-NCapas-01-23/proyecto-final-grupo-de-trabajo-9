@@ -26,7 +26,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = {"userRole", "event", "access"})
+@ToString(exclude = {"event", "access", "transfer_user_issuer", "transfer_user_receptor", "sale"})
 @Entity
 @Table(name = "user")
 
@@ -48,9 +48,6 @@ public class User implements UserDetails {
 	 @Column(name = "active")
 	 private Boolean active;
 	 
-	 @OneToMany(mappedBy = "id_user", fetch = FetchType.LAZY)
-	 private List<User_role> userRole;
-	 
 	 //Creando la conexión con el event
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 private List<Event> event;
@@ -58,7 +55,18 @@ public class User implements UserDetails {
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 private List<Access> access;
 
-	 //Creo que falta establecer la conexión con la tabla transfer
+	 //Creo que falta establecer la conexión con la tabla transfer y sale
+	 
+	 //Conexión con transfer
+	 @OneToMany(mappedBy = "user_issuer", fetch = FetchType.LAZY)
+	 private List<Transfer> transfer_user_issuer;
+	 @OneToMany(mappedBy = "user_receptor", fetch = FetchType.LAZY)
+	 private List<Transfer> transfer_user_receptor;
+	 
+	 //Conexión con Sale
+	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	 private List<Sale> sale;
+	 //Esto creo que tendría que ser Access
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 		@JsonIgnore
 		private List<Token> tokens;

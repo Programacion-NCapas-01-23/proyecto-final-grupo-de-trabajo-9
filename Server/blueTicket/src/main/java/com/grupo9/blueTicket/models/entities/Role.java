@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString(exclude = {"rolePermission","userRole"})
+@ToString(exclude = "rolePermission")
 @NoArgsConstructor
 @Entity
 @Table(name = "role")
@@ -27,15 +27,12 @@ public class Role {
     
     @Id
     @Column(name = "id")
-    private int id = 1;
+    private int id;
     @Column(name = "role")
     private String role;
     
     @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
     private List<Role_permission> rolePermission;
     
-    //Creo que este también hacia falta para establecer las conexiones entre tablas
-    @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
-    private List<User_role> userRole;
     
 }
