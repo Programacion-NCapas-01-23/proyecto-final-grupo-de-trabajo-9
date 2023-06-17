@@ -29,7 +29,7 @@ public class WebSecurityConfiguration {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private JWTTokenFilter filter;
+	private JWTTokenFIlter filter;
 
 	@Bean
 	AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
