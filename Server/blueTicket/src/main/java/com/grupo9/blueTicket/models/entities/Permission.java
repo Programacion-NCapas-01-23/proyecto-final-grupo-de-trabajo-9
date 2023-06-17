@@ -19,7 +19,7 @@ public class Permission {
     
     @Id
     @Column(name = "id")
-    private int id;
+    private int id = 1;
 
     @Column(name = "permission")
     private String permission;

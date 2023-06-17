@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
-
+/*
 @RestController
 @RequestMapping("/events")
 public class EventController {
@@ -34,4 +34,4 @@ public ResponseEntity<List<EventDTO>> getAttendedEventsByUserId(@PathVariable UU
     return ResponseEntity.ok(attendedEvents);
 }
 
-}
+}*/

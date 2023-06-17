@@ -4,7 +4,7 @@ import com.grupo9.blueTicket.models.dtos.TransferDTO;
 import com.grupo9.blueTicket.models.entities.Ticket;
 import com.grupo9.blueTicket.models.entities.Token;
 import com.grupo9.blueTicket.models.entities.User;
-import com.grupo9.blueTicket.repositories.TicketRepository;
+//import com.grupo9.blueTicket.repositories.TicketRepository;
 import com.grupo9.blueTicket.repositories.TokenRepository;
 import com.grupo9.blueTicket.services.TicketService;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-
+/*
 @Service
 public class TicketServiceImpl implements TicketService {
     private final TicketRepository ticketRepository;
@@ -75,4 +75,4 @@ public class TicketServiceImpl implements TicketService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'generateTokenContent'");
     }
-}
+}*/
