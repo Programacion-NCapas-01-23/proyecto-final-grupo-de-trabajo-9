@@ -70,8 +70,8 @@ public class Event {
     @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     private List<Ticket> ticket; //La conexión con ticket
 
-	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, User user,
-			String image1, String image2, Category category, Locality locality) {
+	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved,
+			String image1, String image2, Category category) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -79,11 +79,11 @@ public class Event {
 		this.duration = duration;
 		this.sponsor = sponsor;
 		this.involved = involved;
-		this.user = user;
+		//this.user = user;
 		this.image1 = image1;
 		this.image2 = image2;
 		this.category = category;
-		this.locality = locality;
+		//this.locality = locality;
 	}
     
 
