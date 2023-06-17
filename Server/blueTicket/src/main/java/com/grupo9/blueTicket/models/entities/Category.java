@@ -1,5 +1,6 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -10,28 +11,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "eventCategory")
 @Entity
 @Table(name = "category")
 public class Category {
     @Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private int id;
 	@Column(name = "description")
 	private String description;
 	@Column(name = "status")
 	private String status;
 	
-	public Category(String description, String status) {
-		super();
-		this.description = description;
-		this.status = status;
-	}
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Event> eventCategory;
+	
 }
