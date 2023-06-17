@@ -1,25 +1,19 @@
--- public."access" definition
 
--- Drop table
-
--- DROP TABLE public."access";
-
-CREATE TABLE public."access" (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
-	email varchar NOT NULL,
-	"password" varchar NOT NULL,
-	session_start_date date NOT NULL,
-	"content" varchar NOT NULL,
-	active bool NOT NULL,
-	user_id uuid NOT NULL,
-	"timestamp" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT access_pk PRIMARY KEY (id)
+CREATE TABLE public."token" (
+code uuid NOT NULL DEFAULT gen_random_uuid(),
+"content" varchar NOT NULL,
+active boolean NOT NULL DEFAULT true,
+"timestamp" timestamp without time zone NULL DEFAULT CURRENT_TIMESTAMP,
+user_code uuid NULL,
+CONSTRAINT token_pk PRIMARY KEY (code),
+CONSTRAINT token_fk FOREIGN KEY (user_code) REFERENCES public."user"(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 
 -- public."access" foreign keys
 
-ALTER TABLE public."access" ADD CONSTRAINT access_fk FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE ON UPDATE CASCADE;
+--ALTER TABLE public."access" ADD CONSTRAINT access_fk FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE ON UPDATE CASCADE;
 -- public.category definition
 
 -- Drop table
@@ -197,15 +191,15 @@ CREATE TABLE public."user" (
 	"name" varchar NOT NULL,
 	email varchar NOT NULL,
 	"password" varchar NOT NULL,
-	id_access uuid NOT NULL,
-	active bool NOT NULL,
-	id_role int4 NOT NULL,
+	active boolean NOT NULL DEFAULT true,
+	id_role int4 NOT NULL DEFAULT 1,
 	CONSTRAINT user_pk PRIMARY KEY (id),
 	CONSTRAINT user_un UNIQUE (email)
 );
 
 
+
 -- public."user" foreign keys
 
 ALTER TABLE public."user" ADD CONSTRAINT user_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
-ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_access) REFERENCES public."access"(id);
+--ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_access) REFERENCES public."access"(id);
