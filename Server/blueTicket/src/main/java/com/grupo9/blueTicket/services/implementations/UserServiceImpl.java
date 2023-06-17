@@ -128,5 +128,11 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
+	
+	//Traer todos los usuarios de la BD
+	@Override
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.grupo9.blueTicket.services;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.grupo9.blueTicket.models.entities.User;
@@ -17,6 +18,7 @@ public interface UserService {
 	User findByUsernameOrEmail(String username, String email);
 	void register(RegisterDTO info) throws Exception;
 	User findOneById(UUID id);
+	List<User> findAll();
 	
 	//Token management
     Token registerToken(User user) throws Exception;

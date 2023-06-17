@@ -61,11 +61,11 @@ public class Event {
     @Column(name = "involved")
     private String involved;
 
-    public Event(Category category, Locality locality, User user, String title, String image1, String image2, String date, String hour, String duration, String sponsor, String involved) {
+    public Event(String title, String image1, String image2, String date, String hour, String duration, String sponsor, String involved) {
         super();
-        this.category = category;
-        this.locality = locality;
-        this.user = user;
+        //this.category = category;
+        //this.locality = locality;
+        //this.user = user;
         this.title = title;
         this.image1 = image1;
         this.image2 = image2;
