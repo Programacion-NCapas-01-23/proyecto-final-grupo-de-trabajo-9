@@ -20,28 +20,36 @@ export const ViewEvent = () => {
             <Carousel />
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="flex flex-col items-center">
-                    <h1 className="font-bold text-3xl mb-5">Localidades</h1>
-                    <div className="grid grid-cols-1 gap-x-6 gap-y-4 mb-5 justify-items-center">
-                        <div className="flex space-x-5">
+                    <h1 className="font-bold text-3xl mb-5 lg:ml-10">Localidades</h1>
+                    <div className="grid grid-cols-2 ">
+                        <div className="flex justify-between lg:ml-20">
                             <p className="text-2xl">La Playa</p>
+                        </div>
+                        <div className="ml-10 lg:ml-20">
                             <p className="font-bold text-2xl">$175</p>
                         </div>
-                        <div className="flex space-x-5">
+                        <div className="flex justify-between lg:ml-20">
                             <p className="text-2xl">Platinum</p>
+                        </div>
+                        <div className="ml-10 lg:ml-20">
                             <p className="font-bold text-2xl">$125</p>
                         </div>
-                        <div className="flex space-x-5">
+                        <div className="flex justify-between lg:ml-20">
                             <p className="text-2xl">VIP</p>
+                        </div>
+                        <div className="ml-10 lg:ml-20">
                             <p className="font-bold text-2xl">$100</p>
                         </div>
-                        <div className="flex space-x-5">
+                        <div className="flex justify-between lg:ml-20">
                             <p className="text-2xl">Platea</p>
+                        </div>
+                        <div className="ml-10 lg:ml-20">
                             <p className="font-bold text-2xl">$75</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mt-5 md:mt-0 lg:mt-0">
                     <h1 className="font-bold text-3xl mb-5">Esteman</h1>
                     <div className="flex flex-col space-y-5">
                         <div className="flex items-center space-x-2">

@@ -1,5 +1,6 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,9 +40,9 @@ public class Transfer{
     private Ticket ticket;
     
     @Column(name = "transfer_date")
-    private Date transfer_date;
+    private Timestamp transfer_date;
     
-    public Transfer(User user_issuer, User user_receptor, Ticket ticket, Date transfer_date) {
+    public Transfer(User user_issuer, User user_receptor, Ticket ticket, Timestamp transfer_date) {
     	super();
     	this.user_issuer = user_issuer;
     	this.user_receptor = user_receptor;

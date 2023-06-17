@@ -10,9 +10,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "rolePermission")
 @Entity
 @Table(name = "permission")
 public class Permission {

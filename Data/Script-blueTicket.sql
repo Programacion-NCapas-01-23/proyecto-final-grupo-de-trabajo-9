@@ -133,7 +133,6 @@ ALTER TABLE public.role_permission ADD CONSTRAINT role_permission_fk_1 FOREIGN K
 CREATE TABLE public.sale (
 	id uuid NOT NULL DEFAULT gen_random_uuid(),
 	id_user uuid NOT NULL,
-	id_ticket uuid NOT NULL,
 	date_purchase timestamp NOT NULL,
 	amount_tickets_purchased int4 NOT NULL,
 	CONSTRAINT sale_pk PRIMARY KEY (id)
@@ -143,7 +142,6 @@ CREATE TABLE public.sale (
 -- public.sale foreign keys
 
 ALTER TABLE public.sale ADD CONSTRAINT sale_fk FOREIGN KEY (id_user) REFERENCES public."user"(id);
-ALTER TABLE public.sale ADD CONSTRAINT sale_fk_1 FOREIGN KEY (id_ticket) REFERENCES public.ticket(id);
 
 -- public.ticket definition
 
@@ -156,6 +154,7 @@ CREATE TABLE public.ticket (
 	description varchar NOT NULL,
 	status bool NOT NULL,
 	id_event uuid NULL,
+	id_sale uuid NULL,
 	CONSTRAINT ticket_pk PRIMARY KEY (id)
 );
 
@@ -163,6 +162,7 @@ CREATE TABLE public.ticket (
 -- public.ticket foreign keys
 
 ALTER TABLE public.ticket ADD CONSTRAINT ticket_fk FOREIGN KEY (id_event) REFERENCES public."event"(id);
+ALTER TABLE public.ticket ADD CONSTRAINT ticket_fk_1 FOREIGN KEY (id_sale) REFERENCES public.sale(id);
 
 -- public.transfer definition
 
@@ -197,9 +197,9 @@ CREATE TABLE public."user" (
 	"name" varchar NOT NULL,
 	email varchar NOT NULL,
 	"password" varchar NOT NULL,
-	id_user_role uuid NOT NULL,
 	id_access uuid NOT NULL,
 	active bool NOT NULL,
+	id_role int4 NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (id),
 	CONSTRAINT user_un UNIQUE (email)
 );
@@ -207,24 +207,5 @@ CREATE TABLE public."user" (
 
 -- public."user" foreign keys
 
-ALTER TABLE public."user" ADD CONSTRAINT user_fk FOREIGN KEY (id_access) REFERENCES public."access"(id);
-ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_user_role) REFERENCES public.user_role(id);
-
--- public.user_role definition
-
--- Drop table
-
--- DROP TABLE public.user_role;
-
-CREATE TABLE public.user_role (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
-	id_user uuid NOT NULL,
-	status bool NOT NULL,
-	id_role int4 NOT NULL,
-	CONSTRAINT user_role_pk PRIMARY KEY (id)
-);
-
-
--- public.user_role foreign keys
-
-ALTER TABLE public.user_role ADD CONSTRAINT user_role_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
+ALTER TABLE public."user" ADD CONSTRAINT user_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
+ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_access) REFERENCES public."access"(id);
