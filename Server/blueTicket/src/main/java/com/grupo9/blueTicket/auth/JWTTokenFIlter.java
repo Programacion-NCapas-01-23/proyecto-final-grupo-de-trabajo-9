@@ -9,8 +9,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.grupo9.blueTicket.services.UserService;
 import com.grupo9.blueTicket.models.entities.User;
+import com.grupo9.blueTicket.services.UserService;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class JWTTokenFilter extends OncePerRequestFilter {
+public class JWTTokenFIlter extends OncePerRequestFilter {
 
 	@Autowired
 	JWTTools jwtTools;

@@ -2,7 +2,9 @@ package com.grupo9.blueTicket.controllers;
 
 import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.services.EventService;
+import com.grupo9.blueTicket.services.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/events")
 public class EventController {
-    private final EventService eventService;
+	
+	@Autowired
+	private EventService eventService;
 
-    public EventController(EventService eventService) {
-        this.eventService = eventService;
-    }
 
     @GetMapping("/{eventId}")
     public ResponseEntity<EventDTO> getEventById(@PathVariable UUID eventId) {
