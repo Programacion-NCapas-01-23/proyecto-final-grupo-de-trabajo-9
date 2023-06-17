@@ -23,7 +23,7 @@ public class User_role {
     @Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private int id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_user")
