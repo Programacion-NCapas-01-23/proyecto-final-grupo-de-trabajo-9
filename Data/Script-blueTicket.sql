@@ -197,9 +197,9 @@ CREATE TABLE public."user" (
 	"name" varchar NOT NULL,
 	email varchar NOT NULL,
 	"password" varchar NOT NULL,
-	id_user_role uuid NOT NULL,
 	id_access uuid NOT NULL,
 	active bool NOT NULL,
+	id_role int4 NOT NULL,
 	CONSTRAINT user_pk PRIMARY KEY (id),
 	CONSTRAINT user_un UNIQUE (email)
 );
@@ -207,24 +207,5 @@ CREATE TABLE public."user" (
 
 -- public."user" foreign keys
 
-ALTER TABLE public."user" ADD CONSTRAINT user_fk FOREIGN KEY (id_access) REFERENCES public."access"(id);
-ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_user_role) REFERENCES public.user_role(id);
-
--- public.user_role definition
-
--- Drop table
-
--- DROP TABLE public.user_role;
-
-CREATE TABLE public.user_role (
-	id uuid NOT NULL DEFAULT gen_random_uuid(),
-	id_user uuid NOT NULL,
-	status bool NOT NULL,
-	id_role int4 NOT NULL,
-	CONSTRAINT user_role_pk PRIMARY KEY (id)
-);
-
-
--- public.user_role foreign keys
-
-ALTER TABLE public.user_role ADD CONSTRAINT user_role_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
+ALTER TABLE public."user" ADD CONSTRAINT user_fk FOREIGN KEY (id_role) REFERENCES public."role"(id);
+ALTER TABLE public."user" ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_access) REFERENCES public."access"(id);
