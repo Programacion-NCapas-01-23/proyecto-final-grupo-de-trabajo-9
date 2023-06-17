@@ -47,14 +47,20 @@ public class Access {
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
-	
-	
-	public Access(String email, String password, Date session_start_date) {
+
+	public Access(String email, String password, Date session_start_date, String content, Date timestamp,
+			Boolean active, User user) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.session_start_date = session_start_date;
+		this.content = content;
+		this.timestamp = timestamp;
+		this.active = active;
+		this.user = user;
 	}
+	
+	
 	
 	
 }
