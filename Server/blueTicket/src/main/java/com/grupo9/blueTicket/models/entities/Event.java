@@ -21,7 +21,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = "ticket")
+@ToString(exclude = {"ticket", "locality"})
 @Entity
 @Table(name = "Event")
 public class Event {
@@ -48,11 +48,11 @@ public class Event {
 
     @Column(name = "involved")
     private String involved;
-    
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user", nullable = true)
     private User user;
-
+	*/
 	@Column(name = "main_image")
 	private String image1;
 
@@ -62,16 +62,19 @@ public class Event {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category", nullable = true)
     private Category category;
-    
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_locality", nullable = true)
     private Locality locality;
+    */
+    @OneToMany(mappedBy = "id_event", fetch = FetchType.LAZY)
+    private List<Locality> locality;
     
     @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     private List<Ticket> ticket; //La conexión con ticket
 
-	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved,
-			String image1, String image2, Category category) {
+	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, String image1,
+			String image2, Category category) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -79,12 +82,12 @@ public class Event {
 		this.duration = duration;
 		this.sponsor = sponsor;
 		this.involved = involved;
-		//this.user = user;
 		this.image1 = image1;
 		this.image2 = image2;
 		this.category = category;
-		//this.locality = locality;
 	}
+
+	
     
 
 	

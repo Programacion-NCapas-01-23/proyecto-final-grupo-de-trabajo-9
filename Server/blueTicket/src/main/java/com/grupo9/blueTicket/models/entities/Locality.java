@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -17,7 +19,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = "eventLocality")
+//@ToString(exclude = "eventLocality")
 @Entity
 @Table(name = "locality")
 public class Locality {
@@ -32,17 +34,23 @@ public class Locality {
 	@Column(name = "capacity")
 	private int capacity;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_event", nullable = true)
+    private Event id_event;
+	/*
 	@OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)
 	private List<Event> eventLocality;
+	*/
 
-	public Locality(String name, Float price, int capacity, List<Event> eventLocality) {
+	public Locality(String name, Float price, int capacity, Event id_event) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.capacity = capacity;
-		this.eventLocality = eventLocality;
+		this.id_event = id_event;
 	}
-
+	
+	
 	
 	
 	
