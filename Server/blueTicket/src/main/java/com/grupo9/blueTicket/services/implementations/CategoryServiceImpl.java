@@ -14,6 +14,18 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Override
+	public Category findOneById(int id) {
+		try {
+			return categoryRepository.findById(id)
+					.orElse(null);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	
 
 	@Override
 	public List<Category> findAll() {

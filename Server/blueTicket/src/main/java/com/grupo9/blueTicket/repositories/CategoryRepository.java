@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.grupo9.blueTicket.models.entities.Category;
 
-@Repository
-public interface CategoryRepository extends ListCrudRepository<Category, UUID> {
+
+public interface CategoryRepository extends ListCrudRepository<Category, Integer> {
 
 }

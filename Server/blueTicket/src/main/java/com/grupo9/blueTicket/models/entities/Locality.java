@@ -35,7 +35,7 @@ public class Locality {
 	private int capacity;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_event", nullable = true)
+    @JoinColumn(name = "id_event")
     private Event id_event;
 	/*
 	@OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)

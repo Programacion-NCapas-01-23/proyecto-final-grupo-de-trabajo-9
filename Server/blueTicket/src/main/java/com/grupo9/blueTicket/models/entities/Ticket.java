@@ -20,7 +20,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = "transfer")
+@ToString(exclude = {"transfer","sale"})
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -29,30 +29,25 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
-    @Column(name = "description")
-    private String description;
-    
     @Column(name = "status")
-    private String status;
+    private Boolean status;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_event")
     private Event event;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_sale")
-    private Sale sale; //id de la venta, es la FK
-    
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    private List<Sale> sale; //Conexción con la tabla de venta
+   
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
     private List<Transfer> transfer; //La conexión con Transfer
 
-	public Ticket(String description, String status, Event event, Sale sale) {
+	public Ticket(Boolean status, Event event) {
 		super();
-		this.description = description;
 		this.status = status;
 		this.event = event;
-		this.sale = sale;
 	}
+
     
     
 

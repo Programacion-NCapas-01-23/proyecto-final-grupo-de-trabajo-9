@@ -1,5 +1,7 @@
 package com.grupo9.blueTicket.controllers;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,8 +51,25 @@ public class EventController1 {
 				System.out.println(category.getDescription());
 			}
 			*/
+			System.out.println(info);
+			//TODO: Convertir string a time, date e integer
+			//Category category = categoryService.findOneById(info.getCategory());
+			//System.out.println(category);
+			//eventService.createEvent(info);
+			//Date date = Date.valueOf(info.getDate());
+			//System.out.println(date);
+			System.out.println(info.getDate());
+			System.out.println(info.getHour());
+			//System.out.println(info.getCategory());
+			//Category category = categoryService.findOneById(info.getCategory());
+			//System.out.println(category);
+			/*
+			int id = Integer.parseInt(info.getCategory());
 			
+			Category category = categoryService.findOneById(id);
+			System.out.println(category); */
 			eventService.createEvent(info);
+			
 			return new ResponseEntity<>(
 					new MessageDTO("Event create" + info), HttpStatus.CREATED);
 		} catch (Exception e) {

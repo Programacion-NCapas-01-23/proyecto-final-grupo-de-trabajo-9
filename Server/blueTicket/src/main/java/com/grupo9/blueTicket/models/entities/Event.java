@@ -43,16 +43,12 @@ public class Event {
     @Column(name = "duration")
     private String duration;
 
-    @Column(name = "sponsor")
+    @Column(name = "sponsors")
     private String sponsor;
 
-    @Column(name = "involved")
+    @Column(name = "artist")
     private String involved;
-    /*
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user", nullable = true)
-    private User user;
-	*/
+
 	@Column(name = "main_image")
 	private String image1;
 
@@ -62,11 +58,7 @@ public class Event {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category", nullable = true)
     private Category category;
-    /*
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_locality", nullable = true)
-    private Locality locality;
-    */
+    
     @OneToMany(mappedBy = "id_event", fetch = FetchType.LAZY)
     private List<Locality> locality;
     
