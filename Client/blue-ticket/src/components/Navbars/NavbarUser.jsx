@@ -4,6 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/blue_ticket.png";
 import SearchBox from '../SearchBox';
 import { useNavigate } from 'react-router-dom';
+import { IoTicketOutline } from "react-icons/io5";
 import { faBars, faTicketAlt, faHistory, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const NavbarUser = () => {
