@@ -3,6 +3,9 @@ package com.grupo9.blueTicket.models.dtos;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
+import java.util.List;
+import java.util.UUID;
+
 import com.grupo9.blueTicket.models.entities.Event;
 
 @Data
@@ -14,7 +17,7 @@ public class EventDTO {
     private String id_category;
 
     @NotEmpty
-    private String id_locality;
+    private List<UUID> id_locality; //Se le envía una lista de localidades
 
     @NotEmpty
     private String id_user;

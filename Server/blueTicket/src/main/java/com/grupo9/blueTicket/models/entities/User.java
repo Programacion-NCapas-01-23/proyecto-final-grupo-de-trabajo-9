@@ -26,7 +26,7 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = {"event", "transfer_user_issuer", "transfer_user_receptor", "sale"})
+@ToString(exclude = { "transfer_user_issuer", "transfer_user_receptor", "sale", "userRole"})
 @Entity
 @Table(name = "user")
 
@@ -48,15 +48,8 @@ public class User implements UserDetails {
 	 @Column(name = "active", insertable = false)
 	 private Boolean active;
 	 
-	 //Creando la conexión con el event
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	 private List<Event> event;
-	 //FK de role
-	 @ManyToOne(fetch = FetchType.EAGER)
-	 @JoinColumn(name = "id_role")
-	 private Role role;
-	 //Creo que falta establecer la conexión con la tabla transfer y sale
-	 
+	 private List<User_Role> userRole;
 	 //Conexión con transfer
 	 @OneToMany(mappedBy = "user_issuer", fetch = FetchType.LAZY)
 	 private List<Transfer> transfer_user_issuer;
@@ -80,6 +73,7 @@ public class User implements UserDetails {
 			this.email = email;
 			this.password = password;
 			this.active = active;
+			
 			
 		}
 
