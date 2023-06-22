@@ -1,78 +1,76 @@
 package com.grupo9.blueTicket.services.implementations;
 
+import com.grupo9.blueTicket.models.dtos.SaveTicketDTO;
 import com.grupo9.blueTicket.models.dtos.TransferDTO;
+import com.grupo9.blueTicket.models.entities.Event;
 import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.models.entities.Token;
-import com.grupo9.blueTicket.models.entities.User;
-//import com.grupo9.blueTicket.repositories.TicketRepository;
-import com.grupo9.blueTicket.repositories.TokenRepository;
+import com.grupo9.blueTicket.repositories.EventRepository;
+import com.grupo9.blueTicket.repositories.TicketRepository;
+import com.grupo9.blueTicket.services.EventService;
 import com.grupo9.blueTicket.services.TicketService;
+
+import jakarta.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
-/*
+
 @Service
 public class TicketServiceImpl implements TicketService {
-    private final TicketRepository ticketRepository;
-    private final TokenRepository tokenRepository;
 
-    public TicketServiceImpl(TicketRepository ticketRepository, TokenRepository tokenRepository) {
-        this.ticketRepository = ticketRepository;
-        this.tokenRepository = tokenRepository;
-    }
+	@Autowired
+	private TicketRepository ticketRepository;
+	@Autowired
+	private EventService eventService;
+	
+	@Override
+	public Ticket findOneById(UUID id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public Ticket findOneById(UUID id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Ticket not found with id: " + id));
-    }
+	@Override
+	public List<Ticket> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public List<Ticket> findAll() {
-        return ticketRepository.findAll();
-    }
+	@Override
+	public void generateQR(String hash) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void generateQR(String hash) {
-        // Lógica para generar el QR (no implementada aquí)
-    }
+	@Override
+	public void generateToken(UUID ticketId) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void transferTicket(TransferDTO info) throws Exception {
-        // Lógica para transferir el ticket (no implementada aquí)
-    }
+	@Override
+	@Transactional(rollbackOn = Exception.class)
+	public void createTicket(SaveTicketDTO info) {
+		Event event = eventService.findOneById(info.getId_event());
+		Ticket newTicket = new Ticket(
+				info.getStatus(),
+				event
+				);
+		
+		ticketRepository.save(newTicket);
+	}
 
-    @Override
-    public void generateToken(UUID ticketId) {
-        Ticket ticket = ticketRepository.findById(ticketId)
-                .orElseThrow(() -> new IllegalArgumentException("Ticket not found with id: " + ticketId));
+	@Override
+	public void transferTicket(TransferDTO info) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 
-        // Generar el token aquí (código personalizado según tus requerimientos)
-        String tokenContent = generateTokenContent();
-
-        // Crear un nuevo token asociado al ticket
-        Token token = new Token(tokenContent, ticket.getUser());
-        tokenRepository.save(token);
-    }
-
-    private String generateTokenContent() {
-        // Lógica para generar el contenido del token
-        // Ejemplo básico: generar un token aleatorio de 10 caracteres
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder token = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int index = random.nextInt(characters.length());
-            token.append(characters.charAt(index));
-        }
-        return token.toString();
-    }
-
-    @Override
-    public String generateTokenContent(Ticket ticket) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateTokenContent'");
-    }
-}*/
+	@Override
+	public String generateTokenContent(Ticket ticket) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+   
+}

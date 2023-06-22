@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.grupo9.blueTicket.models.dtos.ActiveEventDTO;
-import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
 import com.grupo9.blueTicket.models.entities.Event;
 
@@ -16,6 +15,7 @@ public interface EventService {
 	Event findOneByTitle(String title);
 	
 	void updateActiveEvent(UUID id, ActiveEventDTO active) throws Exception;
+	void updateCreatedEvent(UUID id, SaveEventDTO event) throws Exception;
 	
 	List<Event> getAllEvents();
 

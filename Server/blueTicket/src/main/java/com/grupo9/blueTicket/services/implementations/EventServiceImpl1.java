@@ -8,15 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupo9.blueTicket.models.dtos.ActiveEventDTO;
-import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
 import com.grupo9.blueTicket.models.entities.Category;
 import com.grupo9.blueTicket.models.entities.Event;
-import com.grupo9.blueTicket.models.entities.User;
-import com.grupo9.blueTicket.repositories.CategoryRepository;
 import com.grupo9.blueTicket.repositories.EventRepository;
 import com.grupo9.blueTicket.services.CategoryService;
 import com.grupo9.blueTicket.services.EventService;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class EventServiceImpl1 implements EventService {
@@ -29,11 +28,11 @@ public class EventServiceImpl1 implements EventService {
 	
 	@Override
 	public List<Event> getAllEvents() {
-		// TODO Auto-generated method stub
 		return eventRepository.findAll();
 	}
 
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void createEvent(SaveEventDTO info) throws Exception {
 		Category category = categoryService.findOneById(info.getCategory());
 		Event newEvent = new Event();
@@ -52,8 +51,8 @@ public class EventServiceImpl1 implements EventService {
 	}
 	
 	@Override
+	@Transactional(rollbackOn = Exception.class)
 	public void updateActiveEvent(UUID id, ActiveEventDTO active) throws Exception {
-		// Optional<User> userOptional = userRepository.findById(id);
 		Optional<Event> eventOptional = eventRepository.findById(id);
 		if (eventOptional.isPresent()) {
 			Event event = eventOptional.get();
@@ -67,15 +66,37 @@ public class EventServiceImpl1 implements EventService {
 	}
 	
 	@Override
+	@Transactional(rollbackOn = Exception.class)
+	public void updateCreatedEvent(UUID id,SaveEventDTO info) throws Exception {
+		Category category = categoryService.findOneById(info.getCategory());
+		Event newEvent = findOneById(id);
+		newEvent.setTitle(info.getTitle());
+		newEvent.setDate(info.getDate());
+		newEvent.setHour(info.getHour());
+		newEvent.setDuration(info.getDuration());
+		newEvent.setSponsor(info.getSponsor());
+		newEvent.setInvolved(info.getInvolved());
+		newEvent.setImage1(info.getImage1());
+		newEvent.setImage2(info.getImage2());
+		newEvent.setCategory(category);
+
+		eventRepository.save(newEvent);
+		
+	}
+
+	@Override
 	public Event findOneByTitle(String title) {
-		// TODO Auto-generated method stub
 		return eventRepository.findOneByTitle(title);
 	}
 
 	@Override
 	public Event findOneById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return eventRepository.findById(id)
+					.orElse(null);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
