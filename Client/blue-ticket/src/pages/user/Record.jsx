@@ -1,14 +1,13 @@
-import React from 'react'
-import Footer from "../../components/Footer/Footer";
-import CardHome from "../../components/Card/CardHome";
-
+import React from 'react';
+import Footer from '../../components/Footer/Footer';
+import CardHome from '../../components/Card/CardHome';
 
 export const Record = () => {
     return (
         <>
             <h1 className="text-center text-4xl font-bold mt-8 mb-4">Asistencias</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10" style={{ justifyItems: 'center', alignItems: 'center' }} >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1 justify-items-center mt-10 mx-auto max-w-7xl px-4" style={{ rowGap: '40px' }}>
                 <CardHome />
                 <CardHome />
                 <CardHome />
@@ -22,9 +21,11 @@ export const Record = () => {
                 <CardHome />
             </div>
 
-            <Footer />
+            <div className="mt-8">
+                <Footer />
+            </div>
         </>
-    )
-}
+    );
+};
 
 export default Record;
