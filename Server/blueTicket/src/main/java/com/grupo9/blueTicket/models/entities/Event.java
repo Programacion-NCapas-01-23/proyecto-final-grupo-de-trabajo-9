@@ -49,6 +49,9 @@ public class Event {
     @Column(name = "artist")
     private String involved;
 
+    @Column(name = "status", insertable = false)
+    private Boolean status;
+    
 	@Column(name = "main_image")
 	private String image1;
 
@@ -65,8 +68,8 @@ public class Event {
     @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
     private List<Ticket> ticket; //La conexión con ticket
 
-	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, String image1,
-			String image2, Category category) {
+	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, Boolean status,
+			String image1, String image2, Category category) {
 		super();
 		this.title = title;
 		this.date = date;
@@ -74,10 +77,13 @@ public class Event {
 		this.duration = duration;
 		this.sponsor = sponsor;
 		this.involved = involved;
+		this.status = status;
 		this.image1 = image1;
 		this.image2 = image2;
 		this.category = category;
 	}
+
+	
 
 	
     

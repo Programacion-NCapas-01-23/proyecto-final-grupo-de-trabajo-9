@@ -34,7 +34,7 @@ public class SaveEventDTO {
 	private String duration;
 	
 	//@NotEmpty(message = "Category is required")
-	//private int category;
+	private int category;
 	
 	@NotEmpty(message = "Sponsor is required")
 	private String sponsor;

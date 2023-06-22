@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.models.dtos.RegisterDTO;
 import com.grupo9.blueTicket.models.entities.Token;
+import com.grupo9.blueTicket.models.dtos.ActiveDTO;
 import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
 
@@ -19,6 +20,8 @@ public interface UserService {
 	void register(RegisterDTO info) throws Exception;
 	User findOneById(UUID id);
 	List<User> findAll();
+	
+	void updateActive (UUID id, ActiveDTO active) throws Exception;
 	
 	//Token management
     Token registerToken(User user) throws Exception;
