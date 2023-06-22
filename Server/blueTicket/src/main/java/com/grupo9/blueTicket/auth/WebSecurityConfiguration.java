@@ -1,29 +1,31 @@
 package com.grupo9.blueTicket.auth;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.services.UserService;
-//import com.grupo9.blueTicket.auth.JWTTokenFilter;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration {
+	
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 	@Autowired
@@ -49,7 +51,11 @@ public class WebSecurityConfiguration {
 		http.httpBasic(withDefaults()).csrf(csrf -> csrf.disable());
 		//http.httpBasic().disable().csrf().disable();
 		// Route filter
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll().anyRequest().authenticated());
+		http.authorizeHttpRequests(auth -> auth
+			    .requestMatchers("/auth/**").permitAll()
+			    .requestMatchers("/public/**").permitAll()
+			    .anyRequest().authenticated()
+			);
 		// Statelessness
 		http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

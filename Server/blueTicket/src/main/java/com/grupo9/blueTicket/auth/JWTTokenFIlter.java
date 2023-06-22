@@ -24,6 +24,7 @@ public class JWTTokenFIlter extends OncePerRequestFilter {
 
 	@Autowired
 	JWTTools jwtTools;
+	
 	@Autowired
 	UserService userService;
 
