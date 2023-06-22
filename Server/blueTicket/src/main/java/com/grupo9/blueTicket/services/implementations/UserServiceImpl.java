@@ -1,6 +1,7 @@
 package com.grupo9.blueTicket.services.implementations;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.grupo9.blueTicket.models.dtos.ActiveDTO;
 import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
 import com.grupo9.blueTicket.models.dtos.RegisterDTO;
@@ -41,7 +43,18 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 
 	}
-
+	@Override
+	public void updateActive(UUID id, ActiveDTO info) throws Exception {
+		// TODO Auto-generated method stub
+		Optional<User> userOptional = userRepository.findById(id);
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			user.setActive(info.getActive());
+			userRepository.save(user);
+		}else {
+			throw new Exception("User not found");
+		}
+	}
 	@Override
 	public void changePassword(UUID id, PasswordDTO info) throws Exception {
 		// TODO Auto-generated method stub

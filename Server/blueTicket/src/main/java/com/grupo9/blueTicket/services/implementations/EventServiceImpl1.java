@@ -1,46 +1,79 @@
 package com.grupo9.blueTicket.services.implementations;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.grupo9.blueTicket.models.dtos.ActiveEventDTO;
 import com.grupo9.blueTicket.models.dtos.EventDTO;
 import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
+import com.grupo9.blueTicket.models.entities.Category;
 import com.grupo9.blueTicket.models.entities.Event;
+import com.grupo9.blueTicket.models.entities.User;
+import com.grupo9.blueTicket.repositories.CategoryRepository;
 import com.grupo9.blueTicket.repositories.EventRepository;
+import com.grupo9.blueTicket.services.CategoryService;
 import com.grupo9.blueTicket.services.EventService;
 
+@Service
 public class EventServiceImpl1 implements EventService {
-	
+
 	@Autowired
 	private EventRepository eventRepository;
 	
-	//Crear un evento
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Override
+	public List<Event> getAllEvents() {
+		// TODO Auto-generated method stub
+		return eventRepository.findAll();
+	}
+
 	@Override
 	public void createEvent(SaveEventDTO info) throws Exception {
+		Category category = categoryService.findOneById(info.getCategory());
+		Event newEvent = new Event();
+		newEvent.setTitle(info.getTitle());
+		newEvent.setDate(info.getDate());
+		newEvent.setHour(info.getHour());
+		newEvent.setDuration(info.getDuration());
+		newEvent.setSponsor(info.getSponsor());
+		newEvent.setInvolved(info.getInvolved());
+		newEvent.setImage1(info.getImage1());
+		newEvent.setImage2(info.getImage2());
+		newEvent.setCategory(category);
+
+		eventRepository.save(newEvent);
 		
 	}
 	
-	//Buscar un evento 
+	@Override
+	public void updateActiveEvent(UUID id, ActiveEventDTO active) throws Exception {
+		// Optional<User> userOptional = userRepository.findById(id);
+		Optional<Event> eventOptional = eventRepository.findById(id);
+		if (eventOptional.isPresent()) {
+			Event event = eventOptional.get();
+			event.setStatus(active.getActive());
+			eventRepository.save(event);
+		}else {
+			throw new Exception("Event not found");
+		}
+		
+		
+	}
+	
+	@Override
+	public Event findOneByTitle(String title) {
+		// TODO Auto-generated method stub
+		return eventRepository.findOneByTitle(title);
+	}
+
 	@Override
 	public Event findOneById(UUID id) {
-		try {
-			return eventRepository.findById(id)
-					.orElse(null);
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	@Override
-	public List<EventDTO> getAllEvents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EventDTO updateEvent(UUID eventId, EventDTO eventDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -52,9 +85,10 @@ public class EventServiceImpl1 implements EventService {
 	}
 
 	@Override
-	public List<EventDTO> getAttendedEventsByUserId(UUID userId) {
+	public List<Event> getAttendedEventsByUserId(UUID userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }
