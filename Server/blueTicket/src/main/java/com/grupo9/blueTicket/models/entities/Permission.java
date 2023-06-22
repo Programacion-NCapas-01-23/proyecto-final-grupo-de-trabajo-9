@@ -21,13 +21,10 @@ public class Permission {
     
     @Id
     @Column(name = "id")
-    private int id = 1;
+    private int id;
 
     @Column(name = "permission")
     private String permission;
-    
-    @Column(name = "status")
-    private Boolean status;
     
     //Creo que faltaba este
     @OneToMany(mappedBy = "id_permission", fetch = FetchType.LAZY)

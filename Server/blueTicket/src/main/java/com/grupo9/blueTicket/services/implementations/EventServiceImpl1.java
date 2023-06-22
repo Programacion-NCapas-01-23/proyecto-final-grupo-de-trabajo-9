@@ -15,23 +15,10 @@ public class EventServiceImpl1 implements EventService {
 	
 	@Autowired
 	private EventRepository eventRepository;
-
+	
 	//Crear un evento
 	@Override
 	public void createEvent(SaveEventDTO info) throws Exception {
-		Event event = new Event(
-				info.getTitle(),
-				info.getDate(),
-				info.getHour(),
-				info.getDuration(), 
-				info.getSponsor(),
-				info.getInvolved(),
-				info.getImage1(),
-				info.getImage2(),
-				info.getCategory()
-				);
-		
-		eventRepository.save(event);
 		
 	}
 	

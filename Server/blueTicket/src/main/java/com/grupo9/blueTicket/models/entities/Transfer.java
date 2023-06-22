@@ -41,14 +41,15 @@ public class Transfer{
     
     @Column(name = "transfer_date")
     private Timestamp transfer_date;
+
+	public Transfer(User user_issuer, User user_receptor, Ticket ticket, Timestamp transfer_date) {
+		super();
+		this.user_issuer = user_issuer;
+		this.user_receptor = user_receptor;
+		this.ticket = ticket;
+		this.transfer_date = transfer_date;
+	}
     
-    public Transfer(User user_issuer, User user_receptor, Ticket ticket, Timestamp transfer_date) {
-    	super();
-    	this.user_issuer = user_issuer;
-    	this.user_receptor = user_receptor;
-    	this.ticket = ticket;
-    	this.transfer_date = transfer_date;
-    	
-    }
+   
     
 }

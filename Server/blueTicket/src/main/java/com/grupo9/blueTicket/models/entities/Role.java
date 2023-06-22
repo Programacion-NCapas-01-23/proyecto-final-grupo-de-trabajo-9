@@ -35,5 +35,6 @@ public class Role {
     private List<Role_permission> rolePermission;
     
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private List<User> userRole;
+    private List<User_Role> userRole;
+    
 }
