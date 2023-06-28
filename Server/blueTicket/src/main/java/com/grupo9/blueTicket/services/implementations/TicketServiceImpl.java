@@ -34,7 +34,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public List<Ticket> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return ticketRepository.findAll();
 	}
 
 	@Override

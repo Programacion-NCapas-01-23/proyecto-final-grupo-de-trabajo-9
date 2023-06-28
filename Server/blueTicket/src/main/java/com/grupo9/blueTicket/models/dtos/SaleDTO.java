@@ -1,27 +1,23 @@
 package com.grupo9.blueTicket.models.dtos;
 
 import java.util.Date;
+import java.util.UUID;
 
-import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.models.entities.User;
+import lombok.Data;
 
-import jakarta.validation.constraints.NotEmpty;
-
+@Data
 public class SaleDTO {
 	
-	@NotEmpty
-	private String id;
+	private UUID id_user;
 	
-	@NotEmpty
-	private User id_user;
 	
-	@NotEmpty
-	private Ticket id_ticket;
+	private UUID id_ticket;
 	
-	@NotEmpty
+	
 	private Date datePurchase;
 	
-	@NotEmpty
+	private int totalAmount;
+	
 	private int amountTicket;
 
 }

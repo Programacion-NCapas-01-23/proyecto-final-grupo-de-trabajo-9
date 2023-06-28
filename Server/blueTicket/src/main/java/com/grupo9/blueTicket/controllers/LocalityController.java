@@ -1,39 +1,30 @@
 package com.grupo9.blueTicket.controllers;
 
-import com.grupo9.blueTicket.models.dtos.MessageDTO;
-import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
-import com.grupo9.blueTicket.models.dtos.SaveTicketDTO;
-import com.grupo9.blueTicket.models.dtos.TokenDTO;
-import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.models.entities.User;
-import com.grupo9.blueTicket.services.EventService;
-import com.grupo9.blueTicket.services.TicketService;
-import com.grupo9.blueTicket.utils.RequestErrorHandler;
-
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.UUID;
+import com.grupo9.blueTicket.models.dtos.LocalityDTO;
+import com.grupo9.blueTicket.models.dtos.MessageDTO;
+import com.grupo9.blueTicket.services.EventService;
+import com.grupo9.blueTicket.services.LocalityService;
+import com.grupo9.blueTicket.utils.RequestErrorHandler;
+
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/locality")
 @CrossOrigin("*")
-public class TicketController {
-    
+public class LocalityController {
+	
 	@Autowired
-	private TicketService ticketService;
+	private LocalityService localityService;
 	
 	@Autowired
 	private EventService eventService;
@@ -41,35 +32,26 @@ public class TicketController {
 	private RequestErrorHandler errorHandler;
 	
 	@PostMapping("/save")
-	public ResponseEntity<?> saveTicket(@RequestBody @Valid SaveTicketDTO info, BindingResult validations){
+	public ResponseEntity<?> saveLocality(@RequestBody @Valid LocalityDTO info, BindingResult validations){
 		if(validations.hasErrors()) {
 			return new ResponseEntity<>(
 					errorHandler.mapErrors(validations.getFieldErrors()), 
 					HttpStatus.BAD_REQUEST);
 		}
+		
 		if (eventService.findOneById(info.getId_event()) == null) {
 			return new ResponseEntity<>(
                     new MessageDTO("This event does not exists"),
                     HttpStatus.BAD_REQUEST);
 		}
 		try {
-			ticketService.createTicket(info);
+			localityService.createLocality(info);
 			return new ResponseEntity<>(
-					new MessageDTO("Ticket created " +info), HttpStatus.CREATED);
+					new MessageDTO("Locality created " +info), HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(
 					new MessageDTO("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 	}
-	@GetMapping("/all")
-	public ResponseEntity<?> allTickets(){
-		List<Ticket> ticket = ticketService.findAll();
-		if(ticket != null) {
-			return ResponseEntity.ok(ticket);	
-		}else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-
 }
