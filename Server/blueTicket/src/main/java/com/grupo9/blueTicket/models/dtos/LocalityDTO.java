@@ -1,5 +1,7 @@
 package com.grupo9.blueTicket.models.dtos;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -7,8 +9,9 @@ import lombok.Data;
 public class LocalityDTO {
 	@NotEmpty
 	private String name;
-	@NotEmpty
+	
 	private int capacity;
-	@NotEmpty
+	
 	private Float price;
+	private UUID id_event;
 }
