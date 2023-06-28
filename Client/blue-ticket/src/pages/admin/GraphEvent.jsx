@@ -4,12 +4,12 @@ import Footer from "../../components/Footer/Footer";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { IoTicket } from "react-icons/io5";
+import { generatePDF } from "../../utils/pdfUtils";
 
 export const GraphEvent = () => {
 
-  const handleDownloadPDF = () => {
-    // Abrir la ventana de diálogo de descarga
-    window.open();
+  const handleDownloadPDF = async () => {
+    await generatePDF();
   };
 
   const handleDownloadExcel = () => {
