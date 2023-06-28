@@ -5,6 +5,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { IoTicket } from "react-icons/io5";
 import { generatePDF } from "../../utils/pdfUtils";
+import { generateExcel } from '../../utils/excelUtils';
 
 export const GraphEvent = () => {
 
@@ -13,10 +14,7 @@ export const GraphEvent = () => {
   };
 
   const handleDownloadExcel = () => {
-
-
-    // Abrir la ventana de diálogo de descarga
-    window.open();
+    generateExcel();
   };
   return (
     <>
