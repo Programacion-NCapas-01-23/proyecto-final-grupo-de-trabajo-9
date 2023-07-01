@@ -17,9 +17,13 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@leecheuk/react-google-login": "^5.4.1",
     "@react-oauth/google": "^0.11.0",
+    "canvas": "^2.11.2",
+    "canvas-constructor": "^7.0.1",
     "chart.js": "^4.3.0",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "gapi-script": "^1.2.0",
+    "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -27,7 +31,8 @@
     "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.11.2",
     "react-select": "^5.7.3",
-    "sweetalert2": "^11.7.11"
+    "sweetalert2": "^11.7.11",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
