@@ -1,11 +1,13 @@
 package com.grupo9.blueTicket.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,8 +21,10 @@ import com.grupo9.blueTicket.models.dtos.RegisterDTO;
 import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.MessageDTO;
 import com.grupo9.blueTicket.models.dtos.TokenDTO;
+import com.grupo9.blueTicket.models.entities.Event;
 import com.grupo9.blueTicket.models.entities.Token;
 import com.grupo9.blueTicket.models.entities.User;
+import com.grupo9.blueTicket.services.EventService;
 import com.grupo9.blueTicket.services.UserService;
 import com.grupo9.blueTicket.utils.RequestErrorHandler;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
@@ -36,6 +40,9 @@ private RequestErrorHandler errorHandler;
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EventService eventService;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@RequestBody @Valid LoginDTO loginDTO, BindingResult validations) {
@@ -140,4 +147,10 @@ private RequestErrorHandler errorHandler;
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/home")
+	public ResponseEntity<?> getAllEvents(){
+		List<Event> allEvents = eventService.getAllEvents();
+		return new ResponseEntity<>(allEvents, HttpStatus.OK);
+		//return new ResponseEntity<>(allEvents, HttpStatus.OK);
+	}
 }

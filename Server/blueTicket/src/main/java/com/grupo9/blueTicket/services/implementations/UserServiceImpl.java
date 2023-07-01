@@ -139,7 +139,6 @@ public class UserServiceImpl implements UserService {
 	public User findOneById(UUID id) {
 		try {
 			return userRepository.findById(id).orElse(null);
-			//return userRepository.findBycode(id).orElse(null);
 		} catch (Exception e) {
 			return null;
 		}

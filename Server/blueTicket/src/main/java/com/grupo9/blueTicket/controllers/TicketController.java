@@ -62,14 +62,20 @@ public class TicketController {
 					new MessageDTO("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 	}
-	@GetMapping("/public/all")
-	public ResponseEntity<?> allTickets(){
-		List<Ticket> ticket = ticketService.findAll();
-		if(ticket != null) {
-			return ResponseEntity.ok(ticket);	
-		}else {
-			return ResponseEntity.notFound().build();
-		}
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getOneTicket(@PathVariable(name = "id") UUID id) {
+	    Ticket ticket = ticketService.findOneById(id);
+	    
+	    if(ticket == null) {
+	    	return new ResponseEntity<>(
+	    		new MessageDTO("El ticket existe, creo, pero hay errores " + ticket),
+	    		HttpStatus.NOT_FOUND);
+	    }
+	    //return new ResponseEntity<>(ticket, HttpStatus.OK);
+	    return new ResponseEntity<>(
+	    		new MessageDTO("Hay pedo \n " + ticket),
+	    		HttpStatus.OK);
+		
 	}
 
 }

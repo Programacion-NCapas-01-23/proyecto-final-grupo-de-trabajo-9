@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 public class SaveRolePermissionDTO {
-	@NotEmpty
+	
 	private UUID id_role;
-	@NotEmpty
+	
 	private UUID id_permission;
 }

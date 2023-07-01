@@ -72,8 +72,9 @@ public class UserController {
 		}
     	
 	}
-	@GetMapping("/user/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable(name = "id") UUID id) {
+		
 	    User user = userService.findOneById(id);
 	    
 	    if(user == null) {
@@ -82,7 +83,7 @@ public class UserController {
 	    		HttpStatus.NOT_FOUND);
 	    }
 	    return new ResponseEntity<>(user, HttpStatus.OK);
-		
+	    
 	}
 	
 
