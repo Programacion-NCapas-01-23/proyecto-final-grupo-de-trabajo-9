@@ -60,7 +60,7 @@ public class TicketController {
 					new MessageDTO("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 	}
-	@GetMapping("/all")
+	@GetMapping("/public/all")
 	public ResponseEntity<?> allTickets(){
 		List<Ticket> ticket = ticketService.findAll();
 		if(ticket != null) {

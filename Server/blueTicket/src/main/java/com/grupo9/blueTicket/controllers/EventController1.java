@@ -105,11 +105,6 @@ public class EventController1 {
 		                HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@GetMapping("/allEvents")
-	public ResponseEntity<?> getAllEvents(){
-		List<Event> allEvents = eventService.getAllEvents();
-		return new ResponseEntity<>(allEvents, HttpStatus.OK);
-	}
 	
 	@GetMapping("/event/{id}")
 	public ResponseEntity<?> getEventById(@PathVariable(name = "id") UUID id){
