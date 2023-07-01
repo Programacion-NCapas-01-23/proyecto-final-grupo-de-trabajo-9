@@ -27,8 +27,11 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Override
 	public Ticket findOneById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return ticketRepository.findById(id).orElse(null);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

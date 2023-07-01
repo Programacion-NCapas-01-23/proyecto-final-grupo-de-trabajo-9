@@ -10,6 +10,7 @@ import com.grupo9.blueTicket.models.entities.Ticket;
 public interface TicketService {
 
 	Ticket findOneById(UUID id);
+	
 	List<Ticket> findAll();
 	
 	void generateQR(String hash);

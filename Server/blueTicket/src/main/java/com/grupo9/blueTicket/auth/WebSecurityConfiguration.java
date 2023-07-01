@@ -44,11 +44,12 @@ public class WebSecurityConfiguration {
 		}).passwordEncoder(passwordEncoder);
 		return managerBuilder.build();
 	}
-
+	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// Http login and cors disabled
-		http.httpBasic(withDefaults()).csrf(csrf -> csrf.disable());
+		http.httpBasic(Customizer.withDefaults()).csrf(csrf -> csrf.disable());
+		http.cors(Customizer.withDefaults());
 		//http.httpBasic().disable().csrf().disable();
 		// Route filter
 		http.authorizeHttpRequests(auth -> auth
