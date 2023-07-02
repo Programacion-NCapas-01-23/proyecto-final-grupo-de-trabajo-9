@@ -49,15 +49,20 @@ public class User implements UserDetails {
 	 private Boolean active;
 	 
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	 @JsonIgnore
 	 private List<User_Role> userRole;
 	 //Conexión con transfer
 	 @OneToMany(mappedBy = "user_issuer", fetch = FetchType.LAZY)
+	 @JsonIgnore
 	 private List<Transfer> transfer_user_issuer;
+	
 	 @OneToMany(mappedBy = "user_receptor", fetch = FetchType.LAZY)
+	 @JsonIgnore
 	 private List<Transfer> transfer_user_receptor;
 	 
 	 //Conexión con Sale
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	 @JsonIgnore
 	 private List<Sale> sale;
 	 //Esto creo que tendría que ser Access
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

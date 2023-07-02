@@ -3,6 +3,8 @@ package com.grupo9.blueTicket.models.entities;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +32,9 @@ public class Category {
 	@Column(name = "name")
 	private String description;
 	
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	//mappedBy = "category", 
+	@OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Event> eventCategory;
 	
 }

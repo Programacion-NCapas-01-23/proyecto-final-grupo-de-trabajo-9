@@ -117,4 +117,14 @@ public class EventController1 {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	@GetMapping("/home")
+	public ResponseEntity<?> getAllEvents(){
+		List<Event> allEvents = eventService.getAllEvents();
+		/*
+		return new ResponseEntity<>(
+                new MessageDTO("The status has change " + allEvents),
+                HttpStatus.OK); */
+		return new ResponseEntity<>(allEvents, HttpStatus.OK);
+		//return new ResponseEntity<>(allEvents, HttpStatus.OK);
+	}
 }
