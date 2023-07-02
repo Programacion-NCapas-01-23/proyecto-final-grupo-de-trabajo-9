@@ -13,7 +13,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-row items-center px-5 justify-between bg-blue w-full h-24 sm:justify-items-stretch">
+    <nav className="flex flex-row items-center px-10 justify-between bg-blue w-full h-24 sm:justify-items-stretch">
       <div className="w-2/5 lg:w-1/5">
         <img src={logo} alt="Logo de blueticket" className="md:w-9/12"></img>
       </div>
@@ -23,7 +23,7 @@ export const Navbar = () => {
       <div className="flex items-center">
         <button
           onClick={handleLogin}
-          className="flex items-center text-white rounded-none bg-blue"
+          className="flex items-center text-white rounded-none text-xl bg-blue"
         >
           <RiLoginBoxLine className="mr-2" />
           Iniciar Sesión
