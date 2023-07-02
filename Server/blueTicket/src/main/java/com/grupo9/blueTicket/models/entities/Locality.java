@@ -19,7 +19,6 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-//@ToString(exclude = "eventLocality")
 @Entity
 @Table(name = "locality")
 public class Locality {
@@ -33,21 +32,17 @@ public class Locality {
 	private Float price;
 	@Column(name = "capacity")
 	private int capacity;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_event")
-    private Event id_event;
-	/*
-	@OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)
-	private List<Event> eventLocality;
-	*/
+    private Event event;
+	
 
-	public Locality(String name, Float price, int capacity, Event id_event) {
+	public Locality(String name, Float price, int capacity) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.capacity = capacity;
-		this.id_event = id_event;
+		
 	}
 	
 	

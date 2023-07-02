@@ -56,6 +56,8 @@ public class Sale {
 		this.total_amount = total_amount;
 		this.ticket = ticket;
 	}
+
+	
     
     //@OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
     //private List<Ticket> ticket; //La conexión con ticket

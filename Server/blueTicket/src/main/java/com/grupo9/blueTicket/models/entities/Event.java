@@ -5,6 +5,8 @@ import java.sql.Time;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,9 +25,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(exclude = {"ticket", "locality"})
 @Entity
-@Table(name = "Event")
+@Table(name = "event")
 public class Event {
-    @Id
+    @Id 
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -62,11 +64,13 @@ public class Event {
     @JoinColumn(name = "id_category", nullable = true)
     private Category category;
     
-    @OneToMany(mappedBy = "id_event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Locality> locality;
     
     @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
-    private List<Ticket> ticket; //La conexión con ticket
+    @JsonIgnore
+    private List<Ticket> ticket; //La conexión con ticket 
 
 	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, Boolean status,
 			String image1, String image2, Category category) {
@@ -82,6 +86,8 @@ public class Event {
 		this.image2 = image2;
 		this.category = category;
 	}
+
+	
 
 	
 

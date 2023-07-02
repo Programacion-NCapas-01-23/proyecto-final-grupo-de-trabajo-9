@@ -50,7 +50,7 @@ public class SaleServiceImpl implements SaleService {
 		
 		//Convierte la fecha de tipo date a timestamp
 		Timestamp datePurchase = new Timestamp(info.getDatePurchase().getTime());
-		
+		/*
 		Sale newSale = new Sale(
 				user,
 				datePurchase,
@@ -58,8 +58,8 @@ public class SaleServiceImpl implements SaleService {
 				info.getTotalAmount(),
 				ticket
 				);
-		
-		saleRepository.save(newSale);
+		*/
+		//saleRepository.save(newSale);
 		
 	}
 

@@ -3,6 +3,8 @@ package com.grupo9.blueTicket.models.entities;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,21 +34,25 @@ public class Ticket {
     @Column(name = "status")
     private Boolean status;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_event")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_event", nullable = true)
     private Event event;
     
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Sale> sale; //Conexción con la tabla de venta
    
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
-    private List<Transfer> transfer; //La conexión con Transfer
+    @JsonIgnore 
+    private List<Transfer> transfer; //La conexión con Transfer 
 
 	public Ticket(Boolean status, Event event) {
 		super();
 		this.status = status;
 		this.event = event;
 	}
+
+	
 
     
     

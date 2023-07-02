@@ -56,12 +56,12 @@ public class TicketServiceImpl implements TicketService {
 	@Transactional(rollbackOn = Exception.class)
 	public void createTicket(SaveTicketDTO info) {
 		Event event = eventService.findOneById(info.getId_event());
-		Ticket newTicket = new Ticket(
+		/*Ticket newTicket = new Ticket(
 				info.getStatus(),
 				event
 				);
 		
-		ticketRepository.save(newTicket);
+		ticketRepository.save(newTicket);*/
 	}
 
 	@Override

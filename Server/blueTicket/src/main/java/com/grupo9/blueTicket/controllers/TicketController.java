@@ -69,10 +69,18 @@ public class TicketController {
 	    		new MessageDTO("El ticket existe, creo, pero hay errores " + ticket),
 	    		HttpStatus.NOT_FOUND);
 	    }
-	    //return new ResponseEntity<>(ticket, HttpStatus.OK);
+	    /*
 	    return new ResponseEntity<>(
-	    		new MessageDTO("Hay pedo \n " + ticket),
-	    		HttpStatus.OK);
+	    		new MessageDTO("El ticket existe, creo, pero hay errores " + ticket),
+	    		HttpStatus.NOT_FOUND);*/
+	    return new ResponseEntity<>(ticket, HttpStatus.OK);
+	    
+		
+	}
+	@GetMapping("/allTickets")
+	public ResponseEntity<?> allTickets(){
+		List<Ticket> ticket = ticketService.findAll();
+		return new ResponseEntity<>(ticket, HttpStatus.OK);
 		
 	}
 

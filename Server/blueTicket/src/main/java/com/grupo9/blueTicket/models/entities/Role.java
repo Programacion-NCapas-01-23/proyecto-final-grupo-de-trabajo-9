@@ -3,6 +3,7 @@ package com.grupo9.blueTicket.models.entities;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,9 +33,11 @@ public class Role {
     private String role;
     
     @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Role_permission> rolePermission;
     
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User_Role> userRole;
     
 }

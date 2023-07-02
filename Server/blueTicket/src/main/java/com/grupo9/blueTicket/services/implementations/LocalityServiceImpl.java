@@ -28,15 +28,15 @@ public class LocalityServiceImpl implements LocalityService{
 	@Transactional(rollbackOn = Exception.class)
 	public void createLocality(LocalityDTO info) throws Exception {
 		Event event = eventService.findOneById(info.getId_event());
-
+		/*
 		Locality locality = new Locality(
 				info.getName(),
 				info.getPrice(),
 				info.getCapacity(),
 				event
 				);
-		
-		localityRespository.save(locality);
+		*/
+		//localityRespository.save(locality);
 	}
 
 	@Override

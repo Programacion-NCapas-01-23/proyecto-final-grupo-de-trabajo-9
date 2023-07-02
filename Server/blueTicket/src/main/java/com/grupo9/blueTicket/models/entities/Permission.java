@@ -2,6 +2,8 @@ package com.grupo9.blueTicket.models.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,5 +30,6 @@ public class Permission {
     
     //Creo que faltaba este
     @OneToMany(mappedBy = "id_permission", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Role_permission> rolePermission;
 }
