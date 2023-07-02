@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.grupo9.blueTicket.models.dtos.ActiveDTO;
-import com.grupo9.blueTicket.models.dtos.LoginDTO;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
 import com.grupo9.blueTicket.models.dtos.RegisterDTO;
 import com.grupo9.blueTicket.models.entities.Token;
@@ -39,11 +38,6 @@ public class UserServiceImpl implements UserService {
 	private TokenRepository tokenRepository;
 
 	@Override
-	public void login(LoginDTO info) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
 	public void updateActive(UUID id, ActiveDTO info) throws Exception {
 		// TODO Auto-generated method stub
 		Optional<User> userOptional = userRepository.findById(id);
@@ -55,10 +49,26 @@ public class UserServiceImpl implements UserService {
 			throw new Exception("User not found");
 		}
 	}
-	@Override
+	
 	public void changePassword(UUID id, PasswordDTO info) throws Exception {
-		// TODO Auto-generated method stub
-
+	    User user = findOneById(id);
+	    System.out.println(info.getOldPassword());
+	    if (user != null) {
+	        // Password exists
+	        if (comparePassword(info.getOldPassword(), user.getPassword())) {
+	            user.setPassword(passwordEncoder.encode(info.getNewPassword()));
+	            userRepository.save(user);
+	        } else {
+	            throw new Exception("Contraseña es distinta");
+	        }
+	    } else {
+	        throw new Exception("User not found");
+	    }
+	}
+	
+	@Override
+	public Boolean comparePassword(String toCompare, String current) {
+		return passwordEncoder.matches(toCompare, current);
 	}
 
 	@Override
@@ -70,11 +80,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findOneByIdentifier(String identifier) {
 		return userRepository.findOneByUsernameOrEmail(identifier, identifier);
-	}
-
-	@Override
-	public Boolean comparePassword(String toCompare, String current) {
-		return passwordEncoder.matches(toCompare, current);
 	}
 
 	@Override
@@ -125,7 +130,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(rollbackOn = Exception.class)
 	/* Implementation Register with Google*/
-	public void register(RegisterDTO info) throws Exception {
+	public User register(RegisterDTO info) throws Exception {
 		User newUser = new User();
 
 		newUser.setUsername(info.getUsername());
@@ -133,6 +138,8 @@ public class UserServiceImpl implements UserService {
 		newUser.setPassword(passwordEncoder.encode(info.getPassword()));
 
 		userRepository.save(newUser);
+		
+		return newUser;
 	}
 	
 	@Override

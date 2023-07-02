@@ -46,6 +46,7 @@ public class User implements UserDetails {
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	 @JsonIgnore
 	 private List<User_Role> userRole;
+	 
 	 //Conexión con transfer
 	 @OneToMany(mappedBy = "user_issuer", fetch = FetchType.LAZY)
 	 @JsonIgnore
@@ -102,5 +103,6 @@ public class User implements UserDetails {
         public Event getEvent() {
             return null;
         }
+
 
 }
