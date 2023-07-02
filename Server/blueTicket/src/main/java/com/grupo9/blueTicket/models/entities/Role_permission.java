@@ -1,6 +1,5 @@
 package com.grupo9.blueTicket.models.entities;
 
-import java.sql.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Column;

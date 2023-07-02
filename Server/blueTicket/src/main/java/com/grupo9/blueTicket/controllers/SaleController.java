@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grupo9.blueTicket.models.dtos.MessageDTO;
 import com.grupo9.blueTicket.models.dtos.SaleDTO;
-import com.grupo9.blueTicket.models.dtos.SaveTicketDTO;
 import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.services.SaleService;
 import com.grupo9.blueTicket.services.TicketService;

@@ -1,110 +1,128 @@
 package com.grupo9.blueTicket.services.implementations;
-import com.grupo9.blueTicket.models.dtos.EventDTO;
-import com.grupo9.blueTicket.models.entities.Event;
-import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.repositories.EventRepository;
-//import com.grupo9.blueTicket.repositories.TicketRepository;
-//import com.grupo9.blueTicket.repositories.TicketRepository;
-import com.grupo9.blueTicket.services.EventService;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.beans.PropertyDescriptor;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-/*
+import com.grupo9.blueTicket.models.dtos.ActiveEventDTO;
+import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
+import com.grupo9.blueTicket.models.entities.Category;
+import com.grupo9.blueTicket.models.entities.Event;
+import com.grupo9.blueTicket.repositories.EventRepository;
+import com.grupo9.blueTicket.services.CategoryService;
+import com.grupo9.blueTicket.services.EventService;
+
+import jakarta.transaction.Transactional;
+
 @Service
 public class EventServiceImpl implements EventService {
-    private final EventRepository eventRepository;
-    private final TicketRepository ticketRepository;
 
-    public EventServiceImpl(EventRepository eventRepository, TicketRepository ticketRepository) {
-        this.eventRepository = eventRepository;
-        this.ticketRepository = ticketRepository;
-    }
+	@Autowired
+	private EventRepository eventRepository;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Override
+	@Transactional(rollbackOn = Exception.class)
+	public void createEvent(SaveEventDTO info) throws Exception {
+		Category category = categoryService.findOneById(info.getCategory());
+		Event newEvent = new Event();
+		newEvent.setTitle(info.getTitle());
+		newEvent.setDate(info.getDate());
+		newEvent.setHour(info.getHour());
+		newEvent.setDuration(info.getDuration());
+		newEvent.setSponsor(info.getSponsor());
+		newEvent.setInvolved(info.getInvolved());
+		newEvent.setImage1(info.getImage1());
+		newEvent.setImage2(info.getImage2());
+		newEvent.setCategory(category);
 
-    @Override
-    public EventDTO createEvent(EventDTO eventDTO) {
-        Event event = convertToEvent(eventDTO);
-        Event createdEvent = eventRepository.save(event);
-        return convertToEventDTO(createdEvent);
-    }
+		eventRepository.save(newEvent);
+		
+	}
+	
+	@Override
+	@Transactional(rollbackOn = Exception.class)
+	public void updateActiveEvent(UUID id, ActiveEventDTO active) throws Exception {
+		Optional<Event> eventOptional = eventRepository.findById(id);
+		if (eventOptional.isPresent()) {
+			Event event = eventOptional.get();
+			event.setStatus(active.getActive());
+			eventRepository.save(event);
+		}else {
+			throw new Exception("Event not found");
+		}
+		
+		
+	}
+	
+	@Override
+	@Transactional(rollbackOn = Exception.class)
+	public void updateCreatedEvent(UUID id,SaveEventDTO info) throws Exception {
+		Category category = categoryService.findOneById(info.getCategory());
+		Event newEvent = findOneById(id);
+		newEvent.setTitle(info.getTitle());
+		newEvent.setDate(info.getDate());
+		newEvent.setHour(info.getHour());
+		newEvent.setDuration(info.getDuration());
+		newEvent.setSponsor(info.getSponsor());
+		newEvent.setInvolved(info.getInvolved());
+		newEvent.setImage1(info.getImage1());
+		newEvent.setImage2(info.getImage2());
+		newEvent.setCategory(category);
 
-    @Override
-    public EventDTO getEventById(UUID eventId) {
-        Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new IllegalArgumentException("Event not found with id: " + eventId));
-        return convertToEventDTO(event);
-    }
+		eventRepository.save(newEvent);
+		
+	}
 
-    @Override
-    public List<EventDTO> getAllEvents() {
-        List<Event> events = eventRepository.findAll();
-        return events.stream()
-                .map(this::convertToEventDTO)
-                .collect(Collectors.toList());
-    }
+	@Override
+	public Event findOneByTitle(String title) {
+		return eventRepository.findOneByTitle(title);
+	}
 
-    @Override
-    public EventDTO updateEvent(UUID eventId, EventDTO eventDTO) {
-        Event existingEvent = eventRepository.findById(eventId)
-                .orElseThrow(() -> new IllegalArgumentException("Event not found with id: " + eventId));
+	@Override
+	public Event findOneById(UUID id) {
+		try {
+			return eventRepository.findById(id)
+					.orElse(null);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
-        Event updatedEvent = convertToEvent(eventDTO);
-        updatedEvent.setId(existingEvent.getId());
+	@Override
+	public void deleteEvent(UUID eventId) {
+		// TODO Auto-generated method stub
+		
+	}
 
-        Event savedEvent = eventRepository.save(updatedEvent);
-        return convertToEventDTO(savedEvent);
-    }
+	@Override
+	public List<Event> getAttendedEventsByUserId(UUID userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void deleteEvent(UUID eventId) {
-        eventRepository.deleteById(eventId);
-    }
+	//Controllers Pagination--------------------------------------
+	@Override
+	public Page<Event> findAll(PageRequest pageRequest) {
+		return eventRepository.findAll(pageRequest);
+	}
 
-    private Event convertToEvent(EventDTO eventDTO) {
-        Event event = new Event();
-        BeanUtils.copyProperties(eventDTO, event);
-        return event;
-    }
+	@Override
+	public long count() {
+		return eventRepository.count();
+	}
 
-    private EventDTO convertToEventDTO(Event event) {
-        EventDTO eventDTO = new EventDTO();
-        BeanUtils.copyProperties(event, eventDTO);
-        return eventDTO;
-    }
-
-    private void copyNonNullProperties(Object source, Object target) {
-        BeanUtils.copyProperties(source, target, getNullPropertyNames(source));
-    }
-
-    private String[] getNullPropertyNames(Object source) {
-        BeanWrapper beanWrapper = new BeanWrapperImpl(source);
-        PropertyDescriptor[] propertyDescriptors = beanWrapper.getPropertyDescriptors();
-        HashSet<String> nullProperties = new HashSet<>();
-        for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-            String propertyName = propertyDescriptor.getName();
-            Object propertyValue = beanWrapper.getPropertyValue(propertyName);
-            if (propertyValue == null) {
-                nullProperties.add(propertyName);
-            }
-        }
-        return nullProperties.toArray(new String[0]);
-    }
-
-    @Override
-    public List<EventDTO> getAttendedEventsByUserId(UUID userId) {
-        List<Ticket> tickets = ticketRepository.findByUserId(userId);
-        List<Event> attendedEvents = tickets.stream()
-                .map(Ticket::getEvent)
-                .collect(Collectors.toList());
-        return attendedEvents.stream()
-                .map(this::convertToEventDTO)
-                .collect(Collectors.toList());
-    }
-}*/
+	@Override
+	public List<Event> getAll() {
+		return eventRepository.findAll();
+	}
+	//------------------------------------------------------------
+	
+}
