@@ -1,11 +1,8 @@
 package com.grupo9.blueTicket.controllers;
 
 import com.grupo9.blueTicket.models.dtos.MessageDTO;
-import com.grupo9.blueTicket.models.dtos.SaveEventDTO;
 import com.grupo9.blueTicket.models.dtos.SaveTicketDTO;
-import com.grupo9.blueTicket.models.dtos.TokenDTO;
 import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.services.EventService;
 import com.grupo9.blueTicket.services.TicketService;
 import com.grupo9.blueTicket.utils.RequestErrorHandler;

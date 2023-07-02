@@ -13,6 +13,7 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
+
 @Component
 public class JWTTools {
 	@Value("${jwt.secret}")

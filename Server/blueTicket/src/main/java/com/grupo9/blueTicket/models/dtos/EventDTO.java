@@ -6,8 +6,6 @@ import lombok.Data;
 import java.util.List;
 import java.util.UUID;
 
-import com.grupo9.blueTicket.models.entities.Event;
-
 @Data
 public class EventDTO {
     @NotEmpty

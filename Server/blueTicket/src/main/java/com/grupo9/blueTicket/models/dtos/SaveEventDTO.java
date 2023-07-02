@@ -4,8 +4,6 @@ package com.grupo9.blueTicket.models.dtos;
 import java.sql.Date;
 import java.sql.Time;
 
-import com.grupo9.blueTicket.models.entities.Category;
-
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 

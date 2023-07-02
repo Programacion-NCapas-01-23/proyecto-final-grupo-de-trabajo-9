@@ -4,7 +4,6 @@ import com.grupo9.blueTicket.models.dtos.SaveTicketDTO;
 import com.grupo9.blueTicket.models.dtos.TransferDTO;
 import com.grupo9.blueTicket.models.entities.Event;
 import com.grupo9.blueTicket.models.entities.Ticket;
-import com.grupo9.blueTicket.repositories.EventRepository;
 import com.grupo9.blueTicket.repositories.TicketRepository;
 import com.grupo9.blueTicket.services.EventService;
 import com.grupo9.blueTicket.services.TicketService;

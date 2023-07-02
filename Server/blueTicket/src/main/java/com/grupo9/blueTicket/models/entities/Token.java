@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grupo9.blueTicket.models.entities.Token;
-import com.grupo9.blueTicket.models.entities.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
