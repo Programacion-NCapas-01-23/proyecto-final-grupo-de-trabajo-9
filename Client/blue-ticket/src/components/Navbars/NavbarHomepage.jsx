@@ -18,7 +18,7 @@ export const Navbar = () => {
         <img src={logo} alt="Logo de blueticket" className="md:w-9/12"></img>
       </div>
       <div className="flex-grow">
-        <SearchBox />
+        {/*<SearchBox />*/}
       </div>
       <div className="flex items-center">
         <button
