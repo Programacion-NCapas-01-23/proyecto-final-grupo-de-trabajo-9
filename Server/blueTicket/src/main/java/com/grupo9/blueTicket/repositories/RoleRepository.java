@@ -6,4 +6,5 @@ import com.grupo9.blueTicket.models.entities.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer>{
 
+
 }
