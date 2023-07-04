@@ -32,15 +32,16 @@ public class Locality {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_event")
     private Event event;
-	
-
-	public Locality(String name, Float price, int capacity) {
+	public Locality(String name, Float price, int capacity, Event event) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.capacity = capacity;
-		
+		this.event = event;
 	}
+	
+
+	
 	
 	
 	

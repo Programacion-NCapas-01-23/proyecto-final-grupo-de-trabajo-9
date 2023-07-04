@@ -1,5 +1,6 @@
 package com.grupo9.blueTicket.services.implementations;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +58,19 @@ public class UserXRoleImpl implements UserXRoleService {
 	        UserXRole newUserRole = new UserXRole(user, defaultRole, true);
 	        userXRoleRepository.save(newUserRole);
 	    }
-	}
+	} 
 	
 	public boolean checkRoleAlreadyAssigned(UUID userId, int roleId) {
         UserXRole userXRole = userXRoleRepository.findByUserIdAndRoleId(userId, roleId);
         return userXRole != null;
     }
 	
+	@Override
+	public List<UserXRole> getAll() {
+		// TODO Auto-generated method stub
+		return userXRoleRepository.findAll();
+	}
+
 	@Transactional
 	public void removeRole(UUID userId, int roleId) {
 	    // Verificar si el rol está asignado al usuario
