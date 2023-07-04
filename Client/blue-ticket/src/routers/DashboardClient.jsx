@@ -32,6 +32,7 @@ export const DashboardClient = () => {
           <Route path="/transfer-ticket" element={<TransferTicket/> } />
           <Route path="/info-QR" element={<ViewQR/> } />
         </Routes>
+        
       </div>
     </>
   );
