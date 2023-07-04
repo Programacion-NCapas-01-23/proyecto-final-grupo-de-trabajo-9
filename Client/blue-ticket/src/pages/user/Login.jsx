@@ -6,12 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import { gapi } from 'gapi-script';
 import context from '../../context/UserContex';
 import authService from '../../services/AuthServices';
+import { LoadMessage } from '../../utils/Alert';
 
 const Login = () => {
   const clientID = "168022975229-t96ihknltr4skhun6pttgbbpla3v2f1l.apps.googleusercontent.com";
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isClient, setIsClient] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const start = () => {
@@ -28,25 +33,54 @@ const Login = () => {
     navigate('/user/home');
   };
 
+  const handleChange = () =>{
+    navigate('/changePassword');
+  }
+
   const onFailure = () => {
     console.log("Failed");
   };
-
+  const useAuth = async() =>{
+    const token = context.getToken();
+    try {
+        let res = await authService.getRole(token);
+            res.forEach(element => {
+              console.log(element.id);
+                if (element.id === 1) {
+                    setIsClient(true);
+                }else /*if(element.id === 2)*/{
+                    setIsAdmin(true);
+                }
+        });
+        if (isClient) {
+          navigate('/user/home');
+        }else if(isAdmin){
+          console.log(isAdmin);
+          navigate('/admin/home');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }finally{
+        setIsLoading(false);
+    }
+    if (isLoading) {
+      return <p>Cargando...</p>;  // Mostrar indicador de carga
+  }
+};
   const handleLogin =  async() => {
-    
     try {
       let response = await context.login(email,password);
-      //Asumiendo que es un cliente
-      //navigate('/user/home');
-      console.log(response);
+      console.log(response.status);
+      //if (response.status == 200) {
+      //  useAuth();
+      //}
+      useAuth();
+      
     } catch (error) {
       console.log('Error al iniciar sesión', error);
     }
   };
 
-  const handleChangePassword = () => {
-    navigate('/changePassword');
-  };
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-[#232528] to-blue-200">
@@ -101,7 +135,6 @@ const Login = () => {
             <FontAwesomeIcon
               icon={faEye}
               className="absolute right-3 top-3 text-neutral-500 text-lg cursor-pointer"
-              onClick={handleChangePassword}
             />
           </div>
           <div className="flex justify-center mt-6">
@@ -113,7 +146,7 @@ const Login = () => {
             </button>
           </div>
           <p className="mt-4 text-center">
-            <a href="#" className="text-blue-500 font-poppins font-medium">¿Olvidaste tu contraseña?</a>
+            <button className="text-blue-500 font-poppins font-medium" onClick={handleChange}>¿Olvidaste tu contraseña?</button>
           </p>
         </div>
       </div>
