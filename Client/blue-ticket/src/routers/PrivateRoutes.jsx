@@ -2,6 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import context from '../context/UserContex';
 import authService from '../services/AuthServices';
+import { LoadMessage } from '../utils/Alert';
 
 const PrivateRoutes = () => {
     const [isClient, setIsClient] = useState(false);
@@ -28,7 +29,7 @@ const PrivateRoutes = () => {
     },[]);
 
     if (isLoading) {
-        return <p>Cargando...</p>; // Mostrar indicador de carga
+        return LoadMessage; // Mostrar indicador de carga
     }
     
 return isClient ? <Outlet/> : <Navigate to='/'/>
