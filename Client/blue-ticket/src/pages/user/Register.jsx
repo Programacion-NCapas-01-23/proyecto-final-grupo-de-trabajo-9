@@ -2,16 +2,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerService } from '../../services/RegisterServices';
+import { MessageSuccess } from '../../utils/Alert';
 
 const Register = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleRegister = () => {
-        navigate('/user/home');
-    };
 
     const handllogin = () => {
         navigate('/login')
@@ -36,7 +34,7 @@ const Register = () => {
             let response = await registerService.register(name, email, password);
             console.log(response);
             if (response != null) {
-                alert('Usuario Creado');
+                MessageSuccess('Usuario creado correctamente');
             } else {
                 console.log('No se pudo crear el usuario');
             }
@@ -116,7 +114,6 @@ const Register = () => {
                     <button
                         type="submit"
                         className="w-full py-3 mt-10 bg-blue rounded-md font-medium text-white capitalize focus:outline-none hover:shadow-none"
-                        onClick={handleRegister}
                     >
                         Crear Cuenta
                     </button>
