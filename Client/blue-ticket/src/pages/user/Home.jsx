@@ -16,7 +16,6 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState([]);
   
   useEffect(() => {
     fetchAllEvents();
@@ -55,18 +54,6 @@ const Home = () => {
     setFilter(value);
     // Aquí puedes realizar la lógica de filtrado de eventos según la opción seleccionada
   };
-  //Obtiene todas las categorias
-  const fetchAllCategories = async() => {
-    const token = context.getToken();
-    const response = await CategoryService.getAllEvents(token);
-    console.log(response);
-    if (!response.error) {
-      response.data.forEach((item) => {
-        console.log(item.description);
-        setCategory(item.description);
-      });
-    }
-  };
   return (
     <>
       <Carousel />
@@ -83,24 +70,6 @@ const Home = () => {
             onClick={() => handleFilterChange("Musical")}
           >
             Musical
-          </button>
-          {
-            category &&
-              category.map((c) => (
-                <FilterButton
-                key={c._id}
-                isMainView={true}
-                id={c._id}
-                description={c.description}
-                />
-              ))}
-          <button
-            className={`relative text-sm px-2 py-1 md:p-3 leading-6 font-normal justify-center items-center focus:outline-none shadow border-2 border-locations-gray text-black rounded-xl ${
-              filter === "Teatro" ? "bg-blue-500 text-white" : "bg-white"
-            }`}
-            onClick={fetchAllCategories}
-          >
-            Teatro
           </button>
         </div>
 
