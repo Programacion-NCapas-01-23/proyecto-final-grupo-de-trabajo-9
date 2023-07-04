@@ -11,6 +11,7 @@ Blueticket es una aplicación web intuitiva y fácil de usar que te permite comp
 - **Rol:** Administrador
 <br>
 <br>
+
 - **Nombre de usuario:** Heroku3
 - **Correo electrónico:** Heroku3@gmail.com
 - **Contraseña:** Contraseña05
