@@ -3,6 +3,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import logo from "../../assets/blue_ticket.png";
 import SearchBox from "../SearchBox";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 
 export const Navbar = () => {
@@ -10,6 +11,10 @@ export const Navbar = () => {
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
   };
 
   return (
@@ -21,6 +26,14 @@ export const Navbar = () => {
         {/*<SearchBox />*/}
       </div>
       <div className="flex items-center">
+        <button
+          onClick={handleRegister}
+          className="flex items-center text-white rounded-none text-xl bg-blue mr-4"
+        >
+          <AiOutlineUserAdd className="mr-2" />
+          Registrar
+        </button>
+
         <button
           onClick={handleLogin}
           className="flex items-center text-white rounded-none text-xl bg-blue"

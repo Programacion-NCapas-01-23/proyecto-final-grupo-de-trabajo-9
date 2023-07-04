@@ -10,6 +10,8 @@ import NewLocation from "../pages/admin/NewLocation";
 import ChangePassword from "../pages/user/ChangePassword.jsx";
 import PrivateRoutes from "./PrivateRoutes";
 import PrivateRoutesAdmin from "./PrivateRoutesAdmin";
+import Register from "../pages/user/Register";
+
 
 const MainContainer = ({ children }) => {
   return (
@@ -41,6 +43,7 @@ export const AppRouter = () => {
           <Route element={<PrivateRoutesAdmin/>}>
             <Route path="/admin/*" element={<DashboardAdmin />} />
           </Route>
+          <Route path="/register" element= {<Register/>}/>
         </Routes>
       </div>
     </Router>
