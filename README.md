@@ -1,6 +1,23 @@
-# proyecto-final-grupo-de-trabajo-9
+# BlueTicket
+Blueticket es una aplicación web intuitiva y fácil de usar que te permite comprar boletos para una amplia variedad de eventos en un solo lugar. Ya sea que estés buscando asistir a conciertos, festivales, eventos deportivos, Blueticket tiene todo lo que necesitas.
 
-## Cómo instalar una AWP
+## Enlace documentacion API [BlueTIcket](https://documenter.getpostman.com/view/20859166/2s93zE3L2K)
+
+# Usuarios de prueba
+
+- **Nombre de usuario:** DouglasHdezT
+- **Correo electrónico:** DouglasHdezT@gmail.com
+- **Contraseña:** 12345678Aa! 
+- **Rol:** Administrador
+<br>
+<br>
+- **Nombre de usuario:** Heroku3
+- **Correo electrónico:** Heroku3@gmail.com
+- **Contraseña:** Contraseña05
+- **Rol:** Cliente
+
+
+# Cómo instalar una PWA
 
 1. En tu computadora, abre tu navegador web y entra a la página de blueticket.
 
