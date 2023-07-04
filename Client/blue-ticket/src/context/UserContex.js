@@ -21,7 +21,7 @@ const context = {
         localStorage.setItem("code", responseCode);
         localStorage.setItem("hasLoggedIn", "true");
     
-            return { status: response.status, code: responseCode.code, active:responseCode.active };//"Logueado";
+            return { status: response.status, code: responseCode };//"Logueado";
         }
         
         return asyncFetchUser(identifier, password);

@@ -34,7 +34,6 @@ const authService = {
         }
     },
     verifyToken: async (token) => {
-        console.log(token);
         try {
             let response = await API.get('/auth/whoami', {
                 headers: {
@@ -45,6 +44,27 @@ const authService = {
             if (response.status === 200) {
                 console.log(response.data.id);
                 return response.data.id;
+            } else {
+                throw new Error(response.status);
+            }
+        } catch (error) {
+            console.log(error);
+            return {
+                hasError: true,
+            };
+        }
+    },
+    getRole: async (token) =>{
+        try {
+            let response = await API.get('/assing-role/get-role', {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            console.log(response);
+            if (response.status === 200) {
+                console.log(response.data);
+                return response.data;
             } else {
                 throw new Error(response.status);
             }
