@@ -5,7 +5,9 @@ import logo from "../../assets/blue_ticket.png";
 import SearchBox from '../SearchBox';
 import { useNavigate } from 'react-router-dom';
 import { IoTicketOutline } from "react-icons/io5";
-import { faBars, faTicketAlt, faHistory, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTicket,  faHistory, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import context from '../../context/UserContex';
+//op 1 faTicket
 
 export const NavbarUser = () => {
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ export const NavbarUser = () => {
         navigate('/user/home');
     }
     const handleLogout = () => {
+        context.logout();
         navigate('/');
     }
     const handleHistory = () => {
@@ -40,11 +43,11 @@ export const NavbarUser = () => {
             <div className={`w-full h-screen z-50 lg:ml-0 lg:h-0 bg-blue lg:bg-blue lg:flex lg:items-center lg:w-auto ${isOpen ? "block" : "hidden"}`}>
                 <div className="text-sm md:text-base lg:text-lg lg:flex lg:flex-row">
                     <button onClick={handleEvents} className="block text-left w-full lg:w-auto my-2 lg:my-0 items-center border-0 py-2 px-4 text-white bg-blue">
-                        <FontAwesomeIcon icon={faTicketAlt} className="mr-2" />
+                        <FontAwesomeIcon icon={faTicket} className="mr-2" />
                         Eventos
                     </button>
                     <button onClick={handleMyTickets} className="block text-left w-full lg:w-auto my-2 lg:my-0 items-center border-0 py-2 px-4 text-white bg-blue">
-                        <FontAwesomeIcon icon={faTicketAlt} className="mr-2" />
+                        <FontAwesomeIcon icon={faTicket} className="mr-2" />
                         Mis tickets
                     </button>
                     <button onClick={handleHistory} className="block text-left w-full lg:w-auto my-2 lg:my-0 items-center border-0 py-2 px-4 text-white bg-blue">

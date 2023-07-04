@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { GoogleLogin } from '@leecheuk/react-google-login';
 import { useNavigate } from 'react-router-dom';
 import { gapi } from 'gapi-script';
+import context from '../../context/UserContex';
 
 const Login = () => {
   const clientID = "168022975229-t96ihknltr4skhun6pttgbbpla3v2f1l.apps.googleusercontent.com";
@@ -30,13 +31,22 @@ const Login = () => {
     console.log("Failed");
   };
 
-  const handleLogin = () => {
+  const handleLogin =  async() => {
+    /*
     if (email === 'admin' && password === 'admin') {
       navigate('/admin/home');
     } else if (email === 'user' && password === 'user') {
       navigate('/user/home');
     } else {
       // Redireccionar a una página de error de inicio de sesión
+    } */
+    try {
+      let response = await context.login(email,password);
+      //Asumiendo que es un cliente
+      navigate('/user/home');
+      console.log(response);
+    } catch (error) {
+      console.log('Error al iniciar sesión', error);
     }
   };
 
