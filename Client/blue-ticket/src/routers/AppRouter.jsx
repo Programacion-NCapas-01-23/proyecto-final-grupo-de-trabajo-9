@@ -8,6 +8,7 @@ import Navbar from "../components/Navbars/NavbarHomepage";
 import CreateEvent from "../pages/admin/CreateEvent";
 import NewLocation from "../pages/admin/NewLocation";
 import ChangePassword from "../pages/user/ChangePassword.jsx";
+import Register from "../pages/user/Register";
 
 const MainContainer = ({ children }) => {
   return (
@@ -33,6 +34,7 @@ export const AppRouter = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/changePassword" element={<ChangePassword />} />
+          <Route path="/register" element= {<Register/>}/>
           <Route path="/user/*" element={<DashboardClient />} />
           <Route path="/admin/*" element={<DashboardAdmin />} />
 
