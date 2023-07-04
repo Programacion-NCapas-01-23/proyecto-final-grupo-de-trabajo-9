@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(exclude = { "transfer_user_issuer", "transfer_user_receptor", "sale", "userRole"})
 @Entity
-@Table(name = "user")
+@Table(name = "client")
 
 public class User implements UserDetails {
 	 @Id
