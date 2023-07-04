@@ -12,7 +12,7 @@ const API = axios.create({
 const CategoryService = {
     getAllEvents: async(token)=>{
         try {
-            const response = await API.get('category/all', {
+            const response = await API.get('/category/all', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
