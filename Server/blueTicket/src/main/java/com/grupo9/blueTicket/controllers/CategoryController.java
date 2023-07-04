@@ -17,14 +17,17 @@ import com.grupo9.blueTicket.services.CategoryService;
 @RequestMapping("/category")
 @CrossOrigin("*")
 public class CategoryController {
+
 	@Autowired
 	private CategoryService categoryService;
 	
-	@GetMapping("/allCategory")
-	public ResponseEntity<?> allCategories(){
+	@GetMapping("/all")
+	public ResponseEntity<?> userAll(){
 		List<Category> category = categoryService.findAll();
-		return new ResponseEntity<>(category, HttpStatus.OK);
-		
+		if(category != null) {
+			return ResponseEntity.ok(category);	
+		}else {
+			return ResponseEntity.notFound().build();
+		}
 	}
-
 }

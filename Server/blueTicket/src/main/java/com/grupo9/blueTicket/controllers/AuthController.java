@@ -22,6 +22,7 @@ import com.grupo9.blueTicket.models.dtos.TokenDTO;
 import com.grupo9.blueTicket.models.entities.Token;
 import com.grupo9.blueTicket.models.entities.User;
 import com.grupo9.blueTicket.services.UserService;
+import com.grupo9.blueTicket.services.UserXRoleService;
 import com.grupo9.blueTicket.utils.RequestErrorHandler;
 import com.grupo9.blueTicket.models.dtos.PasswordDTO;
 
@@ -36,6 +37,10 @@ private RequestErrorHandler errorHandler;
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserXRoleService userXRoleService;
+	
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@RequestBody @Valid LoginDTO loginDTO, BindingResult validations) {
@@ -82,14 +87,16 @@ private RequestErrorHandler errorHandler;
                     HttpStatus.BAD_REQUEST);
         }
 
-        if (!isValidPassword(password)) {
+        if (password.length()< 8) {
             return new ResponseEntity<>(
-                    new MessageDTO("Invalid password: must be at least 8 characters, and comply with: 1 uppercase, 1 lowercase, 1 number, 1 character special"),
+                    new MessageDTO("Invalid password: must be at least 8 characters"),
                     HttpStatus.BAD_REQUEST);
         }
 
         try {
-            userService.register(registerDTO);
+        	User registeredUser = userService.register(registerDTO);
+            userXRoleService.defaultRole(registeredUser.getId());
+            
             return new ResponseEntity<>(
                     new MessageDTO("User created"),
                     HttpStatus.CREATED);
@@ -101,10 +108,6 @@ private RequestErrorHandler errorHandler;
         }
     }
 	
-    private boolean isValidPassword(String password) {
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        return password.matches(passwordRegex);
-    }
     
     @PatchMapping("/update/{id}")
 	public ResponseEntity<?>updatePassword(@PathVariable(name = "id") UUID id, @RequestBody PasswordDTO info, BindingResult validations){
