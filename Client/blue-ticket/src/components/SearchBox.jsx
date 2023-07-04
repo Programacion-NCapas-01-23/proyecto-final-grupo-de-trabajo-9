@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export const SearchBox = (props) =>{
+export const SearchBox = ({ getTitle }) =>{
     const [searchTitle, setSearchTitle] = useState('');
 
 const handleTitleChange = (e) =>{
     setSearchTitle(e.target.value);
-    props.handleSearch(searchTitle);
+    //getTitle(searchTitle);
     console.log(searchTitle);
 };
     return(
-        <form className="flex flex-row items-center ">
+        <form className="flex flex-row items-center " onSubmit={getTitle(searchTitle)}>
 			<div className="relative">
 				<div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} />

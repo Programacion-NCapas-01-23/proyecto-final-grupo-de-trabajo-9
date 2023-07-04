@@ -5,8 +5,10 @@ import CardHome from "../../components/Card/CardHome";
 import Footer from "../../components/Footer/Footer";
 import ViewEvent from "./ViewEvent";
 import SearchBox from "../../components/SearchBox";
+import FilterButton from "../../components/Button/filterButton";
 import context from "../../context/UserContex";
 import EventService from "../../services/EventServices";
+import CategoryService from "../../services/CategoryService";
 
 const Home = () => {
   const [filter, setFilter] = useState("");
@@ -14,13 +16,12 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [title, setTitle] = useState("");
-  const [searchTitle, setSearchTitle] = useState('');
   
   useEffect(() => {
-    fetchAllSongs();
+    fetchAllEvents();
   }, [title, currentPage]);
   
-  const fetchAllSongs = async () => {
+  const fetchAllEvents = async () => {
     const token = context.getToken();
     const response = await EventService.getAllEvents(
       token,
@@ -46,23 +47,20 @@ const Home = () => {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
-  const handleSearch = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
+  const handleSearch = (text) => {
+    setTitle(text);
   };
   const handleFilterChange = (value) => {
     setFilter(value);
     // Aquí puedes realizar la lógica de filtrado de eventos según la opción seleccionada
   };
-
   return (
     <>
       <Carousel />
       <div>
         <div className="flex flex-row space-x-32 justify-center bg-blue h-20">
           <h1 className=" text-center text-white text-2xl font-bold my-5 md:text-3xl md:my-4 lg:text-4xl">Cartelera</h1>
-          <SearchBox />
+          <SearchBox getTitle={handleSearch} />
         </div>
         <div className="flex justify-center mt-5 space-x-2">
           <button
@@ -72,22 +70,6 @@ const Home = () => {
             onClick={() => handleFilterChange("Musical")}
           >
             Musical
-          </button>
-          <button
-            className={`relative text-sm px-2 py-1 md:p-3 leading-6 font-normal justify-center items-center focus:outline-none shadow border-2 border-locations-gray text-black rounded-xl ${
-              filter === "Danza" ? "bg-blue-500 text-white" : "bg-white"
-            }`}
-            onClick={() => handleFilterChange("Danza")}
-          >
-            Danza
-          </button>
-          <button
-            className={`relative text-sm px-2 py-1 md:p-3 leading-6 font-normal justify-center items-center focus:outline-none shadow border-2 border-locations-gray text-black rounded-xl ${
-              filter === "Teatro" ? "bg-blue-500 text-white" : "bg-white"
-            }`}
-            onClick={() => handleFilterChange("Teatro")}
-          >
-            Teatro
           </button>
         </div>
 
