@@ -1,6 +1,6 @@
 import axios from "axios"; 
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://blueticket01-db3fe21ca65d.herokuapp.com";
 
 const API = axios.create(
     {
