@@ -54,3 +54,10 @@ export const LoadMessage=()=>{
     }
 })
 }
+export const NotFound = (message) =>{  
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}

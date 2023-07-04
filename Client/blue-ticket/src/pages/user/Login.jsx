@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { gapi } from 'gapi-script';
 import context from '../../context/UserContex';
 import authService from '../../services/AuthServices';
-import { LoadMessage } from '../../utils/Alert';
+import { NotFound, MessageSuccess } from '../../utils/Alert';
 
 const Login = () => {
   const clientID = "168022975229-t96ihknltr4skhun6pttgbbpla3v2f1l.apps.googleusercontent.com";
@@ -53,9 +53,10 @@ const Login = () => {
                 }
         });
         if (isClient) {
+          MessageSuccess('Ha iniciado sesión');
           navigate('/user/home');
         }else if(isAdmin){
-          console.log(isAdmin);
+          MessageSuccess('Ha iniciado sesión');
           navigate('/admin/home');
         }
     } catch (error) {
@@ -71,13 +72,11 @@ const Login = () => {
     try {
       let response = await context.login(email,password);
       console.log(response.status);
-      //if (response.status == 200) {
-      //  useAuth();
-      //}
       useAuth();
       
     } catch (error) {
       console.log('Error al iniciar sesión', error);
+      NotFound('Credenciales Incorrectas');
     }
   };
 
