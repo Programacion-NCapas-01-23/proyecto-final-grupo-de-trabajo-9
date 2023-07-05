@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <>
-      <Carousel  />
+      <Carousel className="max-h-64"/>
       <div>
         <div className="flex flex-row space-x-32 justify-center bg-blue h-20">
           <h1 className=" text-center text-white text-2xl font-bold my-5 md:text-3xl md:my-4 lg:text-4xl">Cartelera</h1>
