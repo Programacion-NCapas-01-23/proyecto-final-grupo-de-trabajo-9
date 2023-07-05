@@ -1,25 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import { MessageSuccess } from '../../utils/Alert';
 import { useNavigate } from 'react-router-dom';
+import EventService from '../../services/EventServices';
+import CategoryService from '../../services/CategoryService';
+import context from '../../context/UserContex';
 
 export const CreateEvent = () => {
+    const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState('');
 
-    const handleUrlChange = (e) => {
-        setImageUrl(e.target.value);
+    const [title, setTitle] = useState('');
+    const [involved, setInvolved] = useState('');
+    const [date, setDate] = useState('');
+    const [hour, setHour] = useState('');
+    const [duration, setDuration] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [sponsor, setSponsor] = useState('');
+    const [imagesURL1, setImagesURL1] = useState('');
+    const [imagesURL2, setImagesURL2] = useState('');
+
+    const [selectedCategoryId, setSelectedCategoryId] = useState('');
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const token = context.getToken();
+            try {
+                const response = await CategoryService.getAllEvents(token);
+                console.log(response);
+                if (Array.isArray(response.data)) {
+                    setCategories(response.data);
+                    console.log(response.data);
+                }
+            } catch (error) {
+                console.error('Error al obtener las categorías:', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
+
+    const handleCreateEvent = async (e) => {
+        e.preventDefault();
+        const token = context.getToken();
+        console.log(token);
+        console.log(title, date,hour,duration,sponsor,involved,imagesURL1,imagesURL2,selectedCategoryId);
+        const response = await EventService.createEvent(
+            token,
+            title,
+            date,
+            hour +':00',
+            duration,
+            sponsor,
+            involved,
+            imagesURL1,
+            imagesURL2,
+            selectedCategoryId
+        );
+        if (!response.error) {
+            MessageSuccess('Evento creado correctamente');
+            navigate('/admin/upcoming');
+        }
     };
+
+
+
+    /*const handleUrlChange = (e) => {
+        setImageUrl(e.target.value);
+    };*/
 
     const handleUrlSubmit = (e) => {
         e.preventDefault();
 
     };
 
-    const handleCreateEvent = () => {
+    /*const handleCreateEvent = () => {
         MessageSuccess('Evento creado correctamente');
         navigate('/admin/upcoming');
-    }
-    const navigate = useNavigate();
+    }*/
 
     const handlLocation = () => {
         navigate('/admin/newlocation');
@@ -55,8 +114,8 @@ export const CreateEvent = () => {
                                             type='text'
                                             className='h-20 w-80 lg:w-96 p-4 text-2xl font-bold bg-gray-100 rounded-xl'
                                             placeholder='Pega la URL de la imagen aquí'
-                                            value={imageUrl}
-                                            onChange={handleUrlChange}
+                                            value={imagesURL1}
+                                            onChange={(e) => setImagesURL1(e.target.value)}
                                         />
                                     </div>
 
@@ -70,11 +129,15 @@ export const CreateEvent = () => {
                         <div className='mt-6 lg:w-1/2 lg:mt-0 lg:mx-6'>
                             <div className='mb-6 pl-2 lg:pl-0'>
                                 <label className='text-base block lg:ml-0 mb-2 font-extrabold lg:text-lg' for="">Titulo del evento</label>
-                                <input className='inline-block w-80 lg:w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
+                                <input className='inline-block w-80 lg:w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)} />
                             </div>
                             <div className='mb-6 pl-2 lg:p-0'>
                                 <label className='block text-base mb-2 font-extrabold lg:text-lg' for="">Involucrados</label>
-                                <input className='inline-block lg:ml-0 w-80 lg:w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
+                                <input className='inline-block lg:ml-0 w-80 lg:w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text"
+                                    value={involved}
+                                    onChange={(e) => setInvolved(e.target.value)} />
                             </div>
                             <div className='-mx-3 flex lg:flex-nowrap lg:flex-row flex-col' >
                                 <div className='w-full px-3 sm:w-auto'>
@@ -86,6 +149,8 @@ export const CreateEvent = () => {
                                             type="date"
                                             name="date"
                                             id="date"
+                                            value={date}
+                                            onChange={(e) => setDate(e.target.value)}
                                             className='lg:w-xl rounded-md border-gray bg-white shadow border-2 py-2 px-2 lg:py-3 lg:px-6 text-base font-normal 
                                         text-black outline-none focus:border-black focus:shadow-md' />
                                     </div>
@@ -97,6 +162,8 @@ export const CreateEvent = () => {
                                             type="time"
                                             name="time"
                                             id="time"
+                                            value={hour}
+                                            onChange={(e) => setHour(e.target.value)}
                                             className='lg:w-xl rounded-md shadow border-2 border-gray bg-white py-2 px-2 lg:py-3 lg:px-6 text-base font-medium 
                                         text-black outline-none focus:border-black focus:shadow-md' />
 
@@ -109,6 +176,8 @@ export const CreateEvent = () => {
                                             type="number"
                                             name="number"
                                             id="number"
+                                            value={duration}
+                                            onChange={(e) => setDuration(e.target.value)}
                                             className='lg:w-1/3 rounded-md shadow border-2 border-gray bg-white p-2 lg:py-3 lg:px-6 text-base font-medium 
                                         text-black outline-none focus:border-black focus:shadow-md' />
                                     </div>
@@ -119,11 +188,13 @@ export const CreateEvent = () => {
                                 <div className='relative flex bg-gray-100'>
                                     <button className=' relative text-lg px-3 py-3 leading-6 font-normal  flex justify-center items-center  bg-white focus:outline-none shadow border-2 border-gray focus:border-black text-black rounded group'>
                                         <form action="#">
-                                            <select className='text-sm text-center'>
-                                                <option value="Categoria 1">Categoria 1</option>
-                                                <option value="Categoria 2">Categoria 2</option>
-                                                <option value="Categoria 3">Categoria 3</option>
-                                                <option value="Categoria 4">Categoria 4</option>
+                                            <select className='text-sm text-center'
+                                                value={selectedCategoryId}
+                                                onChange={(e) => setSelectedCategoryId(e.target.value)}>
+                                                {categories.map((category) => (
+                                                    <option key={category.id} value={category.id}>{category.description}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </form>
                                     </button>
@@ -131,7 +202,11 @@ export const CreateEvent = () => {
                             </div>
                             <div className='mb-6 pl-2 lg:pl-0'>
                                 <label className='block mb-2 font-extrabold text-normal lg:text-lg' for="">Patrocinadores</label>
-                                <input className='inline-block w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
+                                <input value={sponsor} onChange={(e) => setSponsor(e.target.value)} className='inline-block w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="text" />
+                            </div>
+                            <div className='mb-6 pl-2 lg:pl-0'>
+                                <label className='block mb-2 font-extrabold text-normal lg:text-lg' for="">Imagen 2</label>
+                                <input value={imagesURL2} onChange={(e) => setImagesURL2(e.target.value)} className='inline-block w-5/6 p-2 leading-6 text-lg font-normal bg-white shadow border-2 border-gray rounded' type="url" />
                             </div>
                             <div className='flex flex-row items-start  lg:mx-0 gap-5 lg:flex-col '>
                                 <button onClick={handlLocation} type="submit" class=" lg:ml-0  py-4 px-4  lg:px-5 lg:py-3 bg-blue rounded-2xl
