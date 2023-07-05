@@ -1,6 +1,9 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.util.List;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,13 +13,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = {"transfer","sale"})
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -25,25 +30,30 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
-    @Column(name = "description")
-    private String description;
-    
     @Column(name = "status")
-    private String status;
+    private Boolean status;
     
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_event", nullable = true)
     private Event event;
     
-    @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "user_id")
-    private User user;*/
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Sale> sale; //Conexción con la tabla de venta
+   
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    @JsonIgnore 
+    private List<Transfer> transfer; //La conexión con Transfer 
+
+	public Ticket(Boolean status, Event event) {
+		super();
+		this.status = status;
+		this.event = event;
+	}
+
+	
+
     
-    public Ticket(String description, String status) {
-    	super();
-    	
-    	this.description = description;
-    	this.status = status;
-    }
+    
 
 }

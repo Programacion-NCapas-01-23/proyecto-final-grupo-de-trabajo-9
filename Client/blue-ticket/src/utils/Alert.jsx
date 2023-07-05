@@ -30,3 +30,34 @@ export const MessageSuccess = (message) => {
         timer: 1500
     })
 }
+
+export const LoadMessage=()=>{
+    let timerInterval
+    Swal.fire({
+    title: 'Cargando...',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+    }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+    }
+})
+}
+export const NotFound = (message) =>{  
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message
+    })
+}

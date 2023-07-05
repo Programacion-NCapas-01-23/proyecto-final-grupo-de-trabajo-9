@@ -1,6 +1,6 @@
 package com.grupo9.blueTicket.models.entities;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -27,27 +27,31 @@ public class Transfer{
     private UUID id;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user_issuer", nullable = true)
+    @JoinColumn(name = "id_user_issuer")
     private User user_issuer;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user_receptor", nullable = true)
+    @JoinColumn(name = "id_user_receptor")
     private User user_receptor;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_ticket", nullable = true)
+    @JoinColumn(name = "id_ticket")
     private Ticket ticket;
     
     @Column(name = "transfer_date")
-    private Date transfer_date;
+    private Timestamp transfer_date;
+
+	public Transfer(UUID id, User user_issuer, User user_receptor, Ticket ticket, Timestamp transfer_date) {
+		super();
+		this.id = id;
+		this.user_issuer = user_issuer;
+		this.user_receptor = user_receptor;
+		this.ticket = ticket;
+		this.transfer_date = transfer_date;
+	}
+
+	
     
-    public Transfer(User user_issuer, User user_receptor, Ticket ticket, Date transfer_date) {
-    	super();
-    	this.user_issuer = user_issuer;
-    	this.user_receptor = user_receptor;
-    	this.ticket = ticket;
-    	this.transfer_date = transfer_date;
-    	
-    }
+   
     
 }

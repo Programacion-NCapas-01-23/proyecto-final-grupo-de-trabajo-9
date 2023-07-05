@@ -4,6 +4,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../assets/blue_ticket.png";
 import { useNavigate } from 'react-router-dom';
+import context from '../../context/UserContex';
 
 export const NavbarAdmin = () => {
 
@@ -14,6 +15,7 @@ export const NavbarAdmin = () => {
     }
 
     const handleLogout = () => {
+        context.logout();
         navigate('/');
     }
 

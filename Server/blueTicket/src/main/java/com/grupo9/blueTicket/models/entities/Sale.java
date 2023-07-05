@@ -1,6 +1,6 @@
 package com.grupo9.blueTicket.models.entities;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -26,27 +26,38 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
+    //FK de user
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user", nullable = true)
+    @JoinColumn(name = "id_user")
     private User user;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_ticket", nullable = true)
-    private Ticket ticket;
-    
     @Column(name = "date_purchase")
-    private Date date_purchase;
+    private Timestamp date_purchase;
     
-    @Column(name = "amount_ticket_purchase")
+    @Column(name = "amount_tickets_purchased")
     private int amount_ticket;
     
-    public Sale(User user, Ticket ticket, Date date_purchase, int amount_ticket) {
-    	super();
-    	this.user = user;
-    	this.ticket = ticket;
-    	this.date_purchase = date_purchase;
-    	this.amount_ticket = amount_ticket;
-    	
-    }
+    @Column(name = "total_amount")
+    private int total_amount;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_ticket")
+    private Ticket ticket;
+
+	public Sale(User user, Timestamp date_purchase, int amount_ticket, int total_amount, Ticket ticket) {
+		super();
+		this.user = user;
+		this.date_purchase = date_purchase;
+		this.amount_ticket = amount_ticket;
+		this.total_amount = total_amount;
+		this.ticket = ticket;
+	}
+
+	
+    
+    //@OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
+    //private List<Ticket> ticket; //La conexión con ticket
+    
+    
     
 }

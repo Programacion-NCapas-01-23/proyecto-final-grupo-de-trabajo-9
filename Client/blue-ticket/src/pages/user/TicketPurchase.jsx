@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarUser from '../../components/Navbars/NavbarUser';
 import Footer from '../../components/Footer/Footer';
 import LocationButton from '../../components/Button/LocationButton';
 import CardTicket from '../../components/Card/CardTicket';
+import EventService from '../../services/EventServices';
+import context from '../../context/UserContex';
+import { useParams } from 'react-router-dom';
 
 export const TicketPurchase = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [count, setCount] = useState(0);
-    
+    const [event, setEvent] = useState(null);
 
+    useEffect(() => {
+        getInfo();
+    }, []);
+    console.log(id);
     const handlePay = () => {
-        navigate('/user/info-ticket');
+        navigate(`/user/info-ticket/${id}`);
     }
     const handleBack = () => {
-        navigate('/user/info-event');
+        navigate(`/info/${id}`)
     }
-
+    const getInfo = async() => {
+        let token = context.getToken();
+        let res = await EventService.gotOneEventAuth(token,id);
+                console.log(res);
+                if (!res.error) {
+                let data = res;
+                console.log(data);
+                setEvent(data);
+            }
+    }
+    if (!event) {
+        return <div>Cargando...</div>;
+    }
+    console.log(event);
     const handleSum = (e) =>{ 
         setCount(count + 1);
     }
@@ -31,7 +52,12 @@ export const TicketPurchase = () => {
                 <div className='flex flex-col items-center sm:gap-5'>
                     <h1 className='font-bold sm:text-2xl lg:text-3xl text-center pt-5'>Información de la compra</h1>
                     <div className='pt-4'>
-                        <CardTicket/>
+                                <CardTicket
+                                key={event.id}
+                                isMainView={true}
+                                title={event.title}
+                                image1={event.image1}
+                                />
                     </div>
                     <div className='bg-white h-auto w-11/12 sm:w-9/12 m-5 rounded-2xl'>
                         <div className='grid grid-cols-2 gap-5 p-5 '>

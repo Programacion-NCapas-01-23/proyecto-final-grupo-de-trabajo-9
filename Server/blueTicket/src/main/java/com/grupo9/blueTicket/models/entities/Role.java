@@ -1,13 +1,12 @@
 package com.grupo9.blueTicket.models.entities;
 
 import java.util.List;
-import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString(exclude = "rolePermissions")
+@ToString(exclude = {"rolePermission", "userRole"})
 @NoArgsConstructor
 @Entity
 @Table(name = "role")
@@ -24,17 +23,16 @@ public class Role {
     
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private int id;
+    @Column(name = "role")
     private String role;
     
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    private List<Role_permission> rolePermissions;
+    @OneToMany(mappedBy = "id_role", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Role_permission> rolePermission;
     
-    public Role(String role) {
-    	super();
-    	
-    	this.role = role;
-    }
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<User_Role> userRole;
     
 }

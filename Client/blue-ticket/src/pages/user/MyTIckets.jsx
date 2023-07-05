@@ -5,9 +5,7 @@ import CardMyTicket from "../../components/Card/CardMyTicket";
 import { useNavigate } from 'react-router-dom';
 
 export const MyTickets = () => {
-
   const navigate = useNavigate();
-
 
   return (
     <>
@@ -18,18 +16,36 @@ export const MyTickets = () => {
             <SearchBoxTicket />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-10" style={{ justifyItems: 'center', alignItems: 'center' }}>
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
-
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
-
-          <CardMyTicket />
-          <CardMyTicket />
-          <CardMyTicket />
+        <div className="flex justify-center mt-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Aumenté el valor de gap */}
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} /> {/* Añadí estilos para hacer las cartas más grandes */}
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+            <div className="flex justify-center">
+              <CardMyTicket style={{ width: "300px", height: "400px" }} />
+            </div>
+          </div>
         </div>
 
         <div style={{ textAlign: "center", marginTop: "8px" }}>
@@ -42,7 +58,8 @@ export const MyTickets = () => {
         </div>
 
         <Footer />
-      </div></>
+      </div>
+    </>
   );
 };
 

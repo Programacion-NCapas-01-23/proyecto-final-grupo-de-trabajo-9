@@ -10,7 +10,7 @@ public interface SaleService {
 	
 	Sale findOneById(UUID id);
     List<Sale> findAll();
-    void save(SaleDTO info) throws Exception;
+    void createSale(SaleDTO info) throws Exception;
     void changeActive(Boolean isActive);
     void Search(UUID id);
 

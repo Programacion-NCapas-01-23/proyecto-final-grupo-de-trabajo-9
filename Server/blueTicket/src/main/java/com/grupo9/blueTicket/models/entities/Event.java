@@ -1,6 +1,11 @@
 package com.grupo9.blueTicket.models.entities;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,69 +15,85 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = {"ticket", "locality"})
 @Entity
-@Table(name = "Event")
+@Table(name = "event")
 public class Event {
-    @Id
+    @Id 
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    
+    @Column(name = "title")
+	private String title;
+
+    //En la base es de tipo Date, aquí era String
+    @Column(name = "date")
+    private Date date;
+    //Es de tipo Time en la base, aquí era Time
+    @Column(name = "hour")
+    private Time hour;
+
+    @Column(name = "duration")
+    private String duration;
+
+    @Column(name = "sponsors")
+    private String sponsor;
+
+    @Column(name = "artist")
+    private String involved;
+
+    @Column(name = "status", insertable = false)
+    private Boolean status;
+    
+	@Column(name = "main_image")
+	private String image1;
+
+    @Column(name = "secondary_image")
+    private String image2;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category", nullable = true)
     private Category category;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_locality", nullable = true)
-    private Locality locality;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Locality> locality;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user", nullable = true)
-    private User user;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Ticket> ticket; //La conexión con ticket 
 
-    @Column(name = "title")
-	private String title;
+	public Event(String title, Date date, Time hour, String duration, String sponsor, String involved, Boolean status,
+			String image1, String image2, Category category) {
+		super();
+		this.title = title;
+		this.date = date;
+		this.hour = hour;
+		this.duration = duration;
+		this.sponsor = sponsor;
+		this.involved = involved;
+		this.status = status;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.category = category;
+	}
 
-	@Column(name = "image1")
-	private String image1;
+	
 
-    @Column(name = "image2")
-    private String image2;
+	
 
-    @Column(name = "date")
-    private String date;
+	
+    
 
-    @Column(name = "hour")
-    private String hour;
-
-    @Column(name = "duration")
-    private String duration;
-
-    @Column(name = "sponsor")
-    private String sponsor;
-
-    @Column(name = "involved")
-    private String involved;
-
-    public Event(Category category, Locality locality, User user, String title, String image1, String image2, String date, String hour, String duration, String sponsor, String involved) {
-        super();
-        this.category = category;
-        this.locality = locality;
-        this.user = user;
-        this.title = title;
-        this.image1 = image1;
-        this.image2 = image2;
-        this.date = date;
-        this.hour = hour;
-        this.duration = duration;
-        this.sponsor = sponsor;
-        this.involved = involved;
-    }
+	
+    
 }

@@ -1,6 +1,5 @@
 package com.grupo9.blueTicket.models.entities;
 
-import java.sql.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -19,24 +18,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_role")
-public class User_role {
-    @Id
+public class UserXRole {
+	
+	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_user")
-	private User id_user; 
+	private User user;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_role")
-	private Role id_role;
+	private Role role;
+	
+	@Column(name = "status")
+	private Boolean status;
 
-	public User_role(User id_user, Role id_role) {
+	public UserXRole(User user, Role role, Boolean status) {
 		super();
-		this.id_user = id_user;
-		this.id_role = id_role;
+		this.user = user;
+		this.role = role;
+		this.status = status;
 	}
-    
+	
+	
 }
