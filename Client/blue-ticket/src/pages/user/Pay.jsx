@@ -5,15 +5,19 @@ import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons';
 import NavbarUser from "../../components/Navbars/NavbarUser";
 import Footer from "../../components/Footer/Footer";
+import { useParams } from 'react-router-dom';
+import { Alert } from '../../utils/Alert';
 
 
 export const Pay = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const handleTransaction = () => {
-        navigate('/user/succesful-transaction');
+        Alert('¿Estas seguro de efectuar la compra?','Compra realizada')
+        navigate(`/user/succesful-transaction/${id}`);
     }
     const handleBack = () => {
-        navigate('/user/purchase-ticket');
+        navigate(`/user/purchase-ticket/${id}`);
     }
     return (
         <>

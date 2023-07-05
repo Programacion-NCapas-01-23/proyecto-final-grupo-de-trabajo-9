@@ -99,7 +99,7 @@ const Home = () => {
               <CardHome
                 key={events._id}
                 isMainView={true}
-                id={events._id}
+                id={events.id}
                 title={events.title}
                 image1={events.image1}
               />
