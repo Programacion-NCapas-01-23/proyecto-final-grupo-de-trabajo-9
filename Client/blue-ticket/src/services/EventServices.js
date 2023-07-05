@@ -31,6 +31,40 @@ const EventService = {
                 hasError: true,
             };
         }
+    },
+    getOneEvent: async (id) =>{
+        try {
+            const response = await API.get(`/public/event/${id}`);
+            if (response.status === 200) {
+                return response.data;
+            } else {
+                throw new Error(response.status);
+                }
+            } catch (error) {
+            console.log(error);
+            return {
+                hasError: true,
+            };
+        }
+    },
+    gotOneEventAuth: async (token, id) =>{
+        try {
+            const response = await API.get(`/public/event/${id}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                return response.data;
+            } else {
+                throw new Error(response.status);
+                }
+            } catch (error) {
+            console.log(error);
+            return {
+                hasError: true,
+            };
+        }
     }
 }
 

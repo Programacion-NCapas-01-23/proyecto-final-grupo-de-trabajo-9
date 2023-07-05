@@ -11,6 +11,7 @@ import ChangePassword from "../pages/user/ChangePassword.jsx";
 import PrivateRoutes from "./PrivateRoutes";
 import PrivateRoutesAdmin from "./PrivateRoutesAdmin";
 import Register from "../pages/user/Register";
+import ViewEvent from "../pages/user/ViewEvent";
 
 
 const MainContainer = ({ children }) => {
@@ -37,6 +38,7 @@ export const AppRouter = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/changePassword" element={<ChangePassword />} />
+          <Route path="/info/:id" element={<ViewEvent />} />
           <Route element={<PrivateRoutes/>}>
             <Route path="/user/*" element={<DashboardClient />} />
           </Route>
