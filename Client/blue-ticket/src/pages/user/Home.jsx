@@ -5,7 +5,7 @@ import CardHome from "../../components/Card/CardHome";
 import Footer from "../../components/Footer/Footer";
 import ViewEvent from "./ViewEvent";
 import SearchBox from "../../components/SearchBox";
-import FilterButton from "../../components/Button/filterButton";
+import FilterButton from "../../components/Button/FilterButton";
 import context from "../../context/UserContex";
 import EventService from "../../services/EventServices";
 import CategoryService from "../../services/CategoryService";
@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <>
-      <Carousel />
+      <Carousel  />
       <div>
         <div className="flex flex-row space-x-32 justify-center bg-blue h-20">
           <h1 className=" text-center text-white text-2xl font-bold my-5 md:text-3xl md:my-4 lg:text-4xl">Cartelera</h1>
