@@ -32,6 +32,40 @@ const EventService = {
             };
         }
     },
+
+    createEvent: async(token,title, date, hour, duration, sponsor, involved, image1, image2, category) => {
+        let payload = {
+            title: title,
+            date: date,
+            hour: hour,
+            duration: duration,
+            sponsor: sponsor,
+            involved: involved,
+            image1: image1,
+            image2: image2,
+            category: category,
+          };
+          console.log(payload);
+          try {
+            let response = await API.post('/events/save', payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+
+            });
+            //console.log(response.data.message);
+            console.log(response);
+            if (response.status === 201) {
+              return response;
+            } else {
+              throw new Error(response.status);
+            }
+          } catch (error) {
+            return { error: error };
+          }
+        }
+    },
+
     getOneEvent: async (id) =>{
         try {
             const response = await API.get(`/public/event/${id}`);
@@ -67,6 +101,5 @@ const EventService = {
         }
     }
 }
-
 
 export default EventService;
