@@ -11,10 +11,28 @@ const API = axios.create(
     }
 );
 
-export const ChangePass = {
-    getId: async(email) =>{
+const ChangePass = {
+    getId: async( email ) =>{
         try {
-            let response = await API.get('/public/get-user', email);
+            let response = await API.get('/public/get-user', {email: email});
+            console.log(response);
+            if (response.status === 200) {
+                return response;
+            } else {
+                throw new Error(response.status);
+            }
+
+        } catch (error) {
+            console.log(error);
+            return {
+                hasError: true,
+            };
+        }
+    },
+    change: async(id, oldPass, newPass)=>{
+        let payload = { oldPassword: oldPass, newPassword: newPass };
+        try {
+            let response = await API.patch(`/auth/update/${id}`, payload);
             console.log(response);
             if (response.status === 200) {
                 return response.data;
@@ -29,5 +47,5 @@ export const ChangePass = {
             };
         }
     }
-    
 }
+export default ChangePass;

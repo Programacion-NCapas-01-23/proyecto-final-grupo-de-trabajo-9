@@ -2,19 +2,49 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate,Link } from 'react-router-dom';
-import { ChangePass } from '../../services/ChangePassService';
+import ChangePass from '../../services/ChangePassService';
+import { NotFound } from '../../utils/Alert';
 
 const ChangePassword = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [oldpass, setOldPass] = useState('');
-  const [newPass, setNewPass] = useState('');
-  const [confirmPass, setConfirmPass] = useState('');
+  const [email, setEmail] = useState("");
+  const [oldpass, setOldPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
-  const handleHome = async() => {
+  const handleEmail = (e) =>{
+    setEmail(e.target.value);
+  }
+  const handleOldPass = (e) =>{
+    setOldPass(e.target.value);
+  }
+  const handleNewPass = (e) =>{
+    setNewPass(e.target.value);
+  }
+  const handleConfirmPass = (e) =>{
+    setConfirmPass(e.target.value);
+  }
+
+  const handleHome = async(e) => {
+    e.preventDefault();
     console.log(email, oldpass, newPass, confirmPass);
-    //let response = await ChangePass.getId(email);
-    //console.log(response);
+    if (newPass != confirmPass) {
+      NotFound('Las contraseñas no coinciden');
+    }
+    try {
+      const response = await ChangePass.getId(email);
+      console.log(response);
+    } catch (error) {
+      NotFound('Ocurrio un error');
+    }
+    /*
+    try {
+      let response = await ChangePass.getId(email);
+      let res = await ChangePass.change(response,oldpass,newPass);
+      console.log(res);
+    } catch (error) {
+      NotFound('Ocurrio un error');
+    } */
     //navigate('/login');
     }
   return (
@@ -26,7 +56,7 @@ const ChangePassword = () => {
           <div className='text-center mb-11'>
             <h6 className='font-semibold  text-xl'>Cambiar contraseña</h6>
           </div>
-          <form className='space-y-5' method="POST">
+          <form className='space-y-5' /*onSubmit={handleHome}*/ >
             <div className='relative mt-2 rounded shadow-sm'>
               <input
                 type="email"
@@ -36,7 +66,8 @@ const ChangePassword = () => {
                 [&:not(:placeholder-shown)]:pt-[1.625rem]'
                 id="floatingInput"
                 placeholder="name@example.com"
-                onChange={(e) => setEmail(e.target.value)} />
+                value={email}
+                onChange={handleEmail} />
               <label
                 for="floatingInput"
                 className='w-full  pl-11 pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-700 transition-[opacity,_transform] duration-200 
@@ -56,7 +87,8 @@ const ChangePassword = () => {
                 peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] 
                 [&:not(:placeholder-shown)]:pt-[1.625rem]'
                 id="floatingInput2"
-                onChange={(e) => setOldPass(e.target.value)}/>
+                value={oldpass}
+                onChange={handleOldPass}/>
               <label
                 for="floatingInput2"
                 className='w-full  pl-11 pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-700 transition-[opacity,_transform] duration-200 
@@ -79,7 +111,8 @@ const ChangePassword = () => {
                 peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] 
                 [&:not(:placeholder-shown)]:pt-[1.625rem]'
                 id="floatingInput3" 
-                onChange={(e) => setNewPass(e.target.value)}/>
+                value={newPass}
+                onChange={handleNewPass}/>
               <label
                 for="floatingInput3"
                 className='w-full  pl-11 pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-700 transition-[opacity,_transform] duration-200 
@@ -102,7 +135,8 @@ const ChangePassword = () => {
                 peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] 
                 [&:not(:placeholder-shown)]:pt-[1.625rem]'
                 id="floatingInput4" 
-                onChange={(e) => setConfirmPass(e.target.value)}/>
+                value={confirmPass}
+                onChange={handleConfirmPass}/>
               <label
                 for="floatingInput4"
                 className='w-full  pl-11 pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-700 transition-[opacity,_transform] duration-200 
