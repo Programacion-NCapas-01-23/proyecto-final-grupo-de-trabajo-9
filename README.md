@@ -1,6 +1,8 @@
 # BlueTicket
 Blueticket es una aplicación web intuitiva y fácil de usar que te permite comprar boletos para una amplia variedad de eventos en un solo lugar. Ya sea que estés buscando asistir a conciertos, festivales, eventos deportivos, Blueticket tiene todo lo que necesitas.
 
+## Enlace de [BlueTicket](https://blueticketsv.netlify.app/)
+
 ## Enlace documentacion API [BlueTIcket](https://documenter.getpostman.com/view/20859166/2s93zE3L2K)
 
 # Usuarios de prueba
