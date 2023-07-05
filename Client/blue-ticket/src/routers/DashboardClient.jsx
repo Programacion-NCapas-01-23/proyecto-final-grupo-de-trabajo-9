@@ -21,11 +21,11 @@ export const DashboardClient = () => {
       <div>
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/info-event" element={<ViewEvent />} />
-          <Route path="/purchase-ticket" element={<TicketPurchase />} />
-          <Route path="/info-ticket" element={<PaymentInfo />} />
-          <Route path="/pay" element={<Pay />} />
-          <Route path="/succesful-transaction" element={<Transaction />} />
+          <Route path="/info/:id" element={<ViewEvent />} />
+          <Route path="/purchase-ticket/:id" element={<TicketPurchase />} />
+          <Route path="/info-ticket/:id" element={<PaymentInfo />} />
+          <Route path="/pay/:id" element={<Pay />} />
+          <Route path="/succesful-transaction/:id" element={<Transaction />} />
           <Route path="/mytickets" element={<MyTickets />} />
           <Route path="/history" element={<Record/>} />
           <Route path="/info-pay-ticket" element={<TicketInformation/> } />

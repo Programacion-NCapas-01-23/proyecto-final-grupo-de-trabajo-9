@@ -17,8 +17,9 @@ public interface TicketService {
 
 	void generateToken(UUID ticketId);
 	
-	void createTicket(SaveTicketDTO info);
 	
 	void transferTicket(TransferDTO info) throws Exception;
     String generateTokenContent(Ticket ticket);
+
+	void createTicket(Ticket ticket);
 }

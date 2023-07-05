@@ -1,10 +1,22 @@
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import context from '../../context/UserContex';
 
 export const CardHome = (props) => {
     const navigate = useNavigate();
+    const [code, setCode] = useState("");
 
     const hello = () => {
-        navigate('/user/info-event');
+        const token = context.getToken();
+        //setCode(props.id);
+        
+        
+        if (token == null) {
+            navigate(`/info/${props.id}`)
+        }else if (token != null) {
+            navigate(`/user/info/${props.id}`);
+        }
+        
     }
     return (
         <>

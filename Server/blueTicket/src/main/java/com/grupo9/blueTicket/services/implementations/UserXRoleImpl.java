@@ -71,15 +71,16 @@ public class UserXRoleImpl implements UserXRoleService {
 		return userXRoleRepository.findAll();
 	}
 
+	@Override
 	@Transactional
 	public void removeRole(UUID userId, int roleId) {
-	    // Verificar si el rol está asignado al usuario
-	    if (!userXRoleRepository.existsByUserIdAndRoleId(userId, roleId)) {
-	        throw new IllegalArgumentException("Role is not assigned to the user");
-	    }
+	    User user = userRepository.findById(userId).orElse(null);
+	    Role role = roleRepository.findById(roleId).orElse(null);
 
-	    // Eliminar la asignación del rol al usuario
-	    userXRoleRepository.deleteByUserIdAndRoleId(userId, roleId);
+	    UserXRole userXRole = userXRoleRepository.findByUserAndRole(user, role);
+	    if (userXRole != null) {
+	        userXRoleRepository.delete(userXRole);
+	    }
 	}
 
 }
